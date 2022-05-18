@@ -33,5 +33,9 @@ namespace Oasis.Core.Models
             Password = password;
             RegistrationDate = DateTime.Now;
         }
+
+        
     }
+    
+
 }

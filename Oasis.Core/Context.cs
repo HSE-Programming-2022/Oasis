@@ -12,6 +12,8 @@ namespace Oasis.Core
     {
         public DbSet<Person> People { get; set; }
 
+
+
         public Context() : base("DBConnection")
         {
 
