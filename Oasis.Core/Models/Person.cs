@@ -22,9 +22,8 @@ namespace Oasis.Core.Models
         [StringLength(50, ErrorMessage = "Password name cannot be longer than 50 characters.")]
         public string Password { get; set; }
 
-        [DataType(DataType.Date)]
+        [Required]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Registration Date")]
         public DateTime RegistrationDate { get; set; }
 
         public Person(string login, string password)

@@ -11,7 +11,9 @@ namespace Oasis.Core
     public class Context : DbContext
     {
         public DbSet<Person> People { get; set; }
-
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Hall> Halls { get; set; }
+        public DbSet<Seat> Seats { get; set; }
 
 
         public Context() : base("DBConnection")

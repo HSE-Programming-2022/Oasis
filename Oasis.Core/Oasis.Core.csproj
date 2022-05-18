@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\ComputerClub.cs" />
     <Compile Include="Models\Hall.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Reservation.cs" />
