@@ -23,7 +23,7 @@ namespace Oasis.Design
         public MainWindow()
         {
             InitializeComponent();
-            InitialDb();
+            //InitialDb();
         }
         private void InitialPerson()
         {
@@ -64,6 +64,63 @@ namespace Oasis.Design
                 context.SaveChanges();
                 MessageBox.Show("Saved");
             }
+
+
+
+
+
+
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserChoosingTypeofActivity taskWindow = new UserChoosingTypeofActivity();
+
+            taskWindow.Owner = this.Owner;
+            taskWindow.Show();
+            Close();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+
+        }
+
+        private void ForgetPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationWindow taskWindow = new RegistrationWindow();
+
+            taskWindow.Owner = this.Owner;
+            taskWindow.Show();
+            Close();
+        }
+
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            AdminWindow taskWindow = new AdminWindow();
+
+            taskWindow.Owner = this.Owner;
+            taskWindow.Show();
+
         }
     }
 }
