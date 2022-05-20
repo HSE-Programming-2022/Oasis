@@ -120,7 +120,17 @@ namespace Oasis.Design
 
             taskWindow.Owner = this.Owner;
             taskWindow.Show();
+            Close();
 
+        }
+
+        private void RigistrationButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserRegisteringWindow taskWindow = new UserRegisteringWindow();
+
+            taskWindow.Owner = this.Owner;
+            taskWindow.Show();
+            Close();
         }
     }
 }
