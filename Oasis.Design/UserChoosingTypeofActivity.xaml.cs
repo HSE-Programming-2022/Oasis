@@ -90,5 +90,14 @@ namespace Oasis.Design
             Close();
 
         }
+
+        private void BalanceButton_Click(object sender, RoutedEventArgs e)
+        {
+            TopUpBalance taskWindow = new TopUpBalance();
+
+            taskWindow.Owner = this.Owner;
+            taskWindow.Show();
+            
+        }
     }
 }
