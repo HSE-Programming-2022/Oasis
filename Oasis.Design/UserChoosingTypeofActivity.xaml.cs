@@ -75,11 +75,6 @@ namespace Oasis.Design
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
             
@@ -88,6 +83,11 @@ namespace Oasis.Design
             taskWindow.Owner = this.Owner;
             taskWindow.Show();
             Close();
+
+        }
+
+        private void BalanceButton_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
