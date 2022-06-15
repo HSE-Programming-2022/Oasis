@@ -1,0 +1,126 @@
+﻿<Window x:Class="Oasis.Design.HistoryOfUserReservations"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Oasis.Design"
+        mc:Ignorable="d"
+        Title="UserChoosingTypeofActivity" Height="550" Width="900" MouseDown="Window_MouseDown" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" BorderBrush="Transparent">
+    <Border Width="Auto" Height="Auto" Name="windowFrame"
+    
+          
+          Background="WhiteSmoke"
+          BorderThickness="1"
+          CornerRadius="10">
+
+
+        <Grid>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Grid Width="Auto" HorizontalAlignment="Right" Height="Auto" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="ExitButton" Grid.Row="0" Grid.Column="2" Click="ExitButton_Click" Height="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="8,0,8,9">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Ellipse Width="13" Height="13" Fill="Red" />
+
+
+
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
+                <Button Name="RemoveInUserChoosingTypeofActivityButton" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RemoveInUserChoosingTypeofActivityButton_Click">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Ellipse Width="13" Height="13" Fill="Orange" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Name="OpenBigButton" Grid.Row="0" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="OpenBigButton_Click">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Ellipse Width="13" Height="13" Fill="Gray" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </Grid>
+
+            <Grid Grid.Row="1" Height="50" Width="900" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="700"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <materialDesign:PackIcon VerticalAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Height="32" Width="32" Foreground="Blue" Kind="CircleOutline" Margin="5 0 0 0"></materialDesign:PackIcon>
+                <TextBlock Text="OASIS" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Foreground="#41518f" VerticalAlignment="Center" FontSize="25" FontWeight="SemiBold" Margin="50 0 0 0" ></TextBlock>
+
+
+
+
+                <materialDesign:PopupBox Name="ProfileButton" Grid.Column="2" Background="Purple"  Grid.Row="1" VerticalAlignment="Center" Height="30" Width="30" HorizontalAlignment="Center" Style="{x:Null}"  BorderBrush="White">
+
+                    <StackPanel>
+
+                        <Button Name="ProfileInUserHistoryButton" Width="150" Content="Профиль"></Button>
+                        <Button Name="MakeNewOrderUserHistoryButton" Content="Сделать новую бронь" Click="MakeNewOrderUserHistoryButton_Click"></Button>
+                        <Button Name="LogOutFromUserHistoryButton" Content="Выйти из аккаунта" Click="LogOutFromUserHistoryButton_Click"></Button>
+
+                    </StackPanel>
+                </materialDesign:PopupBox>
+                <Button Name="BalanceUserHistoryButton" Grid.Row="1" Content="10$" Height="40" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource MaterialDesignFlatButton}" Grid.Column="1" Click="BalanceUserHistoryButton_Click" ></Button>
+            </Grid>
+
+            <Separator Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="2000" Background="Blue" Style="{StaticResource MaterialDesignDarkSeparator}"></Separator>
+
+            <ListBox Grid.Row="2" Width="600" Height="390" HorizontalAlignment="Center" Background="Blue" VerticalAlignment="Center">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Name="ReservationDate" Margin="10,0" Grid.Column="0" FontSize="20" FontFamily="Monsterrat" Initialized="ReservationDate_Initialized"/>
+                            <TextBlock Name="ReservationStartTime" Margin="10,0" Grid.Column="1" FontSize="20" FontFamily="Monsterrat" Initialized="ReservationStartTime_Initialized"/>
+                            <TextBlock Name="ReservationEndTime" Margin="10,0" Grid.Column="2" FontSize="20" FontFamily="Monsterrat" Initialized="ReservationEndTime_Initialized"/>
+                            <TextBlock Name="TypeOfActivity" Margin="10,0" Grid.Column="2" FontSize="20" FontFamily="Monsterrat" Initialized="TypeOfActivity_Initialized"/>
+                            <TextBlock Name="TypeOfHall" Margin="10,0" Grid.Column="2" FontSize="20" FontFamily="Monsterrat" Initialized="TypeOfHall_Initialized"/>
+                            <materialDesign:PopupBox >
+                                <StackPanel>
+                                    <Button Name="ChangeReservation" Width="150" Content="Изменить"></Button>
+                                    <Button Name="DeleteReservation" Content="Удалить бронь" Click="DeleteReservation_Click"></Button>
+                                </StackPanel>
+                            </materialDesign:PopupBox>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+
+
+        </Grid>
+        
+        
+    </Border>
+</Window>

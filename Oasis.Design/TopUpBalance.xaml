@@ -37,8 +37,8 @@
             <TextBlock Text="Текущий баланс: " Grid.Row="2" VerticalAlignment="Center" FontSize="13" Width="110" HorizontalAlignment="Left" Margin="70 0 0 0"></TextBlock>
             <TextBlock Name="CurrentUserBalance" Grid.Row="2"  VerticalAlignment="Center" Width="80" TextAlignment="Center" FontSize="16" Text="100" HorizontalAlignment="Center" Margin="110 0 0 0"></TextBlock>
             
-            <TextBox Grid.Row="3" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Введите сумму пополнения" TextAlignment="Center" FontSize="13" Width="170" ></TextBox>
-            <Button Grid.Row="4" Width="120" Content="Пополнить">
+            <TextBox Name="SumOfUserTopUp" Grid.Row="3" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Введите сумму пополнения" TextAlignment="Center" FontSize="13" Width="170" ></TextBox>
+            <Button Grid.Row="4" Width="120" Content="Пополнить" Click="Button_Click">
                 
 
 
