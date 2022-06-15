@@ -19,24 +19,38 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox Name="SearchingTextBox" Grid.Column="0" Height="50" materialDesign:HintAssist.Hint="Search here...." Width="500" Foreground="White" Style="{StaticResource MaterialDesignFilledTextBox}" ></TextBox>
-            <Button Grid.Column="1" Width="30" Height="30" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="{x:Null}"  Style="{StaticResource MaterialDesignIconButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" >
+            <TextBox Name="SearchingTextBox" Grid.Column="0" Height="50" materialDesign:HintAssist.Hint="Введите логин пользователя" Width="300" Foreground="White" Style="{StaticResource MaterialDesignFilledTextBox}" ></TextBox>
+            <Button Name="SearchButton" Grid.Column="1" Width="30" Height="30" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="{x:Null}"  Style="{StaticResource MaterialDesignIconButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="SearchButton_Click">
                 <materialDesign:PackIcon Kind="Search"  Width="30" Height="30" Foreground="White"></materialDesign:PackIcon>
                  
             </Button>
         </Grid>
-        <ListView Grid.Row="1" Width="700">
-            <ListView.View>
-                <GridView>
-                    <GridView.Columns>
-                        <GridViewColumn Header="Login" Width="200" DisplayMemberBinding="{Binding Login}"/>
-                        <GridViewColumn Header="Nickname" Width="150" DisplayMemberBinding="{Binding Nickname}"/>
-                        <GridViewColumn Header="Balance" Width="130" DisplayMemberBinding="{Binding Ballance}"/>
-                    </GridView.Columns>
-                    
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ListBox Name="UsersListBox" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Name="UserLogin" Margin="30,0" Grid.Column="0" Initialized="UserLogin_Initialized"/>
+                        <TextBlock Name="UserName" Margin="30,0" Grid.Column="1" Initialized="UserName_Initialized"/>
+                        <TextBlock Name="UserSurename" Margin="30,0" Grid.Column="2" Initialized="UserSurename_Initialized"/>
+                        <TextBlock Name="Balance" Margin="30,0" Grid.Column="3" Initialized="Balance_Initialized"/>
+                        <materialDesign:PopupBox Name="ProfileButton" Grid.Column="4" Background="Purple" Height="30" Width="30" HorizontalAlignment="Right" Style="{x:Null}"  BorderBrush="White">
+                            <StackPanel>
+                                <Button Name="ChangeBalanceButton" Width="150" Content="Изменить баланс" Click="ChangeBalanceButton_Click"/>
+                                <Button Name="HistoryButton" Content="История резерваций" Click="HistoryButton_Click"/>
+                                <Button Name="ReservationButton" Content="Зарезервировать" Click="ReservationButton_Click"/>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         
         
         

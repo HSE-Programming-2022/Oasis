@@ -84,7 +84,7 @@
                     <StackPanel>
 
                         <Button Name="ProfileInUserChoosingTypeofActivityButton" Width="150" Content="Profile"></Button>
-                        <Button Name="StatisticsInUserChoosingTypeofActivityButton" Content="History"></Button>
+                        <Button Name="StatisticsInUserChoosingTypeofActivityButton" Content="Statistics"></Button>
                         <Button Name="LogOutButton" Content="Log out" Click="LogOutButton_Click"></Button>
 
                     </StackPanel>
@@ -99,7 +99,7 @@
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="2" Height="50" Width="120" HorizontalAlignment="Center">
-                <Button Name="BalanceButton" Content="10$" Height="40" FontSize="23" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,0" Click="BalanceButton_Click"></Button>
+                <Button Name="BalanceButton" Content="10$" Height="40" FontSize="23" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,0" Click="BalanceButton_Click"/>
             </Grid>
 
 

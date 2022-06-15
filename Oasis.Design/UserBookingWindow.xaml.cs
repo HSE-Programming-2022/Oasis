@@ -45,7 +45,7 @@ namespace Oasis.Design
         
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            this.Close();
         }
 
         private void RemoveInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
