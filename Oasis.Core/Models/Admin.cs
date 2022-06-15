@@ -10,6 +10,11 @@ namespace Oasis.Core.Models
 {
     public class Admin : Person
     {
+        public Admin() : base("111", "222")
+        {
+
+        }
+
         public Admin(string login, string password) : base(login, password)
         {
 

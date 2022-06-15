@@ -23,6 +23,13 @@ namespace Oasis.Core.Models
         [Required]
         public float Balance { get; set; }
 
+        public User() : base("123", "456")
+        {
+            Name = "ivan";
+            Surname = "Dolbilkin";
+            Balance = 0;
+        }
+
         public User(string login, string password, string name, string surname) : base(login, password)
         {
             Name = name;

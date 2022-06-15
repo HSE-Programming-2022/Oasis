@@ -83,9 +83,9 @@
 
                     <StackPanel>
 
-                        <Button Name="ProfileInUserChoosingTypeofActivityButton" Width="150" Content="Профиль"></Button>
-                        <Button Name="GoToUserHistoryButton" Content="История броней" Click="GoToUserHistoryButton_Click"></Button>
-                        <Button Name="LogOutButton" Content="Выйти из аккаунта" Click="LogOutButton_Click"></Button>
+                        <Button Name="ProfileInUserChoosingTypeofActivityButton" Width="150" Content="Profile"></Button>
+                        <Button Name="StatisticsInUserChoosingTypeofActivityButton" Content="Statistics"></Button>
+                        <Button Name="LogOutButton" Content="Log out" Click="LogOutButton_Click"></Button>
 
                     </StackPanel>
                 </materialDesign:PopupBox>
@@ -99,12 +99,7 @@
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="2" Height="50" Width="120" HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Button Name="BalanceButton" Grid.Column="0" Content="100" Height="40" FontSize="23" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource MaterialDesignFlatButton}" Click="BalanceButton_Click"></Button>
-                <TextBlock Text="р." FontSize="25" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                <Button Name="BalanceButton" Content="10$" Height="40" FontSize="23" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,0" Click="BalanceButton_Click"/>
             </Grid>
 
 
@@ -177,24 +172,24 @@
                         <RowDefinition/>
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
-                    <TextBlock VerticalAlignment="Center" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" FontSize="17" Grid.Row="1" Text="VIP комнаты"></TextBlock>
-                    <TextBlock Grid.Row="2" Text="799 руб/час" Foreground="White" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"  VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" FontSize="17" Grid.Row="1" Text="VIP комнаты"></TextBlock>
+                    <TextBlock Grid.Row="2" Text="799 руб/час" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"  VerticalAlignment="Center" ></TextBlock>
 
                     <Ellipse Grid.Row="0" Height="50" Width="50">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="Recources/money.png"></ImageBrush>
                         </Ellipse.Fill>
                     </Ellipse>
-                    <materialDesign:PackIcon Foreground="White" Width="20" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
-                    <TextBlock Foreground="White" Grid.Row="3" VerticalAlignment="Center" Text="5 ПК" Margin="30 0 0 0"></TextBlock>
-                    <materialDesign:PackIcon Foreground="White" Width="20" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
-                    <TextBlock Foreground="White" Grid.Row="4" VerticalAlignment="Center" Text="Intel Core i5 10400" Margin="30 0 0 0"></TextBlock>
-                    <materialDesign:PackIcon Foreground="White" Width="20" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
-                    <TextBlock Foreground="White" Grid.Row="5" VerticalAlignment="Center" Text="Gigabyte GeForce RTX 3060Ti" Margin="30 0 0 0"></TextBlock>
-                    <materialDesign:PackIcon Width="20" Foreground="White" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
-                    <TextBlock VerticalAlignment="Center" Foreground="White" Grid.Row="6" Text="Мониторы: 24.5  240 Гц" Margin="30 0 0 0"></TextBlock>
-                    <materialDesign:PackIcon Width="20" Foreground="White" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
-                    <TextBlock Grid.Row="7" Foreground="White" Text="ОЗУ: HyperX DDR4 16Gb" Margin="30 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <materialDesign:PackIcon Width="20" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
+                    <TextBlock Grid.Row="3" VerticalAlignment="Center" Text="5 ПК" Margin="30 0 0 0"></TextBlock>
+                    <materialDesign:PackIcon Width="20" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
+                    <TextBlock Grid.Row="4" VerticalAlignment="Center" Text="Intel Core i5 10400" Margin="30 0 0 0"></TextBlock>
+                    <materialDesign:PackIcon Width="20" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
+                    <TextBlock Grid.Row="5" VerticalAlignment="Center" Text="Gigabyte GeForce RTX 3060Ti" Margin="30 0 0 0"></TextBlock>
+                    <materialDesign:PackIcon Width="20" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
+                    <TextBlock VerticalAlignment="Center" Grid.Row="6" Text="Мониторы: 24.5  240 Гц" Margin="30 0 0 0"></TextBlock>
+                    <materialDesign:PackIcon Width="20" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
+                    <TextBlock Grid.Row="7" Text="ОЗУ: HyperX DDR4 16Gb" Margin="30 0 0 0" VerticalAlignment="Center"></TextBlock>
 
                     <Button Grid.Row="8" Style="{StaticResource MaterialDesignFlatButton}" BorderBrush="White" BorderThickness="0.999" Content="Выбрать" materialDesign:ButtonAssist.CornerRadius="10" Foreground="White" Width="130" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="ChooseTypeOfActivity1Button_Click"></Button>
                 </Grid>
@@ -246,7 +241,7 @@
                     <materialDesign:PackIcon Width="20" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
                     <TextBlock Grid.Row="7" Text="Множество игр" Margin="30 0 0 0" VerticalAlignment="Center"></TextBlock>
 
-                    <Button Grid.Row="8" BorderThickness="0.999" Style="{StaticResource MaterialDesignFlatButton}" Content="Выбрать" materialDesign:ButtonAssist.CornerRadius="10" BorderBrush="MediumPurple" Width="130" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="ChooseTypeOfActivity1Button_Click"></Button>
+                    <Button Grid.Row="8" Style="{StaticResource MaterialDesignFlatMidBgButton}" Content="Выбрать" materialDesign:ButtonAssist.CornerRadius="10" Background="#41518f" Width="130" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="ChooseTypeOfActivity1Button_Click"></Button>
                 </Grid>
             </Border>
         </Grid>
