@@ -75,6 +75,9 @@
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TopUpBalance.xaml.cs">
+      <DependentUpon>TopUpBalance.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserBookingWindow.xaml.cs">
       <DependentUpon>UserBookingWindow.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TopUpBalance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

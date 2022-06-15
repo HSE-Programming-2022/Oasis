@@ -75,6 +75,11 @@ namespace Oasis.Design
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
             
@@ -88,7 +93,11 @@ namespace Oasis.Design
 
         private void BalanceButton_Click(object sender, RoutedEventArgs e)
         {
+            TopUpBalance taskWindow = new TopUpBalance();
 
+            taskWindow.Owner = this.Owner;
+            taskWindow.Show();
+            
         }
     }
 }
