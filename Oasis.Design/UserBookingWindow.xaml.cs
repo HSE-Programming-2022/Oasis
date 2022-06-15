@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Oasis.Core;
+using Oasis.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,26 @@ namespace Oasis.Design
     /// </summary>
     public partial class UserBookingWindow : Window
     {
+        string _selectedHall;
+        int _numberOfPeople;
+        DateTime _selectedDate;
         public UserBookingWindow()
         {
             InitializeComponent();
+        }
+
+        private void CheckingFreeTimeSlots()
+        {
+            using (Context context = new Context())
+            {
+                List<Reservation> resrvation = new List<Reservation>();
+                foreach (var item in context.Reservations.ToList())
+                {
+                    resrvation.Add(item);
+                }
+
+            }
+
         }
         
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -66,7 +85,19 @@ namespace Oasis.Design
             
         }
 
-        
-        
+        private void ComboBoxHall_Selected(object sender, RoutedEventArgs e)
+        {
+            _selectedHall = ComboBoxHall.SelectedItem.ToString();
+        }
+
+        private void ComboBoxNumberOfPeople_Selected(object sender, RoutedEventArgs e)
+        {
+            _numberOfPeople = int.Parse(ComboBoxNumberOfPeople.SelectedItem.ToString());
+        }
+
+        private void ChoosingDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _selectedDate = DateTime.Parse(ChoosingDatePicker.SelectedDate.ToString());
+        }
     }
 }
