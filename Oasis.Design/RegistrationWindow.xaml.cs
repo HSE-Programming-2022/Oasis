@@ -38,12 +38,12 @@ namespace Oasis.Design
 
         private void RemoveInPasswordrecoveryButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.WindowState = WindowState.Minimized;
         }
 
         private void ExitInPasswordrecoveryButton_Click_1(object sender, RoutedEventArgs e)
         {
-
+            Environment.Exit(0);
         }
 
         private void SendCodeButton_Click(object sender, RoutedEventArgs e)

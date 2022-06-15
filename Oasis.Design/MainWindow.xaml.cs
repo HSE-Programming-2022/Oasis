@@ -15,6 +15,10 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using Oasis.Core;
 using Oasis.Core.Models;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace Oasis.Design
 {
@@ -25,6 +29,20 @@ namespace Oasis.Design
             InitializeComponent();
             //InitialDb();
         }
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.BottomCenter,
+                offsetX: 100,
+                offsetY: 5);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
         private void InitialPerson()
         {
             using (Context context = new Context())
@@ -75,10 +93,11 @@ namespace Oasis.Design
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             UserChoosingTypeofActivity taskWindow = new UserChoosingTypeofActivity();
-
             taskWindow.Owner = this.Owner;
             taskWindow.Show();
             Close();
+
+            //notifier.ShowWarning("Угомонись хохлина программа не работает");
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -122,6 +141,7 @@ namespace Oasis.Design
             taskWindow.Show();
             Close();
 
+
         }
 
         private void RigistrationButton_Click(object sender, RoutedEventArgs e)
@@ -131,6 +151,11 @@ namespace Oasis.Design
             taskWindow.Owner = this.Owner;
             taskWindow.Show();
             Close();
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            NewStackpanel.Background = Brushes.White;
         }
     }
 }

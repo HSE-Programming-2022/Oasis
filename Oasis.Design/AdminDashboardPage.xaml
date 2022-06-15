@@ -3,13 +3,165 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
       xmlns:local="clr-namespace:Oasis.Design"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminDashboardPage">
 
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="Dashboard"  FontSize="32"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="180"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" VerticalAlignment="Center" Width="200" Height="100" Background="#223266" HorizontalAlignment="Center" CornerRadius="12">
+                
+                <StackPanel VerticalAlignment="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="1" Visibility="Hidden"></Button>
+                        <materialDesign:PackIcon Kind="Eye" Foreground="White" Grid.Row="2" Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"></materialDesign:PackIcon>
+                    <TextBlock Text="Количество посещений сегодня" FontSize="12" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"></TextBlock>
+                    <TextBlock Text="129" FontSize="20" FontWeight="Bold" Foreground="White" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
 
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+
+
+            <Border Grid.Column="1" VerticalAlignment="Center" Width="200" Height="100" Background="#223266" HorizontalAlignment="Center" CornerRadius="12">
+
+                <StackPanel VerticalAlignment="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="1" Visibility="Hidden"></Button>
+                        <materialDesign:PackIcon Kind="Eye" Foreground="White" Grid.Row="2" Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"></materialDesign:PackIcon>
+                        <TextBlock Text="Количество посещений сегодня" FontSize="12" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"></TextBlock>
+                        <TextBlock Text="129" FontSize="20" FontWeight="Bold" Foreground="White" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+
+
+
+            <Border Grid.Column="2" VerticalAlignment="Center" Width="200" Height="100" Background="#223266" HorizontalAlignment="Center" CornerRadius="12">
+
+                <StackPanel VerticalAlignment="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="1" Visibility="Hidden"></Button>
+                        <materialDesign:PackIcon Kind="Eye" Foreground="White" Grid.Row="2" Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"></materialDesign:PackIcon>
+                        <TextBlock Text="Количество посещений сегодня" FontSize="12" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"></TextBlock>
+                        <TextBlock Text="129" FontSize="20" FontWeight="Bold" Foreground="White" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+
+
+        </Grid>
+
+        
+        <Border Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Height="250" CornerRadius="20" Background="#243771">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <materialDesign:PackIcon Kind="CircleOutline" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"></materialDesign:PackIcon>
+                    <TextBlock Text="Profit" HorizontalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="200" Width="50" >
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="280" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="240" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="200" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="160" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="120" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="80" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="40" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="0" Foreground="#717eb2"></TextBlock>
+
+
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Bottom" Height="20" Width="400" >
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="00:00-04:00" Foreground="#717eb2" Margin="20 0 0 0"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="04:00-08:00" Foreground="#717eb2" Margin="20 0 0 0"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="08:00-12:00" Foreground="#717eb2" Margin="20 0 0 0"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="12:00-16:00" Foreground="#717eb2" Margin="20 0 0 0"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="16:00-20:00" Foreground="#717eb2" Margin="20 0 0 0"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="20:00-00:00" Foreground="#717eb2" Margin="20 0 0 0"></TextBlock>
+                </StackPanel>
+                
+                <!--Chart-->
+                <lvc:CartesianChart Grid.Row="1" Width="390" Height="180">
+                    <lvc:CartesianChart.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="05,1">
+                            <GradientStop Color="#26376f" Offset="0"></GradientStop>
+                            <GradientStop Color="#6a6ae4" Offset="1"></GradientStop>
+                        </LinearGradientBrush>
+                    </lvc:CartesianChart.Background>
+                    <lvc:CartesianChart.ToolTip>
+                        <lvc:DefaultTooltip Background="#24336a" Foreground="#d5e2ff" ></lvc:DefaultTooltip>
+                    </lvc:CartesianChart.ToolTip>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis MinValue="1" MaxValue="5" Foreground="#717eb2" ShowLabels="False" >
+                            <lvc:Axis.Separator>
+                                <lvc:Separator StrokeThickness="0"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+
+
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis MinValue="0" MaxValue="280" Foreground="#717eb2" ShowLabels="False" >
+                            <lvc:Axis.Separator>
+                                <lvc:Separator StrokeThickness="0"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Stroke="#ada4fd" StrokeThickness="2" PointGeometrySize="0">
+                            <lvc:LineSeries.Fill>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <GradientStop Color="#b397e2" Offset="0.4"></GradientStop>
+                                    <GradientStop Color="#6a6ae4" Offset="1.2"></GradientStop>
+                                </LinearGradientBrush>
+                            </lvc:LineSeries.Fill>
+                        </lvc:LineSeries>
+                    </lvc:CartesianChart.Series>
+                    
+                    
+                </lvc:CartesianChart>
+            </Grid>
+            
+        </Border>
+        
+        
+        
     </Grid>
 </Page>

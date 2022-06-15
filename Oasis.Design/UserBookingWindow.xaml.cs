@@ -23,19 +23,27 @@ namespace Oasis.Design
         {
             InitializeComponent();
         }
+        
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Environment.Exit(0);
         }
 
         private void RemoveInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.WindowState = WindowState.Minimized;
         }
 
         private void OpenBigButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if(this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = WindowState.Maximized;
+            }
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -50,5 +58,15 @@ namespace Oasis.Design
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+       
+
+        private void Button1_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        
+        
     }
 }

@@ -35,12 +35,18 @@ namespace Oasis.Design
 
         private void OpenBigButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.WindowState = WindowState.Maximized;
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = WindowState.Maximized;
+            }
         }
-
         private void RemoveInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            this.WindowState = WindowState.Minimized;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -62,6 +68,22 @@ namespace Oasis.Design
         private void ChooseTypeOfActivity1Button_Click(object sender, RoutedEventArgs e)
         {
             UserBookingWindow taskWindow = new UserBookingWindow();
+
+            taskWindow.Owner = this.Owner;
+            taskWindow.Show();
+            Close();
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void LogOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            MainWindow taskWindow = new MainWindow();
 
             taskWindow.Owner = this.Owner;
             taskWindow.Show();

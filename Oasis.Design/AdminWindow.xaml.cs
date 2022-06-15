@@ -48,5 +48,36 @@ namespace Oasis.Design
         {
             Admin.Content = new AdminUsersPage();
         }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void RemoveInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void OpenBigButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+        }
+
+        private void LogOutAdminButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow taskWindow = new MainWindow();
+
+            taskWindow.Owner = this.Owner;
+            taskWindow.Show();
+            Close();
+        }
     }
 }

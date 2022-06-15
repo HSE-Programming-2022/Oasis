@@ -8,11 +8,13 @@
         mc:Ignorable="d"
          Title="Login" Height="600" Width="450" Background="{x:Null}" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" MouseDown="Window_MouseDown" WindowStartupLocation="CenterScreen">
     <materialDesign:Card UniformCornerRadius="15" Background="White" Margin="25">
-        <StackPanel>
+        <StackPanel Name="NewStackpanel">
 
-            <StackPanel>
-                <TextBlock Text="Добро пожаловать в OASIS" FontWeight="Bold" HorizontalAlignment="Center" FontSize="23" Width="358" Margin="54,90,-12,-130" />
-                <TextBlock Text="Войдите в свой аккаунт" FontWeight="SemiBold" HorizontalAlignment="Center" FontSize="17" Margin="106,120,77,-200" Width="217" />
+            <StackPanel Margin="0 0 0 -180">
+                <TextBlock Margin="17 60 0 -30" Width="80" Height="30" Text="OASIS" Foreground="#41518f" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" FontWeight="SemiBold" ></TextBlock>
+                <materialDesign:PackIcon Height="32" Width="32" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Blue" Kind="CircleOutline" Margin="135 0 0 0"></materialDesign:PackIcon>
+                <TextBlock Text="Добро пожаловать" FontWeight="Bold" HorizontalAlignment="Center" FontSize="23" Width="274" Margin="93,-10,33,-80" Height="34" />
+                <TextBlock Text="Войдите в свой аккаунт" FontWeight="SemiBold" HorizontalAlignment="Center" FontSize="17" Margin="106,-50,77,-200" Width="217" Height="42" />
             </StackPanel>
             <StackPanel>
                 <Grid Height="32">
@@ -42,15 +44,18 @@
             </StackPanel>
 
             <TextBox x:Name="LoginTextBox" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="50 130 50 10" Width="300" Height="60" FontSize="15" materialDesign:HintAssist.Hint="Email" BorderThickness="2"/>
-            <PasswordBox Margin="50 10 50 0" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" x:Name="PasswordBox" Width="300" Height="60" FontSize="15" materialDesign:HintAssist.Hint="Password" BorderThickness="2"></PasswordBox>
+            <PasswordBox Margin="50 10 50 0" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" x:Name="PasswordBox" Width="300" Height="60" FontSize="15" materialDesign:HintAssist.Hint="Password" BorderThickness="2">
+
+            </PasswordBox>
+
 
             <StackPanel>
-                <Button x:Name="ForgetPasswordButton" Content="Забыли пароль?" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="120" Height="26" FontSize="10" BorderBrush="White" BorderThickness="0"  Background="White" Foreground="MediumPurple" Margin="9 2 230 0" Click="ForgetPasswordButton_Click"/>
+                <Button x:Name="ForgetPasswordButton" Content="Забыли пароль?" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="120" Height="26" FontSize="10" Background="Transparent" BorderBrush="White" BorderThickness="0" Foreground="MediumPurple" Margin="9 2 230 0" Click="ForgetPasswordButton_Click"/>
 
             </StackPanel>
             <Button Name="LoginButton" Margin="0 50 0 0" Style="{StaticResource MaterialDesignFlatMidBgButton}" Width="300" Content="Войти" materialDesign:ButtonAssist.CornerRadius="10" Height="40" Click="LoginButton_Click" ></Button>
-            <Button Name="RigistrationButton" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Width="300" Content="Зарегестрироваться" Margin="0 20 0 0" materialDesign:ButtonAssist.CornerRadius="10" Height="40" Click="RigistrationButton_Click" ></Button>
-            <ToggleButton Width="45" Margin="52,14,302,0" Checked="ToggleButton_Checked" />
+            <Button Name="RigistrationButton" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"  Width="300" Content="Зарегестрироваться" Margin="0 20 0 0" materialDesign:ButtonAssist.CornerRadius="10" Height="40" Click="RigistrationButton_Click" ></Button>
+            <ToggleButton Width="45" Margin="52,14,302,0" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" />
             <TextBlock Text="User" FontWeight="SemiBold" HorizontalAlignment="Center" FontSize="10"  Margin="25,-16,345,0" />
             <TextBlock Text="Admin" FontWeight="SemiBold" HorizontalAlignment="Center" TextAlignment="Center" FontSize="10"  Margin="68,-16,246,0" Width="45" />
 
