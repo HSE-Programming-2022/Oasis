@@ -100,7 +100,9 @@ namespace Oasis.Design
             
         }
 
-        private void GoToUserHistoryButton_Click(object sender, RoutedEventArgs e)
+        
+
+        private void StatisticsInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
         {
             HistoryOfUserReservations taskWindow = new HistoryOfUserReservations();
 

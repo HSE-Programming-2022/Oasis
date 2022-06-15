@@ -86,7 +86,7 @@
 
                     </StackPanel>
                 </materialDesign:PopupBox>
-                <Button Name="BalanceUserHistoryButton" Grid.Row="1" Content="10$" Height="40" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource MaterialDesignFlatButton}" Grid.Column="1" Click="BalanceUserHistoryButton_Click" ></Button>
+                <Button Name="BalanceUserHistoryButton" Grid.Row="1" Content="100" Height="40" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource MaterialDesignFlatButton}" Grid.Column="1" Click="BalanceUserHistoryButton_Click" ></Button>
             </Grid>
 
             <Separator Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="2000" Background="Blue" Style="{StaticResource MaterialDesignDarkSeparator}"></Separator>
