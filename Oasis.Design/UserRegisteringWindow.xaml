@@ -9,11 +9,18 @@
         Title="Login" Height="600" Width="450" Background="{x:Null}" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" MouseDown="Window_MouseDown" WindowStartupLocation="CenterScreen">
     <materialDesign:Card UniformCornerRadius="15" Background="White" Margin="25">
         <StackPanel>
+            <StackPanel>
+                <Grid>
+                    <materialDesign:PackIcon Height="32" Width="32" Foreground="Blue" Kind="CircleOutline" Margin="130,70,-12,-130"></materialDesign:PackIcon>
+                    <TextBlock Width="80" Text="OASIS" Foreground="#41518f" FontSize="25" FontWeight="SemiBold" Margin="10,70,-12,-130"  ></TextBlock>
+                </Grid>
+                
+            </StackPanel>
 
             <StackPanel>
-                <TextBlock Text="Добро пожаловать в OASIS" FontWeight="Bold" HorizontalAlignment="Center" FontSize="23" Width="358" Margin="54,90,-12,-130" />
                 <TextBlock Text="Зарегестрируйтесь" FontWeight="SemiBold" HorizontalAlignment="Center" FontSize="17" Margin="106,120,77,-200" Width="180" />
             </StackPanel>
+            
             <StackPanel>
                 <Grid Height="32">
 

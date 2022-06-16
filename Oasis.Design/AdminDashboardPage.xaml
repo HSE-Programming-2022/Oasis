@@ -38,6 +38,7 @@
                     </Grid>
                 </StackPanel>
             </Border>
+            
 
 
 
@@ -127,7 +128,7 @@
                     <lvc:CartesianChart.ToolTip>
                         <lvc:DefaultTooltip Background="#24336a" Foreground="#d5e2ff" ></lvc:DefaultTooltip>
                     </lvc:CartesianChart.ToolTip>
-                    
+
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis MinValue="1" MaxValue="6" Foreground="#717eb2" ShowLabels="False">
                             <lvc:Axis.Separator>
@@ -155,14 +156,8 @@
                             </lvc:LineSeries.Fill>
                         </lvc:LineSeries>
                     </lvc:CartesianChart.Series>
-
-
                 </lvc:CartesianChart>
             </Grid>
-
         </Border>
-
-
-
     </Grid>
 </Page>

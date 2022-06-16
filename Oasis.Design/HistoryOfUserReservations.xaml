@@ -63,20 +63,29 @@
 
             </Grid>
 
-            <Grid Grid.Row="1" Height="50" Width="900" HorizontalAlignment="Left">
+            <Grid Grid.Row="1" Height="50">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="700"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Height="50" HorizontalAlignment="Left" Margin="20 0 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon VerticalAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Height="32" Width="32" Foreground="Blue" Kind="CircleOutline" Margin="0 0 0 0"></materialDesign:PackIcon>
+                    <TextBlock Name="Label" Text="OASIS" Grid.Column="0" HorizontalAlignment="Left" Foreground="#41518f" VerticalAlignment="Center" FontSize="25" FontWeight="SemiBold" Margin="40 0 0 0" ></TextBlock>
+                </Grid>
 
-                <materialDesign:PackIcon VerticalAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Height="32" Width="32" Foreground="Blue" Kind="CircleOutline" Margin="5 0 0 0"></materialDesign:PackIcon>
-                <TextBlock Text="OASIS" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Foreground="#41518f" VerticalAlignment="Center" FontSize="25" FontWeight="SemiBold" Margin="50 0 0 0" ></TextBlock>
+                <Grid Grid.Column="2"  Height="50" Width="100" HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-
-
-
-                <materialDesign:PopupBox Name="ProfileButton" Grid.Column="2" Background="Purple"  Grid.Row="1" VerticalAlignment="Center" Height="30" Width="30" HorizontalAlignment="Center" Style="{x:Null}"  BorderBrush="White">
+                    <materialDesign:PopupBox Name="ProfileButton" Background="Purple"  Grid.Row="1" VerticalAlignment="Center" Height="30" Width="30" HorizontalAlignment="Center" Style="{x:Null}"  BorderBrush="White">
 
                     <StackPanel>
 
@@ -86,8 +95,16 @@
 
                     </StackPanel>
                 </materialDesign:PopupBox>
-                <Button Name="BalanceUserHistoryButton" Grid.Row="1" Content="100" Height="40" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource MaterialDesignFlatButton}" Grid.Column="1" Click="BalanceUserHistoryButton_Click" ></Button>
+                </Grid>
+                <Grid Grid.Column="2" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Name="BalanceUserHistoryButton" Grid.Column="0" ToolTip="Нажмите если хотите пополнить баланс" Grid.Row="1" Height="40" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Content="100" Style="{StaticResource MaterialDesignFlatButton}" Click="BalanceUserHistoryButton_Click" ></Button>
+                <TextBlock Text="р." Grid.Column="1" FontSize="25" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
             </Grid>
+        </Grid>
 
             <Separator Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="2000" Background="Blue" Style="{StaticResource MaterialDesignDarkSeparator}"></Separator>
 

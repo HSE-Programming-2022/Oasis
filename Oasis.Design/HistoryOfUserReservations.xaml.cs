@@ -44,6 +44,7 @@ namespace Oasis.Design
             else
             {
                 this.WindowState = WindowState.Maximized;
+                
             }
         }
 

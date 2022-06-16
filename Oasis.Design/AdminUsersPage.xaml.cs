@@ -14,6 +14,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Oasis.Core;
 using Oasis.Core.Models;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace Oasis.Design
 {
@@ -35,6 +39,21 @@ namespace Oasis.Design
             }
             UsersListBox.ItemsSource = AllPeople;
         }
+
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.BottomCenter,
+                offsetX: 100,
+                offsetY: 5);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
 
         private void UserLogin_Initialized(object sender, EventArgs e)
         {
@@ -95,7 +114,16 @@ namespace Oasis.Design
             }
             UsersListBox.ItemsSource = null;
             UsersListBox.ItemsSource = AllPeople;
-            MessageBox.Show($"Найдено {count} пользователей");
+            //MessageBox.Show($"Найдено {count} пользователей");
+            if (count > 0)
+            {
+                notifier.ShowSuccess($"Найдено {count} пользователей");
+            }
+            else
+            {
+                notifier.ShowWarning($"Найдено {count} пользователей");
+            }
+
         }
     }
 }

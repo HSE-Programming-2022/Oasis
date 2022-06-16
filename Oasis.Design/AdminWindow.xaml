@@ -53,6 +53,7 @@
                         <materialDesign:PackIcon Kind="ExitToApp" HorizontalAlignment="Right" Grid.Column="0" VerticalAlignment="Center" Foreground="#c2cfff" ></materialDesign:PackIcon>
                         <Button Name="LogOutAdminButton" Foreground="#c2cfff" Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" Content="Log out" HorizontalAlignment="Left" VerticalAlignment="Center" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="LogOutAdminButton_Click"></Button>
                     </Grid>
+                        
 
                     <StackPanel>
                         <!--AdminName-->
@@ -116,10 +117,11 @@
                             </Button.Template>
                         </Button>
                     </Grid>
-                    <Frame Name="Admin" Grid.Row="1" NavigationUIVisibility="Hidden" BorderBrush="#41518f" BorderThickness="1"></Frame>
+                    
+                        <Frame Name="Admin" Grid.Row="1" NavigationUIVisibility="Hidden" BorderBrush="#41518f"></Frame>
+                
 
-
-                </Grid>
+        </Grid>
 
 
             </Border>

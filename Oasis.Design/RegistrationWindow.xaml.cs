@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace Oasis.Design
 {
@@ -23,6 +27,20 @@ namespace Oasis.Design
         {
             InitializeComponent();
         }
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.BottomCenter,
+                offsetX: 100,
+                offsetY: 5);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -48,7 +66,9 @@ namespace Oasis.Design
 
         private void SendCodeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SendCodeButton.Visibility = Visibility.Hidden;
+            CodeConfirmationPasswordBox.Visibility = Visibility.Visible;
+            ConfirmButton.Visibility = Visibility.Visible;
         }
     }
 }
