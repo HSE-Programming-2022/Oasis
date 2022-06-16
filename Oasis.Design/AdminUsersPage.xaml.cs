@@ -85,7 +85,7 @@ namespace Oasis.Design
             int count = 0;
             for(int i = 0; i <AllPeople.Count; i++)
             {
-                if((AllPeople[i] as User).Login.ToLower().Contains(SearchingTextBox.Text.ToLower()))
+                if((AllPeople[i] as User).Login.ToLower().Contains(SearchingTextBox.Text.ToLower()) && SearchingTextBox.Text != "")
                 {
                     Person found = AllPeople[i];
                     AllPeople.RemoveAt(i);

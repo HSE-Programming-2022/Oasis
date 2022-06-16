@@ -35,12 +35,13 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
+
                         </Grid.ColumnDefinitions>
-                        <TextBlock Name="UserLogin" Margin="30,0" Grid.Column="0" Initialized="UserLogin_Initialized"/>
-                        <TextBlock Name="UserName" Margin="30,0" Grid.Column="1" Initialized="UserName_Initialized"/>
-                        <TextBlock Name="UserSurename" Margin="30,0" Grid.Column="2" Initialized="UserSurename_Initialized"/>
-                        <TextBlock Name="Balance" Margin="30,0" Grid.Column="3" Initialized="Balance_Initialized"/>
-                        <materialDesign:PopupBox Name="ProfileButton" Grid.Column="4" Background="Purple" Height="30" Width="30" HorizontalAlignment="Right" Style="{x:Null}"  BorderBrush="White">
+                        <TextBlock Name="UserLogin" Margin="30,0" VerticalAlignment="Center" Grid.Column="0" Foreground="White" Initialized="UserLogin_Initialized"/>
+                        <TextBlock Name="UserName" Margin="30,0" VerticalAlignment="Center" Grid.Column="1" Foreground="White" Initialized="UserName_Initialized"/>
+                        <TextBlock Name="UserSurename" Margin="30,0" VerticalAlignment="Center" Grid.Column="2" Foreground="White" Initialized="UserSurename_Initialized"/>
+                        <TextBlock Name="Balance" Margin="30,0" Grid.Column="3" VerticalAlignment="Center" Foreground="White" Initialized="Balance_Initialized"/>
+                        <materialDesign:PopupBox Name="ProfileButton" Grid.Column="4" Background="Purple" Foreground="White" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{x:Null}"  BorderBrush="White">
                             <StackPanel>
                                 <Button Name="ChangeBalanceButton" Width="150" Content="Изменить баланс" Click="ChangeBalanceButton_Click"/>
                                 <Button Name="HistoryButton" Content="История резерваций" Click="HistoryButton_Click"/>

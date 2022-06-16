@@ -57,20 +57,9 @@
                     <StackPanel>
                         <!--AdminName-->
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="60" Grid.Row="0" VerticalAlignment="Center">
-                            <Border CornerRadius="10" Width="40" Height="40" Grid.Row="0" VerticalAlignment="Center" >
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                                        <GradientStop Color="#7f7cf1" Offset="0"/>
-                                        <GradientStop Color="#d3b7ff" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                                <TextBlock Text="ID" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontWeight="SemiBold" FontSize="15" Foreground="#ffffff" ></TextBlock>
+                            <materialDesign:PackIcon VerticalAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Height="32" Width="32" Foreground="DeepSkyBlue" Kind="CircleOutline" Margin="-10 0 -10 0"></materialDesign:PackIcon>
+                            <TextBlock Text="OASIS" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center" FontSize="25" FontWeight="SemiBold" Margin="20 0 0 0" ></TextBlock>
 
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Ivan Dolbilkin" HorizontalAlignment="Center" FontSize="15" Foreground="#c2cfff" ></TextBlock>
-
-                            </StackPanel>
 
                         </StackPanel>
 

@@ -96,8 +96,19 @@ namespace Oasis.Design
             TopUpBalance taskWindow = new TopUpBalance();
 
             taskWindow.Owner = this.Owner;
-            taskWindow.Show();
+            taskWindow.ShowDialog();
             
+        }
+
+        
+
+        private void StatisticsInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
+        {
+            HistoryOfUserReservations taskWindow = new HistoryOfUserReservations();
+
+            taskWindow.Owner = this.Owner;
+            taskWindow.Show();
+            Close();
         }
     }
 }
