@@ -10,17 +10,10 @@ namespace Oasis.Core.Models
 {
     public class User : Person
     {
-        [Required]
-        [StringLength(50, ErrorMessage = "Name cannot be longer than 50 characters.")]
-        [Display(Name = "Name")]
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(50, ErrorMessage = "Surname name cannot be longer than 50 characters.")]
-        [Display(Name = "Surname")]
         public string Surname { get; set; }
 
-        [Required]
         public float Balance { get; set; }
 
         public User() : base("123", "456")

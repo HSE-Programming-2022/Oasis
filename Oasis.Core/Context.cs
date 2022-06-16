@@ -15,7 +15,6 @@ namespace Oasis.Core
         public DbSet<Hall> Halls { get; set; }
         public DbSet<Seat> Seats { get; set; }
 
-
         public Context() : base("DBConnection")
         {
 

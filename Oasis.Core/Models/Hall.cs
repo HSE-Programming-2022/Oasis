@@ -10,26 +10,26 @@ namespace Oasis.Core.Models
 {
     public class Hall
     {
-        [Key]
-        [StringLength(50, ErrorMessage = "Hall name cannot be longer than 50 characters.")]
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(50, ErrorMessage = "Type name cannot be longer than 50 characters.")]
         public string Type { get; set; }
 
-        [Required]
         public int Price { get; set; }
+        
+        public ICollection<Seat> Seats { get; set; } //Спросить у Юры оставить list в hall или использовать фильтр через seats
 
-        [Required]
-        public List<Seat> Seats { get; set; } //Спросить у Юры оставить list в hall или использовать фильтр через seats
-
-        public Hall(string name, string type, int price, List<Seat> seats)
+        public Hall()
         {
-            Name = name;
-            Type = type;
-            Price = price;
-            Seats = seats;
+            Seats = new List<Seat>();
         }
+        //public Hall(string name, string type, int price, List<Seat> seats)
+        //{
+        //    Name = name;
+        //    Type = type;
+        //    Price = price;
+        //    Seats = seats;
+        //}
     }
 }

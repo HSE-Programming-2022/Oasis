@@ -10,15 +10,16 @@ namespace Oasis.Core.Models
 {
     public class Seat
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        [ForeignKey("Hall")]
+        public int? HallId { get; set; }
 
         public Hall Hall { get; set; }
 
-        public Seat()
-        {
+        //public Seat()
+        //{
             
-        }
+        //}
     }
 }

@@ -66,28 +66,30 @@ namespace Oasis.Design
 
                 context.People.Add(admin);
                 context.People.Add(user1);
+                Hall hall = new Hall
+                {
+                    Name = "Bootcamp1",
+                    Type = "PC",
+                    Price = 150
+                };
+
+                context.Halls.Add(hall);
+                context.SaveChanges();
                 List<Seat> seats = new List<Seat>
                 {
-                    new Seat(),
-                    new Seat(),
-                    new Seat(),
-                    new Seat(),
-                    new Seat()
+                    new Seat { Hall = hall},
+                    new Seat { Hall = hall},
+                    new Seat { Hall = hall},
+                    new Seat { Hall = hall},
+                    new Seat { Hall = hall}
                 };
-                Hall hall = new Hall("Bootcamp1", "PC", 150, seats);
-                Reservation res = new Reservation(user1, Convert.ToDateTime("19:00:00 18-05-2022"), 1, seats[0], 150);
                 context.Seats.AddRange(seats);
-                context.Halls.Add(hall);
+                context.SaveChanges();
+                Reservation res = new Reservation(user1, Convert.ToDateTime("19:00:00 18-05-2022"), 1, seats[0], 150);
                 context.Reservations.Add(res);
                 context.SaveChanges();
                 MessageBox.Show("Saved");
             }
-
-
-
-
-
-
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
