@@ -21,27 +21,93 @@ namespace Oasis.Design
     /// </summary>
     public partial class UserBookingWindow : Window
     {
-        string _selectedHall;
-        int _numberOfPeople;
-        DateTime _selectedDate;
+        string _selectedHall = "Bootcamp1";
+        int _numberOfPeople = 1;
+        DateTime _selectedDate = DateTime.Today;
+
         public UserBookingWindow()
         {
             InitializeComponent();
+            CheckingFreeTimeSlots();
         }
 
-        private void CheckingFreeTimeSlots()
+        private Dictionary<int, List<int>> CheckingFreeTimeSlots()
         {
             using (Context context = new Context())
             {
-                List<Reservation> resrvation = new List<Reservation>();
+                List<Reservation> resrvations = new List<Reservation>();
+                List<Seat> seats = SeatsOfHall();
                 foreach (var item in context.Reservations.ToList())
                 {
-                    resrvation.Add(item);
+                    resrvations.Add(item);
                 }
+                var sortedReservations = resrvations
+                    .Where(res => res.Seat.Hall.Name == _selectedHall)
+                    .Where(res => res.StartTime.Date.CompareTo(_selectedDate.Date) == 0); // получаем все резервации в нужную дату, в нужном зале
 
+                var dicitionaryOfTime = GeneratingDitionaryOfFreeSeats();
+                foreach (var item in sortedReservations)
+                {
+                    int hours = item.Hours;
+                    int index = 1;
+                    List<int> correctedSeats = dicitionaryOfTime[item.StartTime.Hour];
+                    correctedSeats.Remove(item.Seat.Id);
+                    dicitionaryOfTime[item.StartTime.Hour] = correctedSeats;
+                    while (hours > 0)
+                    {
+                        List<int> correctedSeats1 = dicitionaryOfTime[item.StartTime.Hour + index];
+                        correctedSeats.Remove(item.Seat.Id);
+                        dicitionaryOfTime[item.StartTime.Hour + index] = correctedSeats1;
+                        index++;
+                    }
+                }
+                return dicitionaryOfTime;
             }
-
         }
+
+        private List<Seat> SeatsOfHall()
+        {
+            using (Context context = new Context())
+            {
+
+                List<Seat> seats = new List<Seat>();
+                //foreach (Seat seat in context.Seats.Include(s => s.Hall))
+                //{
+
+                //}
+                //context.Seats.Include(s => s.Hall);
+                var a = context.Seats.ToList()[1].Hall.Name;
+                foreach (var item in context.Halls) // все ситы из выбранного хола
+                {
+                    if (item.Name == _selectedHall)
+                    {
+                        foreach (var seat in item.Seats)
+                        {
+                            seats.Add(seat);
+                        }
+                    }
+                }
+                return seats;
+            }
+        }
+
+        private Dictionary<int, List<int>> GeneratingDitionaryOfFreeSeats() // Создает словарь время: номер компьтера
+        {
+            List<Seat> seats = SeatsOfHall();
+            var dicitionaryOfTime = new Dictionary<int, List<int>>();
+            var enitialListOfSeats = new List<int>();
+            for (int i = 0; i < seats.Count(); i++)
+            {
+                enitialListOfSeats.Add(i);
+            }
+            for (int i = 0; i < 23; i++)
+            {
+                dicitionaryOfTime.Add(i, enitialListOfSeats);
+            }
+            return dicitionaryOfTime;
+        }
+
+ 
         
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -92,12 +158,14 @@ namespace Oasis.Design
 
         private void ComboBoxNumberOfPeople_Selected(object sender, RoutedEventArgs e)
         {
-            _numberOfPeople = int.Parse(ComboBoxNumberOfPeople.SelectedItem.ToString());
+            _numberOfPeople = ComboBoxNumberOfPeople.SelectedIndex + 1;
         }
 
         private void ChoosingDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             _selectedDate = DateTime.Parse(ChoosingDatePicker.SelectedDate.ToString());
         }
+
+       
     }
 }

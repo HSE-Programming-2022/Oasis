@@ -38,5 +38,9 @@ namespace Oasis.Core.Models
             Seat = seat;
             Price = price;
         }
+        public Reservation()
+        {
+
+        }
     }
 }
