@@ -10,24 +10,23 @@ namespace Oasis.Core.Models
 {
     public class Reservation
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int Id { get; set; }
 
-        [Required]
+        [ForeignKey("User")]
+        public int? UserId { get; set; }
+
         public User User { get; set; }
 
-        [Required]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime StartTime { get; set; }
 
-        [Required]
         public int Hours { get; set; }
 
-        [Required]
+        [ForeignKey("Seat")]
+        public int SeatId { get; set; }
+
         public Seat Seat { get; set; }
 
-        [Required]
         public double Price { get; set; }
 
         public Reservation(User user, DateTime startTime, int hours, Seat seat, int price)

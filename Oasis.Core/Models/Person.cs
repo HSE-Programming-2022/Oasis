@@ -10,20 +10,12 @@ namespace Oasis.Core.Models
 {
     public abstract class Person
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(50, ErrorMessage = "Login cannot be longer than 50 characters.")]
         public string Login { get; set; }
 
-        [Required]
-        [StringLength(50, ErrorMessage = "Password name cannot be longer than 50 characters.")]
         public string Password { get; set; }
 
-        [Required]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime RegistrationDate { get; set; }
 
         public Person(string login, string password)

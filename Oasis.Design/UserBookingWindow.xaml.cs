@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.Entity;
 
 namespace Oasis.Design
 {
@@ -35,13 +36,13 @@ namespace Oasis.Design
         {
             using (Context context = new Context())
             {
-                List<Reservation> resrvations = new List<Reservation>();
+                List<Reservation> reservations = context.Reservations.Include("Seat").Include("User").ToList();
                 List<Seat> seats = SeatsOfHall();
-                foreach (var item in context.Reservations.ToList())
-                {
-                    resrvations.Add(item);
-                }
-                var sortedReservations = resrvations
+                //foreach (var item in context.Reservations.ToList())
+                //{
+                //    resrvations.Add(item);
+                //}
+                var sortedReservations = reservations
                     .Where(res => res.Seat.Hall.Name == _selectedHall)
                     .Where(res => res.StartTime.Date.CompareTo(_selectedDate.Date) == 0); // получаем все резервации в нужную дату, в нужном зале
 
@@ -70,24 +71,20 @@ namespace Oasis.Design
             using (Context context = new Context())
             {
 
-                List<Seat> seats = new List<Seat>();
-                //foreach (Seat seat in context.Seats.Include(s => s.Hall))
+                //List<Seat> seats = new List<Seat>();
+                //var sseats = context.Seats.Include(x => x.Hall).ToList();
+                //var a = context.Seats.ToList()[1].Hall.Name;
+                //foreach (var item in context.Halls) // все ситы из выбранного хола
                 //{
-
+                //    if (item.Name == _selectedHall)
+                //    {
+                //        foreach (var seat in item.Seats)
+                //        {
+                //            seats.Add(seat);
+                //        }
+                //    }
                 //}
-                //context.Seats.Include(s => s.Hall);
-                var a = context.Seats.ToList()[1].Hall.Name;
-                foreach (var item in context.Halls) // все ситы из выбранного хола
-                {
-                    if (item.Name == _selectedHall)
-                    {
-                        foreach (var seat in item.Seats)
-                        {
-                            seats.Add(seat);
-                        }
-                    }
-                }
-                return seats;
+                return context.Seats.Include(x => x.Hall).Where(n => n.Hall.Name == _selectedHall).ToList();
             }
         }
 

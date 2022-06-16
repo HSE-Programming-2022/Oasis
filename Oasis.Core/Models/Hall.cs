@@ -11,10 +11,12 @@ namespace Oasis.Core.Models
     public class Hall
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public int Price { get; set; }
 
+        public string Name { get; set; }
+
+        public string Type { get; set; }
+
+        public int Price { get; set; }
         
         public ICollection<Seat> Seats { get; set; } //Спросить у Юры оставить list в hall или использовать фильтр через seats
 

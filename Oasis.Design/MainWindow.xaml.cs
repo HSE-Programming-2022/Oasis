@@ -27,7 +27,7 @@ namespace Oasis.Design
         public MainWindow()
         {
             InitializeComponent();
-            InitialDb();
+            //InitialDb();
         }
         Notifier notifier = new Notifier(cfg =>
         {
@@ -83,19 +83,13 @@ namespace Oasis.Design
                     new Seat { Hall = hall},
                     new Seat { Hall = hall}
                 };
-                
-                Reservation res = new Reservation(user1, Convert.ToDateTime("19:00:00 18-05-2022"), 1, seats[0], 150);
                 context.Seats.AddRange(seats);
+                context.SaveChanges();
+                Reservation res = new Reservation(user1, Convert.ToDateTime("19:00:00 18-05-2022"), 1, seats[0], 150);
                 context.Reservations.Add(res);
                 context.SaveChanges();
                 MessageBox.Show("Saved");
             }
-
-
-
-
-
-
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
