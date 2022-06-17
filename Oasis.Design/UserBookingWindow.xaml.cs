@@ -26,17 +26,28 @@ namespace Oasis.Design
         int _numberOfPeople = 1;
         DateTime _selectedDate = DateTime.Today;
 
-        public UserBookingWindow()
+        public UserBookingWindow(string type)
         {
             InitializeComponent();
-            CheckingFreeTimeSlots();
+            using(Context context = new Context())
+            {
+                if (type != "All")
+                {
+                    ComboBoxHall.ItemsSource = context.Halls.Where(x => x.Type == type).Select(x => x.Name).ToList();
+                }
+                else
+                    ComboBoxHall.ItemsSource = context.Halls.Select(x => x.Name).ToList();
+            }
+            if (type == "PS")
+                ComboBoxNumberOfPeople.Visibility = Visibility.Collapsed;
+            //CheckingFreeTimeSlots();
         }
 
         private Dictionary<int, List<int>> CheckingFreeTimeSlots()
         {
             using (Context context = new Context())
             {
-                List<Reservation> reservations = context.Reservations.Include("Seat").Include("User").ToList();
+                List<Reservation> reservations = context.Reservations.ToList();
                 List<Seat> seats = SeatsOfHall();
                 //foreach (var item in context.Reservations.ToList())
                 //{

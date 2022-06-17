@@ -90,7 +90,7 @@ namespace Oasis.Design
 
         private void ReservationButton_Click(object sender, RoutedEventArgs e)
         {
-            UserBookingWindow window = new UserBookingWindow();
+            UserBookingWindow window = new UserBookingWindow("All");
             window.ShowDialog();
         }
 
