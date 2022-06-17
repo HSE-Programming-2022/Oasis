@@ -108,5 +108,11 @@ namespace Oasis.Design
             taskWindow.Owner = this.Owner;
             taskWindow.ShowDialog();
         }
+
+        private void ProfileInUserHistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserProfileWindow taskWindow = new UserProfileWindow();
+            taskWindow.ShowDialog();
+        }
     }
 }

@@ -102,5 +102,11 @@ namespace Oasis.Design
             UserBookingWindow taskWindow = new UserBookingWindow("PC");
             taskWindow.ShowDialog();
         }
+
+        private void ProfileInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserProfileWindow taskWindow = new UserProfileWindow();
+            taskWindow.ShowDialog();
+        }
     }
 }

@@ -34,7 +34,7 @@
                     <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="ExitButton" Grid.Row="0" Grid.Column="2" Click="ExitButton_Click" Height="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="8,0,8,9">
+                <Button x:Name="ExitButton" ToolTip="Закрыть" Grid.Row="0" Grid.Column="2" Click="ExitButton_Click" Height="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="8,0,8,9">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="13" Height="13" Fill="Red" />
@@ -46,14 +46,14 @@
                 </Button>
 
 
-                <Button Name="RemoveInUserChoosingTypeofActivityButton" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RemoveInUserChoosingTypeofActivityButton_Click">
+                <Button Name="RemoveInUserChoosingTypeofActivityButton" ToolTip="Свернуть" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RemoveInUserChoosingTypeofActivityButton_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="13" Height="13" Fill="Orange" />
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Name="OpenBigButton" Grid.Row="0" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="OpenBigButton_Click">
+                <Button Name="OpenBigButton" ToolTip="Развернуть/Уменьшить" Grid.Row="0" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="OpenBigButton_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="13" Height="13" Fill="Gray" />
@@ -89,7 +89,7 @@
 
                     <StackPanel>
 
-                        <Button Name="ProfileInUserHistoryButton" Width="150" Content="Профиль"></Button>
+                        <Button Name="ProfileInUserHistoryButton" Width="150" Content="Профиль" Click="ProfileInUserHistoryButton_Click"></Button>
                         <Button Name="MakeNewOrderUserHistoryButton" Content="Сделать новую бронь" Click="MakeNewOrderUserHistoryButton_Click"></Button>
                         <Button Name="LogOutFromUserHistoryButton" Content="Выйти из аккаунта" Click="LogOutFromUserHistoryButton_Click"></Button>
 
