@@ -71,12 +71,12 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <DatePicker Name="ChoosingDatePicker" Height="34" Width="200" FontSize="15" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Выберите дату"  Grid.Row="1"></DatePicker>
-                <ComboBox FontSize="15" Grid.Column="1" Width="120" Height="30" materialDesign:HintAssist.Hint="Выберите зал" >
-                    <TextBlock Text="Буткемп"></TextBlock>
+                <ComboBox Name="ComboBoxHall" FontSize="15" Grid.Column="1" Width="120" Height="30" materialDesign:HintAssist.Hint="Выберите зал" >
+                    <TextBlock Text="Bootcamp1"></TextBlock>
                     <TextBlock Text="VIP"></TextBlock>
                     <TextBlock Text="Общий зал"></TextBlock>
                 </ComboBox>
-                <ComboBox Grid.Column="2" Width="149" FontSize="15" Height="30" materialDesign:HintAssist.Hint="Количество людей">
+                <ComboBox Name="ComboBoxNumberOfPeople" Grid.Column="2" Width="149" FontSize="15" Height="30" materialDesign:HintAssist.Hint="Количество людей">
                     <TextBlock Text="1"></TextBlock>
                     <TextBlock Text="2"></TextBlock>
                     <TextBlock Text="3"></TextBlock>

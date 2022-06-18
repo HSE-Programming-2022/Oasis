@@ -32,7 +32,7 @@ namespace Oasis.Design
             CheckingFreeTimeSlots();
         }
 
-        private Dictionary<int, List<int>> CheckingFreeTimeSlots()
+        private Dictionary<int, List<int>> CheckingFreeTimeSlots() // Выводит словарь {Номер временного слота - список свободных компьютеров}
         {
             using (Context context = new Context())
             {
@@ -43,8 +43,9 @@ namespace Oasis.Design
                 //    resrvations.Add(item);
                 //}
                 var sortedReservations = reservations
-                    .Where(res => res.Seat.Hall.Name == _selectedHall)
-                    .Where(res => res.StartTime.Date.CompareTo(_selectedDate.Date) == 0); // получаем все резервации в нужную дату, в нужном зале
+                    .Where(res => res.Seat.HallId == context.Halls.Where(h => h.Name == _selectedHall).ToList()[0].Id)
+                    .Where(res => res.StartTime.Date.CompareTo(_selectedDate.Date) == 0)
+                    .ToList(); // получаем все резервации в нужную дату, в нужном зале
 
                 var dicitionaryOfTime = GeneratingDitionaryOfFreeSeats();
                 foreach (var item in sortedReservations)
@@ -54,12 +55,13 @@ namespace Oasis.Design
                     List<int> correctedSeats = dicitionaryOfTime[item.StartTime.Hour];
                     correctedSeats.Remove(item.Seat.Id);
                     dicitionaryOfTime[item.StartTime.Hour] = correctedSeats;
-                    while (hours > 0)
+                    while (hours > 1)
                     {
                         List<int> correctedSeats1 = dicitionaryOfTime[item.StartTime.Hour + index];
                         correctedSeats.Remove(item.Seat.Id);
                         dicitionaryOfTime[item.StartTime.Hour + index] = correctedSeats1;
                         index++;
+                        hours--;
                     }
                 }
                 return dicitionaryOfTime;
@@ -72,9 +74,9 @@ namespace Oasis.Design
             {
 
                 //List<Seat> seats = new List<Seat>();
-                //var sseats = context.Seats.Include(x => x.Hall).ToList();
+                //var seats = context.Seats.Include(x => x.Hall).ToList();
                 //var a = context.Seats.ToList()[1].Hall.Name;
-                //foreach (var item in context.Halls) // все ситы из выбранного хола
+                //foreach (var item in context.Halls) 
                 //{
                 //    if (item.Name == _selectedHall)
                 //    {
@@ -84,11 +86,11 @@ namespace Oasis.Design
                 //        }
                 //    }
                 //}
-                return context.Seats.Include(x => x.Hall).Where(n => n.Hall.Name == _selectedHall).ToList();
+                return context.Seats.Include(x => x.Hall).Where(n => n.Hall.Name == _selectedHall).ToList(); // все ситы из выбранного хола
             }
         }
 
-        private Dictionary<int, List<int>> GeneratingDitionaryOfFreeSeats() // Создает словарь время: номер компьтера
+        private Dictionary<int, List<int>> GeneratingDitionaryOfFreeSeats() // Создает словарь {номер времяного слота - номера компьтеров}
         {
             List<Seat> seats = SeatsOfHall();
             var dicitionaryOfTime = new Dictionary<int, List<int>>();

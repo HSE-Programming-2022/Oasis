@@ -105,7 +105,6 @@ namespace Oasis.Design
         private void StatisticsInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
         {
             HistoryOfUserReservations taskWindow = new HistoryOfUserReservations();
-
             taskWindow.Owner = this.Owner;
             taskWindow.Show();
             Close();
