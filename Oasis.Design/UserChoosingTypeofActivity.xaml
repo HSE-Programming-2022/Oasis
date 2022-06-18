@@ -37,7 +37,7 @@
                     <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
                 
-                <Button x:Name="ExitButton" Grid.Row="0" Grid.Column="2" Click="ExitButton_Click" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button x:Name="ExitButton" Grid.Row="0" ToolTip="Закрыть" Grid.Column="2" Click="ExitButton_Click" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="13" Height="13" Fill="Red" />
@@ -49,14 +49,14 @@
                 </Button>
 
 
-                <Button Name="RemoveInUserChoosingTypeofActivityButton" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RemoveInUserChoosingTypeofActivityButton_Click">
+                <Button Name="RemoveInUserChoosingTypeofActivityButton" ToolTip="Свернуть" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RemoveInUserChoosingTypeofActivityButton_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="13" Height="13" Fill="Orange" />
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Name="OpenBigButton" Grid.Row="0" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="OpenBigButton_Click">
+                <Button Name="OpenBigButton" ToolTip="Развернуть/Уменьшить" Grid.Row="0" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="OpenBigButton_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="13" Height="13" Fill="Gray" />
@@ -84,7 +84,7 @@
 
                     <StackPanel>
 
-                        <Button Name="ProfileInUserChoosingTypeofActivityButton" Width="150" Content="Профиль"></Button>
+                        <Button Name="ProfileInUserChoosingTypeofActivityButton" Width="150" Content="Профиль" Click="ProfileInUserChoosingTypeofActivityButton_Click"></Button>
                         <Button Name="StatisticsInUserChoosingTypeofActivityButton" Content="История броней" Click="StatisticsInUserChoosingTypeofActivityButton_Click"></Button>
                         <Button Name="LogOutButton" Content="Выйти из аккаунта" Click="LogOutButton_Click"></Button>
 
@@ -103,10 +103,7 @@
             </Grid>
 
 
-            <Border Padding="12" Grid.Row="2" Grid.Column="0" Height="370" Width="230"  
-          Background="White"
-          BorderThickness="1"
-          CornerRadius="10">
+            <Border Padding="12" Grid.Row="2" Grid.Column="0" Background="White" BorderThickness="1" CornerRadius="10" Margin="30">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="0" BlurRadius="10"></DropShadowEffect>
                 </Border.Effect>
@@ -127,7 +124,7 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <TextBlock VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" FontSize="17" Grid.Row="1" Text="Компютеры"></TextBlock>
-                    <TextBlock Grid.Row="2" Text="120 руб/час" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"  VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock Grid.Row="2" Text="150 руб/час" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"  VerticalAlignment="Center" ></TextBlock>
 
                     <Ellipse Grid.Row="0" Height="50" Width="50">
                         <Ellipse.Fill>
@@ -135,7 +132,7 @@
                         </Ellipse.Fill>
                     </Ellipse>
                     <materialDesign:PackIcon Width="20" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
-                    <TextBlock Grid.Row="3" VerticalAlignment="Center" Text="22 ПК" Margin="30 0 0 0"></TextBlock>
+                    <TextBlock Grid.Row="3" VerticalAlignment="Center" Text="20 ПК" Margin="30 0 0 0"></TextBlock>
                     <materialDesign:PackIcon Width="20" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
                     <TextBlock Grid.Row="4" VerticalAlignment="Center" Text="Intel Core i5 10400" Margin="30 0 0 0"></TextBlock>
                     <materialDesign:PackIcon Width="20" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
@@ -145,11 +142,11 @@
                     <materialDesign:PackIcon Width="20" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
                     <TextBlock Grid.Row="7" Text="ОЗУ: HyperX DDR4 16Gb" Margin="30 0 0 0" VerticalAlignment="Center"></TextBlock>
 
-                    <Button BorderBrush="MediumPurple" BorderThickness="0.999" Name="ChooseTypeOfActivity1Button" Grid.Row="8" Style="{StaticResource MaterialDesignFlatButton}" Content="Выбрать" materialDesign:ButtonAssist.CornerRadius="10" Width="130" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="ChooseTypeOfActivity1Button_Click"></Button>
+                    <Button BorderBrush="MediumPurple" BorderThickness="0.999" Name="ChooseTypeOfActivity1Button" Grid.Row="8" Style="{StaticResource MaterialDesignFlatButton}" Content="Выбрать" materialDesign:ButtonAssist.CornerRadius="10" Width="130" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="ChooseTypeOfActivityPCButton_Click"></Button>
                 </Grid>
             </Border>
 
-            <Border Padding="12" Grid.Row="2" Grid.Column="1" Height="370" Width="230"  
+            <Border Padding="12" Grid.Row="2" Grid.Column="1" Margin="30"  
           Background="#41518f"
           BorderThickness="1"
           CornerRadius="10">
@@ -172,8 +169,8 @@
                         <RowDefinition/>
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
-                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" FontSize="17" Grid.Row="1" Text="VIP комнаты"></TextBlock>
-                    <TextBlock Grid.Row="2" Foreground="White" Text="799 руб/час" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"  VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" FontSize="17" Grid.Row="1" Text="VIP компьюьеры"></TextBlock>
+                    <TextBlock Grid.Row="2" Foreground="White" Text="350 руб/час" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"  VerticalAlignment="Center" ></TextBlock>
 
                     <Ellipse Grid.Row="0" Height="50" Width="50">
                         <Ellipse.Fill>
@@ -181,7 +178,7 @@
                         </Ellipse.Fill>
                     </Ellipse>
                     <materialDesign:PackIcon Width="20" Foreground="White" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
-                    <TextBlock Grid.Row="3" Foreground="White" VerticalAlignment="Center" Text="5 ПК" Margin="30 0 0 0"></TextBlock>
+                    <TextBlock Grid.Row="3" Foreground="White" VerticalAlignment="Center" Text="10 ПК" Margin="30 0 0 0"></TextBlock>
                     <materialDesign:PackIcon Width="20" Foreground="White" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
                     <TextBlock Grid.Row="4" Foreground="White" VerticalAlignment="Center" Text="Intel Core i5 10400" Margin="30 0 0 0"></TextBlock>
                     <materialDesign:PackIcon Width="20" Foreground="White" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
@@ -189,9 +186,9 @@
                     <materialDesign:PackIcon Foreground="White" Width="20" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
                     <TextBlock VerticalAlignment="Center" Foreground="White" Grid.Row="6" Text="Мониторы: 24.5  240 Гц" Margin="30 0 0 0"></TextBlock>
                     <materialDesign:PackIcon Width="20" Foreground="White" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
-                    <TextBlock Grid.Row="7" Foreground="White" Text="ОЗУ: HyperX DDR4 16Gb" Margin="30 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="7" Foreground="White" Text="ОЗУ: HyperX DDR5 16Gb" Margin="30 0 0 0" VerticalAlignment="Center"></TextBlock>
 
-                    <Button Grid.Row="8" Style="{StaticResource MaterialDesignFlatButton}" BorderBrush="White" BorderThickness="0.999" Content="Выбрать" materialDesign:ButtonAssist.CornerRadius="10" Foreground="White" Width="130" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="ChooseTypeOfActivity1Button_Click"></Button>
+                    <Button Grid.Row="8" Style="{StaticResource MaterialDesignFlatButton}" BorderBrush="White" BorderThickness="0.999" Content="Выбрать" materialDesign:ButtonAssist.CornerRadius="10" Foreground="White" Width="130" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="ChooseTypeOfActivityVIPButton_Click"></Button>
                 </Grid>
             </Border>
 
@@ -199,7 +196,7 @@
 
 
 
-            <Border Padding="12" Grid.Row="2" Grid.Column="2" Height="370" Width="230"  
+            <Border Padding="12" Grid.Row="2" Grid.Column="2" Margin="30"  
           Background="White"
           BorderThickness="1"
           CornerRadius="10">
@@ -241,7 +238,7 @@
                     <materialDesign:PackIcon Width="20" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="Check"></materialDesign:PackIcon>
                     <TextBlock Grid.Row="7" Text="Множество игр" Margin="30 0 0 0" VerticalAlignment="Center"></TextBlock>
 
-                    <Button Grid.Row="8" BorderBrush="MediumPurple" BorderThickness="0.999" Style="{StaticResource MaterialDesignFlatButton}" Content="Выбрать" materialDesign:ButtonAssist.CornerRadius="10" Width="130" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="ChooseTypeOfActivity1Button_Click"></Button>
+                    <Button Grid.Row="8" BorderBrush="MediumPurple" BorderThickness="0.999" Style="{StaticResource MaterialDesignFlatButton}" Content="Выбрать" materialDesign:ButtonAssist.CornerRadius="10" Width="130" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="ChooseTypeOfActivityPSButton_Click"></Button>
                 </Grid>
             </Border>
         </Grid>

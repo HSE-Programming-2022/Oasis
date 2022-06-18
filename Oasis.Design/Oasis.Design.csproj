@@ -87,6 +87,9 @@
     <Compile Include="UserChoosingTypeofActivity.xaml.cs">
       <DependentUpon>UserChoosingTypeofActivity.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserProfileWindow.xaml.cs">
+      <DependentUpon>UserProfileWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserRegisteringWindow.xaml.cs">
       <DependentUpon>UserRegisteringWindow.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserChoosingTypeofActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

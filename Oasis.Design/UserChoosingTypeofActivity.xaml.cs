@@ -65,49 +65,48 @@ namespace Oasis.Design
 
         }
 
-        private void ChooseTypeOfActivity1Button_Click(object sender, RoutedEventArgs e)
-        {
-            UserBookingWindow taskWindow = new UserBookingWindow();
-
-            taskWindow.Owner = this.Owner;
-            taskWindow.Show();
-            Close();
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
-            
             MainWindow taskWindow = new MainWindow();
-
-            taskWindow.Owner = this.Owner;
             taskWindow.Show();
             Close();
-
         }
 
         private void BalanceButton_Click(object sender, RoutedEventArgs e)
         {
             TopUpBalance taskWindow = new TopUpBalance();
-
-            taskWindow.Owner = this.Owner;
-            taskWindow.ShowDialog();
-            
+            taskWindow.ShowDialog();        
         }
-
-        
 
         private void StatisticsInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
         {
             HistoryOfUserReservations taskWindow = new HistoryOfUserReservations();
-            taskWindow.Owner = this.Owner;
             taskWindow.Show();
             Close();
+        }
+
+        private void ChooseTypeOfActivityPSButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserBookingWindow taskWindow = new UserBookingWindow("PS");
+            taskWindow.ShowDialog();
+        }
+
+        private void ChooseTypeOfActivityVIPButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserBookingWindow taskWindow = new UserBookingWindow("PC VIP");
+            taskWindow.ShowDialog();
+        }
+
+        private void ChooseTypeOfActivityPCButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserBookingWindow taskWindow = new UserBookingWindow("PC");
+            taskWindow.ShowDialog();
+        }
+
+        private void ProfileInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserProfileWindow taskWindow = new UserProfileWindow();
+            taskWindow.ShowDialog();
         }
     }
 }

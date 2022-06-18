@@ -10,7 +10,7 @@
     <Border Width="Auto" Height="Auto" Name="windowFrame"
     
           
-          Background="WhiteSmoke"
+          Background="Transparent"
           BorderThickness="1"
           CornerRadius="10">
         <Grid>
@@ -31,6 +31,10 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="14*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
 
                         <RowDefinition Height="60"/>
@@ -42,10 +46,10 @@
                         <RowDefinition Height="75"/>
                     </Grid.RowDefinitions>
 
-                    <Button Name="GoToDashboardPageButton" Grid.Row="2" Height="50" Content="Dashboard" Foreground="#c2cfff" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToDashboardPageButton_Click"></Button>
-                    <Button Name="GoToUsersPageButton" Grid.Row="3" Content="Users"  Foreground="#c2cfff" Height="50" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToUsersPageButton_Click"></Button>
-                    <Button Name="GoToStatisticsPageButton"  Grid.Row="4" Content="Statistics"  Foreground="#c2cfff" Height="50" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToStatisticsPageButton_Click"></Button>
-                    <Grid Grid.Row="6" >
+                    <Button Name="GoToDashboardPageButton" Grid.Row="2" Height="50" Content="Dashboard" Foreground="#c2cfff" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToDashboardPageButton_Click" Grid.ColumnSpan="2"></Button>
+                    <Button Name="GoToUsersPageButton" Grid.Row="3" Content="Users"  Foreground="#c2cfff" Height="50" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToUsersPageButton_Click" Grid.ColumnSpan="2"></Button>
+                    <Button Name="GoToStatisticsPageButton"  Grid.Row="4" Content="Statistics"  Foreground="#c2cfff" Height="50" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToStatisticsPageButton_Click" Grid.ColumnSpan="2"></Button>
+                    <Grid Grid.Row="6" Grid.ColumnSpan="2" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="30"/>
                             <ColumnDefinition Width="100"/>
@@ -53,25 +57,23 @@
                         <materialDesign:PackIcon Kind="ExitToApp" HorizontalAlignment="Right" Grid.Column="0" VerticalAlignment="Center" Foreground="#c2cfff" ></materialDesign:PackIcon>
                         <Button Name="LogOutAdminButton" Foreground="#c2cfff" Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" Content="Log out" HorizontalAlignment="Left" VerticalAlignment="Center" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="LogOutAdminButton_Click"></Button>
                     </Grid>
-                        
 
-                    <StackPanel>
+
+                    <StackPanel Grid.ColumnSpan="2">
                         <!--AdminName-->
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="60" Grid.Row="0" VerticalAlignment="Center">
                             <materialDesign:PackIcon VerticalAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Height="32" Width="32" Foreground="DeepSkyBlue" Kind="CircleOutline" Margin="-10 0 -10 0"></materialDesign:PackIcon>
                             <TextBlock Text="OASIS" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center" FontSize="25" FontWeight="SemiBold" Margin="20 0 0 0" ></TextBlock>
-
-
                         </StackPanel>
 
 
                     </StackPanel>
-                    <Separator Grid.Row="1" Height="1" Width="120" VerticalAlignment="Top" Background="#46558a"></Separator>
+                    <Separator Grid.Row="1" Height="1" Width="120" VerticalAlignment="Top" Background="#46558a" Grid.Column="1" Margin="5.219,2,15,0"></Separator>
                 </Grid>
 
             </Border>
             <!--MainSection-->
-            <Border Background="White" Grid.Column="1" Grid.Row="0">
+            <Border Background="Transparent" Grid.Column="1" Grid.Row="0">
 
             </Border>
             <Border Grid.Column="1" CornerRadius="0 10 10 0"  MouseDown="Border_MouseDown">
@@ -117,11 +119,11 @@
                             </Button.Template>
                         </Button>
                     </Grid>
-                    
-                        <Frame Name="Admin" Grid.Row="1" NavigationUIVisibility="Hidden" BorderBrush="#41518f"></Frame>
-                
 
-        </Grid>
+                    <Frame Name="Admin" Grid.Row="1" NavigationUIVisibility="Hidden" BorderBrush="#41518f"></Frame>
+
+
+                </Grid>
 
 
             </Border>

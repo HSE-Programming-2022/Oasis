@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Oasis.Design"
         mc:Ignorable="d"
-        Title="UserChoosingTypeofActivity" Height="550" Width="900" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+        Title="UserChoosingTypeofActivity" Height="550" Width="900" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize">
     <Border Width="Auto" Height="Auto" Name="windowFrame"
     
           
@@ -35,7 +35,7 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Button x:Name="ExitButton" Grid.Row="0" Grid.Column="2" Click="ExitButton_Click" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button x:Name="ExitButton" Grid.Row="0" Grid.Column="2" ToolTip="Закрыть" Click="ExitButton_Click" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="13" Height="13" Fill="Red" />
@@ -47,14 +47,14 @@
                 </Button>
 
 
-                <Button Name="RemoveInUserChoosingTypeofActivityButton" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RemoveInUserChoosingTypeofActivityButton_Click">
+                <Button Name="RemoveInUserChoosingTypeofActivityButton" ToolTip="Свернуть" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RemoveInUserChoosingTypeofActivityButton_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="13" Height="13" Fill="Orange" />
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Name="OpenBigButton" Grid.Row="0" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="OpenBigButton_Click">
+                <Button Name="OpenBigButton" Grid.Row="0" ToolTip="Развернуть/Уменьшить" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="OpenBigButton_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="13" Height="13" Fill="Gray" />
@@ -65,18 +65,21 @@
 
             <Grid Grid.Row="1" >
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
-                <DatePicker Name="ChoosingDatePicker" Height="34" Width="200" FontSize="15" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Выберите дату"  Grid.Row="1"></DatePicker>
-                <ComboBox Name="ComboBoxHall" FontSize="15" Grid.Column="1" Width="120" Height="30" materialDesign:HintAssist.Hint="Выберите зал" >
-                    <TextBlock Text="Bootcamp1"></TextBlock>
-                    <TextBlock Text="VIP"></TextBlock>
-                    <TextBlock Text="Общий зал"></TextBlock>
-                </ComboBox>
-                <ComboBox Name="ComboBoxNumberOfPeople" Grid.Column="2" Width="149" FontSize="15" Height="30" materialDesign:HintAssist.Hint="Количество людей">
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="60" Grid.Row="0" VerticalAlignment="Center" Grid.Column="0">
+                    <materialDesign:PackIcon VerticalAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Height="32" Width="32" Foreground="DeepSkyBlue" Kind="CircleOutline" Margin="-10 0 -10 0"></materialDesign:PackIcon>
+                    <TextBlock Text="OASIS" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Foreground="Black" VerticalAlignment="Center" FontSize="25" FontWeight="SemiBold" Margin="20 0 0 0" ></TextBlock>
+                </StackPanel>
+                <DatePicker Name="ChoosingDatePicker" Language="RU" Height="34" Width="200" FontSize="15" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Выберите дату"  Grid.Row="1" Grid.Column="1"></DatePicker>
+                <ComboBox Name="ComboBoxHall" FontSize="15" Grid.Column="2" Width="120" Height="30" materialDesign:HintAssist.Hint="Выберите зал"/>
+                <ComboBox Name="ComboBoxNumberOfPeople" Margin="10,0" Grid.Column="3" Width="70" ToolTip="Количество людей" FontSize="15" Height="30" materialDesign:HintAssist.Hint="Кол-во">
                     <TextBlock Text="1"></TextBlock>
                     <TextBlock Text="2"></TextBlock>
                     <TextBlock Text="3"></TextBlock>
@@ -84,7 +87,9 @@
                     <TextBlock Text="5"></TextBlock>
                     <TextBlock Text="6"></TextBlock>
                 </ComboBox>
-                
+                <TextBlock Name="CurrentPrice" ToolTip="Сумма к оплате" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Text="659 р." Grid.Column="4"/>
+                <Button Name="ReserveButton" Margin="10,0" Grid.Column="5" Width="100" Content="Оплатить"/>
+
             </Grid>
 
             <Grid Grid.Row="2" Grid.Column="0" >
