@@ -34,5 +34,12 @@ namespace Oasis.Design
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+        private void ChangeProfileDetails_Click(object sender, RoutedEventArgs e)
+        {
+            UserEmailDetailsTextBlock.Visibility = Visibility.Hidden;
+            NewUserEmailTextBox.Visibility = Visibility.Visible;
+            
+        }
     }
 }

@@ -6,13 +6,16 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Oasis.Design"
         mc:Ignorable="d"
-        Title="TopUpBalance" Height="225" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize" MouseDown="Window_MouseDown">
-    <Border Width="Auto" Height="Auto"
+        Title="TopUpBalance" Height="270" Width="360" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize" MouseDown="Window_MouseDown">
+    <Border Margin="20"
     
           
           Background="White"
           BorderThickness="1"
           CornerRadius="10">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="10"></DropShadowEffect>
+        </Border.Effect>
         <Grid>
                 
                     <Grid.RowDefinitions>
@@ -34,7 +37,7 @@
             </Button>
 
             <TextBlock FontSize="17" FontWeight="Bold" Text="Пополнение баланса" Grid.Row="1" HorizontalAlignment="Center" Height="20" VerticalAlignment="Top"></TextBlock>
-            <TextBlock Text="Текущий баланс: " Grid.Row="2" VerticalAlignment="Center" FontSize="13" Width="110" HorizontalAlignment="Left" Margin="70 0 0 0"></TextBlock>
+            <TextBlock Text="Текущий баланс: " Grid.Row="2" VerticalAlignment="Center" FontSize="14" Width="110" HorizontalAlignment="Left" Margin="70 0 0 0"></TextBlock>
             <TextBlock Name="CurrentUserBalance" Grid.Row="2"  VerticalAlignment="Center" Width="80" TextAlignment="Center" FontSize="16" Text="100" HorizontalAlignment="Center" Margin="110 0 0 0"></TextBlock>
             
             <TextBox Name="SumOfUserTopUp" Grid.Row="3" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Введите сумму пополнения" TextAlignment="Center" FontSize="13" Width="170" ></TextBox>

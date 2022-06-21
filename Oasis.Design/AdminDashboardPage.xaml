@@ -21,7 +21,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" VerticalAlignment="Center" Width="200" Height="100" Background="#223266" HorizontalAlignment="Center" CornerRadius="12">
+            <Border Grid.Column="0" Margin="30"  Background="#223266" CornerRadius="12">
 
                 <StackPanel VerticalAlignment="Center">
                     <Grid>
@@ -31,30 +31,9 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Button Grid.Row="1" Visibility="Hidden"></Button>
-                        <materialDesign:PackIcon Kind="Eye" Foreground="White" Grid.Row="2" Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"></materialDesign:PackIcon>
-                        <TextBlock Text="Количество посещений сегодня" FontSize="12" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"></TextBlock>
-                        <TextBlock Text="129" FontSize="20" FontWeight="Bold" Foreground="White" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
-
-                    </Grid>
-                </StackPanel>
-            </Border>
-            
-
-
-
-            <Border Grid.Column="1" VerticalAlignment="Center" Width="200" Height="100" Background="#223266" HorizontalAlignment="Center" CornerRadius="12">
-
-                <StackPanel VerticalAlignment="Center">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Button Grid.Row="1" Visibility="Hidden"></Button>
-                        <materialDesign:PackIcon Kind="Eye" Foreground="White" Grid.Row="2" Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"></materialDesign:PackIcon>
-                        <TextBlock Text="Количество отыгранных часов" FontSize="12" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"></TextBlock>
-                        <TextBlock Text="129" FontSize="20" FontWeight="Bold" Foreground="White" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                        <materialDesign:PackIcon Kind="Eye" Foreground="White" Grid.Row="2" Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 0 10 0"></materialDesign:PackIcon>
+                        <TextBlock Text="Количество посещений сегодня" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="15" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"></TextBlock>
+                        <TextBlock Text="129" FontSize="20" FontWeight="SemiBold" Foreground="White" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
 
                     </Grid>
                 </StackPanel>
@@ -63,7 +42,7 @@
 
 
 
-            <Border Grid.Column="2" VerticalAlignment="Center" Width="200" Height="100" Background="#223266" HorizontalAlignment="Center" CornerRadius="12">
+            <Border Grid.Column="1" Margin="30" Background="#223266" CornerRadius="12">
 
                 <StackPanel VerticalAlignment="Center">
                     <Grid>
@@ -73,9 +52,30 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Button Grid.Row="1" Visibility="Hidden"></Button>
-                        <materialDesign:PackIcon Kind="Eye" Foreground="White" Grid.Row="2" Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"></materialDesign:PackIcon>
-                        <TextBlock Text="Прибыль за сегодня" FontSize="12" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"></TextBlock>
-                        <TextBlock Text="129" FontSize="20" FontWeight="Bold" Foreground="White" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                        <materialDesign:PackIcon Kind="Hours24" Foreground="White" Grid.Row="2" Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 0 10 0"></materialDesign:PackIcon>
+                        <TextBlock Text="Количество отыгранных часов" FontSize="15" Grid.Row="0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" ></TextBlock>
+                        <TextBlock Text="129" FontSize="20" FontWeight="SemiBold" Foreground="White" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+
+
+
+            <Border Grid.Column="2"  Margin="30 30 30 30" Background="#223266"  CornerRadius="12">
+
+                <StackPanel VerticalAlignment="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="1" Visibility="Hidden"></Button>
+                        <materialDesign:PackIcon Kind="CashMultiple" Foreground="White" Grid.Row="2" Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 0 10 0"></materialDesign:PackIcon>
+                        <TextBlock Text="Прибыль за сегодня" FontSize="15" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"></TextBlock>
+                        <TextBlock Text="129" FontSize="20" FontWeight="SemiBold" Foreground="White" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
 
                     </Grid>
                 </StackPanel>
@@ -92,11 +92,13 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0">
-                    <materialDesign:PackIcon Kind="CircleOutline" HorizontalAlignment="Left" Foreground="White" Margin="10 0 0 0"></materialDesign:PackIcon>
-                    <TextBlock Text="Profit" HorizontalAlignment="Center" Foreground="White"/>
-                </StackPanel>
-                <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="200" Width="50" >
+                <StackPanel Grid.Row="0" Margin="0 10 0 0">
+                    <Grid>
+                        <materialDesign:PackIcon Kind="CircleOutline" Width="14" Height="14" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0"/>
+                    <TextBlock Text="Profit" FontSize="14" HorizontalAlignment="Left" Margin="29 0 0 0" Foreground="White"/>
+            </Grid>
+            </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Vertical" VerticalAlignment="Bottom" Height="200" Width="50" >
                     <TextBlock HorizontalAlignment="Center" FontSize="10" Text="280" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
                     <TextBlock HorizontalAlignment="Center" FontSize="10" Text="240" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
                     <TextBlock HorizontalAlignment="Center" FontSize="10" Text="200" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
@@ -109,11 +111,11 @@
 
                 </StackPanel>
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Bottom" Height="20" Width="450" >
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="00:00-04:00" Foreground="#717eb2" Margin="20 0 0 0"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="04:00-08:00" Foreground="#717eb2" Margin="20 0 0 0"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="08:00-12:00" Foreground="#717eb2" Margin="20 0 0 0"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="12:00-16:00" Foreground="#717eb2" Margin="20 0 0 0"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="16:00-20:00" Foreground="#717eb2" Margin="20 0 0 0"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="00:00-04:00" Foreground="#717eb2" Margin="0 0 0 0"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="04:00-08:00" Foreground="#717eb2" Margin="25 0 0 0"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="08:00-12:00" Foreground="#717eb2" Margin="25 0 0 0"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="12:00-16:00" Foreground="#717eb2" Margin="25 0 0 0"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="16:00-20:00" Foreground="#717eb2" Margin="25 0 0 0"></TextBlock>
                     <TextBlock HorizontalAlignment="Center" FontSize="10" Text="20:00-00:00" Foreground="#717eb2" Margin="20 0 0 0"></TextBlock>
                 </StackPanel>
 
