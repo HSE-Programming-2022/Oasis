@@ -20,7 +20,7 @@
                 <Grid Height="32">
 
 
-                    <Button x:Name="ExitButton" Click="ExitButton_Click" Height="Auto" VerticalAlignment="Center">
+                    <Button x:Name="ExitButton" ToolTip="Закрыть" Click="ExitButton_Click" Height="Auto" VerticalAlignment="Center">
                         <Button.Template>
                             <ControlTemplate>
                                 <Ellipse Width="11" Height="11" Fill="Red" HorizontalAlignment="Center" Margin="37 10 -320 0" />
@@ -31,7 +31,7 @@
                         </Button.Template>
                     </Button>
                 </Grid>
-                <Button x:Name="RemoveButton" Click="RemoveButton_Click">
+                <Button x:Name="RemoveButton" ToolTip="Свернуть" Click="RemoveButton_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="11" Height="11" Fill="Orange" HorizontalAlignment="Center" Margin="-10 -54 -320 0" VerticalAlignment="Center" />

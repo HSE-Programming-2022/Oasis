@@ -44,8 +44,8 @@ namespace Oasis.Design
 
         private void ChangeProfileDetails_Click(object sender, RoutedEventArgs e)
         {
-            UserEmailDetailsTextBlock.Visibility = Visibility.Hidden;
-            NewUserEmailTextBox.Visibility = Visibility.Visible;
+            //UserEmailDetailsTextBlock.Visibility = Visibility.Hidden;
+            //NewUserEmailTextBox.Visibility = Visibility.Visible;
             
         }
     }

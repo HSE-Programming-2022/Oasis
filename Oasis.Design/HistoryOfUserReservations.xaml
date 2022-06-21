@@ -107,7 +107,7 @@
 
             <Separator Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="2000" Background="Blue" Style="{StaticResource MaterialDesignDarkSeparator}"></Separator>
 
-            <ListBox Grid.Row="2" Width="878" Height="438" HorizontalAlignment="Center" Background="Blue" VerticalAlignment="Center" Margin="10,18,10,10">
+            <!--<ListBox Grid.Row="2" Width="878" Height="438" HorizontalAlignment="Center" Background="Blue" VerticalAlignment="Center" Margin="10,18,10,10">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -131,7 +131,38 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
 
-            </ListBox>
+            </ListBox>-->
+            <TextBox Name="SearchTextBox" Grid.Row="2" VerticalAlignment="Bottom" Height="30" Width="400" Margin="0 0 0 10" TextChanged="TextBox_TextChanged"></TextBox>
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Click" Grid.Row="2" Width="120" Click="Button_Click" ></Button>
+            <DataGrid x:Name="HistoryOfUserReservationsDataGrid" Foreground="White" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True" Margin="50" GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" Background="#41518f" AutoGenerateColumns="False" Grid.Row="2" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All">
+                <DataGrid.Columns>
+                    <materialDesign:DataGridTextColumn Foreground="White" Header="Login" IsReadOnly="True" Width="*" Binding="{Binding Login}"></materialDesign:DataGridTextColumn>
+
+                    <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Name" IsReadOnly="True" Width="*" Binding="{Binding Name}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Surname" IsReadOnly="True" Width="*" Binding="{Binding Surname}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn CanUserResize="False" Header="Balance" IsReadOnly="True" Width="*" Binding="{Binding Balance}"></materialDesign:DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Operations" CanUserResize="False" IsReadOnly="True" Width="99">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PopupBox Margin="15 0 0 0">
+                                    <StackPanel>
+                                    <Button Name="ChangeBalanceButton" Width="150" Content="Изменить баланс"/>
+                                    <Button Name="HistoryButton" Content="История резерваций"/>
+                                    <Button Name="ReservationButton" Content="Зарезервировать"/>
+                                    <Button Name="UserProfileDetailsButton" Content="Данные клиента"/>
+                                </StackPanel>
+                                </materialDesign:PopupBox>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate> 
+                        
+                        
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+                
+            </DataGrid>
 
 
 
