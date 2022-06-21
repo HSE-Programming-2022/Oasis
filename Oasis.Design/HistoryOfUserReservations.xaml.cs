@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Oasis.Core;
+using Oasis.Core.Models;
 
 namespace Oasis.Design
 {
@@ -19,9 +21,25 @@ namespace Oasis.Design
     /// </summary>
     public partial class HistoryOfUserReservations : Window
     {
-        public HistoryOfUserReservations()
+        public User CurrentUser { get; set; }
+
+        public HistoryOfUserReservations(User user)
         {
             InitializeComponent();
+            using (Context _context = new Context())
+            {
+                foreach (var item in _context.People)
+                {
+                    if (item is User)
+                    {
+                        if ((item as User).Login == user.Login)
+                        {
+                            CurrentUser = item as User;
+                        }
+                    }
+                }
+            }
+            BalanceUserHistoryButton.Content = $"{CurrentUser.Balance} р.";
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -90,9 +108,7 @@ namespace Oasis.Design
 
         private void MakeNewOrderUserHistoryButton_Click(object sender, RoutedEventArgs e)
         {
-            UserChoosingTypeofActivity taskWindow = new UserChoosingTypeofActivity();
-
-            taskWindow.Owner = this.Owner;
+            UserChoosingTypeofActivity taskWindow = new UserChoosingTypeofActivity(CurrentUser);
             taskWindow.Show();
             Close();
         }
@@ -103,7 +119,7 @@ namespace Oasis.Design
         }
         private void BalanceUserHistoryButton_Click(object sender, RoutedEventArgs e)
         {
-            TopUpBalance taskWindow = new TopUpBalance();
+            TopUpBalance taskWindow = new TopUpBalance(CurrentUser, BalanceUserHistoryButton);
 
             taskWindow.Owner = this.Owner;
             taskWindow.ShowDialog();
@@ -111,7 +127,7 @@ namespace Oasis.Design
 
         private void ProfileInUserHistoryButton_Click(object sender, RoutedEventArgs e)
         {
-            UserProfileWindow taskWindow = new UserProfileWindow();
+            UserProfileWindow taskWindow = new UserProfileWindow(CurrentUser);
             taskWindow.ShowDialog();
         }
     }

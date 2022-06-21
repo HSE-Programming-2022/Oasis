@@ -43,26 +43,26 @@ namespace Oasis.Design
 
             cfg.Dispatcher = Application.Current.Dispatcher;
         });
-        private void InitialPerson()
-        {
-            using (Context context = new Context())
-            {
-                Admin admin = new Admin("admin", "root");
-                User user1 = new User("s1mple", "qwerty123", "Oleksandr", "Kostyliev");
+        //private void InitialPerson()
+        //{
+        //    using (Context context = new Context())
+        //    {
+        //        Admin admin = new Admin("admin", "root");
+        //        User user1 = new User("s1mple", "qwerty123", "Oleksandr", "Kostyliev");
 
-                context.People.Add(admin);
-                context.People.Add(user1);
-                context.SaveChanges();
+        //        context.People.Add(admin);
+        //        context.People.Add(user1);
+        //        context.SaveChanges();
 
-                MessageBox.Show("Saved");
-            }
-        }
+        //        MessageBox.Show("Saved");
+        //    }
+        //}
         private void InitialDb()
         {
             using (Context context = new Context())
             {
                 Admin admin = new Admin("admin", "root");
-                User user1 = new User("s1mple", "qwerty123", "Oleksandr", "Kostyliev");
+                User user1 = new User("s1mple", "qwerty123", "Oleksandr", "Kostyliev", "s1mple@gmail.com", "+79268971238");
 
                 context.People.Add(admin);
                 context.People.Add(user1);
@@ -94,12 +94,33 @@ namespace Oasis.Design
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            UserChoosingTypeofActivity taskWindow = new UserChoosingTypeofActivity();
-            taskWindow.Owner = this.Owner;
-            taskWindow.Show();
-            Close();
-
-            //notifier.ShowWarning("Угомонись хохлина программа не работает");
+            using (Context _context = new Context())
+            {
+                bool fl = true;
+                foreach(var item in _context.People)
+                {
+                    if (item is User)
+                    {
+                        if (item.Login == LoginTextBox.Text)
+                        {
+                            fl = false;
+                            if (item.Password == PasswordBox.Password)
+                            {
+                                UserChoosingTypeofActivity taskWindow = new UserChoosingTypeofActivity(item as User);
+                                taskWindow.Show();
+                                Close();
+                            }
+                            else
+                            {
+                                notifier.ShowWarning("Неверный пароль!");
+                                break;
+                            }
+                        }
+                    }
+                }
+                if(fl)
+                    notifier.ShowWarning("Пользователь не найден!");
+            }
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

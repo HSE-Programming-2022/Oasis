@@ -14,19 +14,23 @@ namespace Oasis.Core.Models
 
         public string Surname { get; set; }
 
+        public string Email { get; set; }
+
+        public string Phone { get; set; }
+
         public float Balance { get; set; }
 
         public User() : base("123", "456")
         {
-            Name = "ivan";
-            Surname = "Dolbilkin";
-            Balance = 0;
+            
         }
 
-        public User(string login, string password, string name, string surname) : base(login, password)
+        public User(string login, string password, string name, string surname, string email, string phone) : base(login, password)
         {
             Name = name;
             Surname = surname;
+            Email = email;
+            Phone = phone;
             Balance = 0;
         }
     }

@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Oasis.Core;
+using Oasis.Core.Models;
 
 namespace Oasis.Design
 {
@@ -19,9 +21,26 @@ namespace Oasis.Design
     /// </summary>
     public partial class UserChoosingTypeofActivity : Window
     {
-        public UserChoosingTypeofActivity()
+        public User CurrentUser { get; set; }
+
+        public UserChoosingTypeofActivity(User user)
         {
             InitializeComponent();
+            using (Context _context = new Context())
+            {
+                foreach (var item in _context.People)
+                {
+                    if (item is User)
+                    {
+                        if ((item as User).Login == user.Login)
+                        {
+                            CurrentUser = item as User;
+                        }
+                    }
+                }
+            }
+            BalanceButton.Content = $"{CurrentUser.Balance} р.";
+            CurrentUser = user;
         }
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -74,13 +93,14 @@ namespace Oasis.Design
 
         private void BalanceButton_Click(object sender, RoutedEventArgs e)
         {
-            TopUpBalance taskWindow = new TopUpBalance();
+            TopUpBalance taskWindow = new TopUpBalance(CurrentUser, BalanceButton);
+            taskWindow.Owner = this;
             taskWindow.ShowDialog();        
         }
 
         private void StatisticsInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
         {
-            HistoryOfUserReservations taskWindow = new HistoryOfUserReservations();
+            HistoryOfUserReservations taskWindow = new HistoryOfUserReservations(CurrentUser);
             taskWindow.Show();
             Close();
         }
@@ -105,7 +125,7 @@ namespace Oasis.Design
 
         private void ProfileInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
         {
-            UserProfileWindow taskWindow = new UserProfileWindow();
+            UserProfileWindow taskWindow = new UserProfileWindow(CurrentUser);
             taskWindow.ShowDialog();
         }
     }

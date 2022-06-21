@@ -14,40 +14,31 @@
           BorderThickness="1"
           CornerRadius="10">
         <Grid>
-                
-                    <Grid.RowDefinitions>
+
+            <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                
+
             </Grid.RowDefinitions>
-                
+
             <Button x:Name="ExitFromTopUpBalaneButton" Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" Grid.Column="2" Margin="0 3 5 0" Height="Auto" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ExitFromTopUpBalaneButton_Click">
                 <Button.Template>
                     <ControlTemplate>
                         <materialDesign:PackIcon Kind="Close" Foreground="Black"  Width="20" Height="20"  />
                     </ControlTemplate>
                 </Button.Template>
-                
+
             </Button>
 
             <TextBlock FontSize="17" FontWeight="Bold" Text="Пополнение баланса" Grid.Row="1" HorizontalAlignment="Center" Height="20" VerticalAlignment="Top"></TextBlock>
             <TextBlock Text="Текущий баланс: " Grid.Row="2" VerticalAlignment="Center" FontSize="13" Width="110" HorizontalAlignment="Left" Margin="70 0 0 0"></TextBlock>
-            <TextBlock Name="CurrentUserBalance" Grid.Row="2"  VerticalAlignment="Center" Width="80" TextAlignment="Center" FontSize="16" Text="100" HorizontalAlignment="Center" Margin="110 0 0 0"></TextBlock>
-            
+            <TextBlock Name="CurrentUserBalance" Grid.Row="2"  VerticalAlignment="Center" Width="80" TextAlignment="Center" FontSize="16" HorizontalAlignment="Center" Margin="110 0 0 0"></TextBlock>
+
             <TextBox Name="SumOfUserTopUp" Grid.Row="3" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Введите сумму пополнения" TextAlignment="Center" FontSize="13" Width="170" ></TextBox>
-            <Button Grid.Row="4" Width="120" Content="Пополнить" Click="Button_Click">
-                
-
-
-            </Button>
-        
-
+            <Button Name="TopUpButton" Grid.Row="4" Width="120" Content="Пополнить" Click="TopUpButton_Click"/>
         </Grid>
-
-        
-
     </Border>
 </Window>

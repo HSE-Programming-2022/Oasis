@@ -16,17 +16,17 @@
 
 
         <Grid>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                
+
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
+
             <Grid Width="Auto" HorizontalAlignment="Right" Height="Auto" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"/>
@@ -87,28 +87,27 @@
 
                     <materialDesign:PopupBox Name="ProfileButton" Background="Purple"  Grid.Row="1" VerticalAlignment="Center" Height="30" Width="30" HorizontalAlignment="Center" Style="{x:Null}"  BorderBrush="White">
 
-                    <StackPanel>
+                        <StackPanel>
 
-                        <Button Name="ProfileInUserHistoryButton" Width="150" Content="Профиль" Click="ProfileInUserHistoryButton_Click"></Button>
-                        <Button Name="MakeNewOrderUserHistoryButton" Content="Сделать новую бронь" Click="MakeNewOrderUserHistoryButton_Click"></Button>
-                        <Button Name="LogOutFromUserHistoryButton" Content="Выйти из аккаунта" Click="LogOutFromUserHistoryButton_Click"></Button>
+                            <Button Name="ProfileInUserHistoryButton" Width="150" Content="Профиль" Click="ProfileInUserHistoryButton_Click"></Button>
+                            <Button Name="MakeNewOrderUserHistoryButton" Content="Сделать новую бронь" Click="MakeNewOrderUserHistoryButton_Click"></Button>
+                            <Button Name="LogOutFromUserHistoryButton" Content="Выйти из аккаунта" Click="LogOutFromUserHistoryButton_Click"></Button>
 
-                    </StackPanel>
-                </materialDesign:PopupBox>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
                 </Grid>
                 <Grid Grid.Column="2" HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Name="BalanceUserHistoryButton" Grid.Column="0" ToolTip="Нажмите если хотите пополнить баланс" Grid.Row="1" Height="40" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Content="100" Style="{StaticResource MaterialDesignFlatButton}" Click="BalanceUserHistoryButton_Click" ></Button>
-                <TextBlock Text="р." Grid.Column="1" FontSize="25" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                    <Button Name="BalanceUserHistoryButton" Grid.Column="0" ToolTip="Нажмите если хотите пополнить баланс" Grid.Row="1" Height="40" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource MaterialDesignFlatButton}" Click="BalanceUserHistoryButton_Click" ></Button>
+                </Grid>
             </Grid>
-        </Grid>
 
             <Separator Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="2000" Background="Blue" Style="{StaticResource MaterialDesignDarkSeparator}"></Separator>
 
-            <ListBox Grid.Row="2" Width="600" Height="390" HorizontalAlignment="Center" Background="Blue" VerticalAlignment="Center">
+            <ListBox Grid.Row="2" Width="878" Height="438" HorizontalAlignment="Center" Background="Blue" VerticalAlignment="Center" Margin="10,18,10,10">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -137,7 +136,7 @@
 
 
         </Grid>
-        
-        
+
+
     </Border>
 </Window>
