@@ -8,17 +8,15 @@
         mc:Ignorable="d"
         Title="UserProfileWindow" Height="350" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize" MouseDown="Window_MouseDown">
 
-    <Border Margin="30"  
+    <Border Grid.Row="2" Grid.Column="2" Margin="30"  
           Background="White"
           BorderThickness="1"
           CornerRadius="15">
-        <Border.Effect>
-            <DropShadowEffect ShadowDepth="0" BlurRadius="10"></DropShadowEffect>
-        </Border.Effect>
 
-        <Grid>
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
+                    <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -35,14 +33,16 @@
 
                 <TextBlock Grid.Row="0" Grid.Column="2" Width="110" FontSize="20" FontWeight="SemiBold" Margin="-25 10 0 0" Text="Профиль"></TextBlock>
                 <materialDesign:PackIcon Kind="Email" Grid.Row="1" Width="20" Height="20" Margin="10" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"></materialDesign:PackIcon>
-                <materialDesign:PackIcon Kind="GoogleController" Width="20" Height="20" Grid.Row="2" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center" Grid.Column="0"></materialDesign:PackIcon>
-                <materialDesign:PackIcon Kind="Account" Grid.Row="3" Grid.Column="0" Height="20" Width="20" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                <materialDesign:PackIcon Kind="AccountConvert" Grid.Row="4" Grid.Column="0" Height="20" Width="20" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="Phone" Grid.Row="2" Width="20" Height="20" Margin="10" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="GoogleController" Width="20" Height="20" Grid.Row="3" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center" Grid.Column="0"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="Account" Grid.Row="4" Grid.Column="0" Height="20" Width="20" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="AccountConvert" Grid.Row="5" Grid.Column="0" Height="20" Width="20" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center"></materialDesign:PackIcon>
 
-                <TextBlock Name="UserEmailDetailsTextBlock" Grid.Row="1" Grid.Column="1" TextAlignment="Center" Text="pascha0102@yandex.ru" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
-                <TextBlock Grid.Row="2" Grid.Column="1" TextAlignment="Center" Text="s!mple" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
-                <TextBlock Grid.Row="3" Grid.Column="1" TextAlignment="Center" Text="Ivan" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
-                <TextBlock Grid.Row="4" Grid.Column="1" TextAlignment="Center" Text="Dolbilkin" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+                <TextBlock Name="EmailText" Grid.Row="1" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+                <TextBlock Name="PhoneText" Grid.Row="2" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+                <TextBlock Name="LoginText" Grid.Row="3" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+                <TextBlock Name="NameText" Grid.Row="4" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+                <TextBlock Name="SurenameText" Grid.Row="5" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
 
             <Button x:Name="ExitFromTopUpBalaneButton" ToolTip="Закрыть" Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Grid.Column="1" Margin="0 3 5 0" Height="Auto" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ExitFromTopUpBalaneButton_Click">
                     <Button.Template>
@@ -53,8 +53,8 @@
                 </Button>
 
 
-            <Button Name ="ChangeProfileDetails"  Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" BorderBrush="White" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="10" Foreground="MediumPurple" Background="Transparent" Grid.Row="5" VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Right" Height="30" Width="123" Margin="0 0 10 0"  Content="Редактировать" Click="ChangeProfileDetails_Click"></Button>
-            <TextBox Name="NewUserEmailTextBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Width="180" Height="25" Visibility="Hidden"></TextBox>
+            <Button Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" BorderBrush="White" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="10" Foreground="MediumPurple" Background="Transparent" Grid.Row="6" VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Right" Height="30" Width="123" Margin="0 0 10 0"  Content="Редактировать"></Button>
+
             </Grid>
 
         </Border>

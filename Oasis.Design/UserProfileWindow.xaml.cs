@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Oasis.Core;
+using Oasis.Core.Models;
 
 namespace Oasis.Design
 {
@@ -19,9 +21,14 @@ namespace Oasis.Design
     /// </summary>
     public partial class UserProfileWindow : Window
     {
-        public UserProfileWindow()
+        public UserProfileWindow(User user)
         {
             InitializeComponent();
+            EmailText.Text = user.Email;
+            PhoneText.Text = user.Phone;
+            LoginText.Text = user.Login;
+            NameText.Text = user.Name;
+            SurenameText.Text = user.Surname;
         }
 
         private void ExitFromTopUpBalaneButton_Click(object sender, RoutedEventArgs e)

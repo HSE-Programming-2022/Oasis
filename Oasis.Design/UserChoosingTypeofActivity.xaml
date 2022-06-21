@@ -98,8 +98,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Name="BalanceButton" ToolTip="Нажмите если хотите пополнить баланс" Content="100" Height="40" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,0" Click="BalanceButton_Click"/>
-                <TextBlock Text="р." Grid.Column="1" FontSize="25" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                <Button Name="BalanceButton" ToolTip="Нажмите если хотите пополнить баланс" Height="40" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Black" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,0" Click="BalanceButton_Click"/>
             </Grid>
 
 

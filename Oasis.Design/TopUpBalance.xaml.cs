@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Oasis.Core;
+using Oasis.Core.Models;
 
 namespace Oasis.Design
 {
@@ -19,9 +21,27 @@ namespace Oasis.Design
     /// </summary>
     public partial class TopUpBalance : Window
     {
-        public TopUpBalance()
+        public User CurrentUser { get; set; }
+        public Button main;
+
+        public TopUpBalance( User user, Button win)
         {
             InitializeComponent();
+            using (Context _context = new Context())
+            {
+                foreach (var item in _context.People)
+                {
+                    if (item is User)
+                    {
+                        if ((item as User).Login == user.Login)
+                        {
+                            CurrentUser = item as User;
+                        }
+                    }
+                }
+            }
+            CurrentUserBalance.Text = $"{CurrentUser.Balance} р.";
+            main = win;
         }
 
         private void ExitFromTopUpBalaneButton_Click(object sender, RoutedEventArgs e)
@@ -35,9 +55,24 @@ namespace Oasis.Design
                 this.DragMove();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void TopUpButton_Click(object sender, RoutedEventArgs e)
         {
-
+            using(Context _context = new Context())
+            {
+                foreach(var item in _context.People)
+                {
+                    if(item is User)
+                    {
+                        if((item as User).Login == CurrentUser.Login)
+                        {
+                            (item as User).Balance += int.Parse(SumOfUserTopUp.Text);
+                            main.Content = $"{(item as User).Balance} р.";
+                        }
+                    }
+                }
+                _context.SaveChanges();
+            }
+            this.Close();
         }
     }
 }

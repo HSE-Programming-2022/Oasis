@@ -23,21 +23,22 @@ namespace Oasis.Design
 {
     public partial class AdminUsersPage : Page
     {
-        private Context _context { get; set; }
 
         private List<Person> AllPeople { get; set; }
 
         public AdminUsersPage()
         {
             InitializeComponent();
-            _context = new Context();
-            AllPeople = _context.People.ToList();
-            for(int i = 0; i < AllPeople.Count; i++)
+            using (Context _context = new Context())
             {
-                if (AllPeople[i] is Admin)
-                    AllPeople.Remove(AllPeople[i]);
+                AllPeople = _context.People.ToList();
+                for (int i = 0; i < AllPeople.Count; i++)
+                {
+                    if (AllPeople[i] is Admin)
+                        AllPeople.Remove(AllPeople[i]);
+                }
+                UsersListBox.ItemsSource = AllPeople;
             }
-            UsersListBox.ItemsSource = AllPeople;
         }
 
         Notifier notifier = new Notifier(cfg =>
@@ -96,7 +97,8 @@ namespace Oasis.Design
 
         private void HistoryButton_Click(object sender, RoutedEventArgs e)
         {
-
+            //HistoryOfUserReservations window = new HistoryOfUserReservations(UsersListBox.SelectedItem as User);
+            //window.ShowDialog();
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -114,7 +116,6 @@ namespace Oasis.Design
             }
             UsersListBox.ItemsSource = null;
             UsersListBox.ItemsSource = AllPeople;
-            //MessageBox.Show($"Найдено {count} пользователей");
             if (count > 0)
             {
                 notifier.ShowSuccess($"Найдено {count} пользователей");
