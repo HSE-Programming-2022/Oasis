@@ -43,7 +43,7 @@
                 </Button>
             </StackPanel>
 
-            <TextBox x:Name="LoginTextBox" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="50 130 50 10" Width="300" Height="60" FontSize="15" materialDesign:HintAssist.Hint="Email" BorderThickness="2"/>
+            <TextBox x:Name="LoginOrEmailTextBox" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="50 130 50 10" Width="300" Height="60" FontSize="15" materialDesign:HintAssist.Hint="Login / Email" BorderThickness="2" TextChanged="LoginOrEmailTextBox_TextChanged"/>
             <PasswordBox Margin="50 10 50 0" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" x:Name="PasswordBox" Width="300" Height="60" FontSize="15" materialDesign:HintAssist.Hint="Password" BorderThickness="2">
 
             </PasswordBox>

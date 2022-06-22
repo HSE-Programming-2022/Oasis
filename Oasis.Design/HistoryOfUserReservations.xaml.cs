@@ -64,7 +64,6 @@ namespace Oasis.Design
             dataAdp.Fill(dt);
             HistoryOfUserReservationsDataGrid.ItemsSource = dt.DefaultView; // Сам вывод 
             DBConnection.Close();
-
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -104,7 +103,6 @@ namespace Oasis.Design
             taskWindow.Show();
             Close();
         }
-
 
         private void ReservationDate_Initialized(object sender, EventArgs e)
         {
