@@ -19,8 +19,8 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox Name="SearchingTextBox" Grid.Column="0" Height="50" materialDesign:HintAssist.Foreground="White" materialDesign:HintAssist.Hint="Введите логин пользователя" Width="400" Foreground="White" Style="{StaticResource MaterialDesignFilledTextBox}" ></TextBox>
-            <Button Name="SearchButton"  Grid.Column="1" Width="32" Height="32" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="{x:Null}"  Style="{DynamicResource MaterialDesignToolForegroundButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="SearchButton_Click">
+            <TextBox Name="SearchingTextBox" Grid.Column="0" Height="50" materialDesign:HintAssist.Foreground="White" materialDesign:HintAssist.Hint="Введите логин пользователя" Width="400" Foreground="White" Style="{StaticResource MaterialDesignFilledTextBox}" Margin="25,0,0,0" ></TextBox>
+            <Button Name="SearchButton"  Grid.Column="1" Width="32" Height="32" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="{x:Null}"  Style="{DynamicResource MaterialDesignToolForegroundButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="SearchButton_Click" Margin="25,0,0,0">
                 <materialDesign:PackIcon Kind="Search"  Width="30" Height="30" Foreground="White"></materialDesign:PackIcon>
                  
             </Button>
