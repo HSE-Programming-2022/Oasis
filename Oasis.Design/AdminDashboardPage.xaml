@@ -92,24 +92,38 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Margin="0 10 0 0">
-                    <Grid>
-                        <materialDesign:PackIcon Kind="CircleOutline" Width="14" Height="14" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0"/>
-                    <TextBlock Text="Profit" FontSize="14" HorizontalAlignment="Left" Margin="29 0 0 0" Foreground="White"/>
-            </Grid>
-            </StackPanel>
-                <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Vertical" VerticalAlignment="Bottom" Height="200" Width="50" >
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="280" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="240" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="200" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="160" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="120" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="80" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="40" Foreground="#717eb2" Margin="0 0 0 10"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="10" Text="0" Foreground="#717eb2"></TextBlock>
-
-
-                </StackPanel>
+                <materialDesign:PackIcon Kind="CircleOutline" Width="14" Height="14" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="20,10,10,10"/>
+                <TextBlock Text="Profit" FontSize="14" HorizontalAlignment="Left" Foreground="White" Margin="40,8,10,10"/>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0" Margin="10,20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="280" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="240" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="200" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="160" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="120" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="80" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="40" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="0" Foreground="#717eb2" Margin="5"></TextBlock>
+                    </Grid>
+                </Grid>
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Bottom" Height="20" Width="450" >
                     <TextBlock HorizontalAlignment="Center" FontSize="10" Text="00:00-04:00" Foreground="#717eb2" Margin="0 0 0 0"></TextBlock>
                     <TextBlock HorizontalAlignment="Center" FontSize="10" Text="04:00-08:00" Foreground="#717eb2" Margin="25 0 0 0"></TextBlock>
