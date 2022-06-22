@@ -34,6 +34,11 @@ namespace Oasis.Design
         private void GoToDashboardPageButton_Click(object sender, RoutedEventArgs e)
         {
             Admin.Content = new AdminDashboardPage();
+            DashboardStickButton.Visibility = Visibility.Visible;
+            UsersStickButton.Visibility = Visibility.Hidden;
+            StatisticksStickButton.Visibility = Visibility.Hidden;
+
+
 
 
 
@@ -42,11 +47,17 @@ namespace Oasis.Design
         private void GoToStatisticsPageButton_Click(object sender, RoutedEventArgs e)
         {
             Admin.Content = new AdminStatisticsPage();
+            DashboardStickButton.Visibility = Visibility.Hidden;
+            UsersStickButton.Visibility = Visibility.Hidden;
+            StatisticksStickButton.Visibility = Visibility.Visible;
         }
 
         private void GoToUsersPageButton_Click(object sender, RoutedEventArgs e)
         {
             Admin.Content = new AdminUsersPage();
+            DashboardStickButton.Visibility = Visibility.Hidden;
+            UsersStickButton.Visibility = Visibility.Visible;
+            StatisticksStickButton.Visibility = Visibility.Hidden;
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

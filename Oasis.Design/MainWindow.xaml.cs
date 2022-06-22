@@ -182,5 +182,16 @@ namespace Oasis.Design
         {
 
         }
+
+        private void GoToWebSiteButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://ez-katka.ru/");
+
+        }
+
+        private void GoToVkButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://vk.com/ezyas");
+        }
     }
 }
