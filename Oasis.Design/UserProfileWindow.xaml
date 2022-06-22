@@ -12,51 +12,63 @@
           Background="White"
           BorderThickness="1"
           CornerRadius="15">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="10"></DropShadowEffect>
+        </Border.Effect>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition Height="Auto"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
 
 
-                </Grid.RowDefinitions>
+            </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="2" Width="110" FontSize="20" FontWeight="SemiBold" Margin="-25 10 0 0" Text="Профиль"></TextBlock>
-                <materialDesign:PackIcon Kind="Email" Grid.Row="1" Width="20" Height="20" Margin="10" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"></materialDesign:PackIcon>
-                <materialDesign:PackIcon Kind="Phone" Grid.Row="2" Width="20" Height="20" Margin="10" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"></materialDesign:PackIcon>
-                <materialDesign:PackIcon Kind="GoogleController" Width="20" Height="20" Grid.Row="3" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center" Grid.Column="0"></materialDesign:PackIcon>
-                <materialDesign:PackIcon Kind="Account" Grid.Row="4" Grid.Column="0" Height="20" Width="20" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                <materialDesign:PackIcon Kind="AccountConvert" Grid.Row="5" Grid.Column="0" Height="20" Width="20" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center"></materialDesign:PackIcon>
+            <TextBlock Grid.Row="0" Grid.Column="2" Width="110" FontSize="20" FontWeight="SemiBold" Margin="-25 10 0 0" Text="Профиль"></TextBlock>
+            <materialDesign:PackIcon Kind="Email" Grid.Row="1" ToolTip="Почта" Width="20" Height="20" Margin="10" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"></materialDesign:PackIcon>
+            <materialDesign:PackIcon Kind="Phone" Grid.Row="2" ToolTip="Телефон" Width="20" Height="20" Margin="10" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"></materialDesign:PackIcon>
+            <materialDesign:PackIcon Kind="GoogleController" ToolTip="Логин" Width="20" Height="20" Grid.Row="3" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center" Grid.Column="0"></materialDesign:PackIcon>
+            <materialDesign:PackIcon Kind="Account" Grid.Row="4" ToolTip="Имя" Grid.Column="0" Height="20" Width="20" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center"></materialDesign:PackIcon>
+            <materialDesign:PackIcon Kind="AccountConvert" ToolTip="Фамилия" Grid.Row="5" Grid.Column="0" Height="20" Width="20" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center"></materialDesign:PackIcon>
 
-                <TextBlock Name="EmailText" Grid.Row="1" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
-                <TextBlock Name="PhoneText" Grid.Row="2" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
-                <TextBlock Name="LoginText" Grid.Row="3" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
-                <TextBlock Name="NameText" Grid.Row="4" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
-                <TextBlock Name="SurenameText" Grid.Row="5" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Name="EmailText" Grid.Row="1" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" Visibility="Visible" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Name="PhoneText" Grid.Row="2" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" Visibility="Visible" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Name="LoginText" Grid.Row="3" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" Visibility="Visible" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Name="NameText" Grid.Row="4" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" Visibility="Visible" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Name="SurenameText" Grid.Row="5" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" Visibility="Visible" HorizontalAlignment="Left"></TextBlock>
+
+            <TextBox Name="NewEmailTextBox" Grid.Row="1" materialDesign:HintAssist.Hint="Почта" Width="165" Height="25"  Grid.Column="1" TextAlignment="Center" Visibility="Hidden" Margin="10,8,0,8" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBox>
+            <TextBox Name="NewPhoneTextBox" Grid.Row="2" Grid.Column="1" TextAlignment="Center" materialDesign:HintAssist.Hint="Телефон" Width="165" Height="26" Visibility="Hidden"  FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,8,0,8"></TextBox>
+            <TextBox Name="NewLoginTextBox" Grid.Row="3" Grid.Column="1" TextAlignment="Center" materialDesign:HintAssist.Hint="Логин" Width="165" Height="25" Visibility="Hidden" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,8,0,8"></TextBox>
+            <TextBox Name="NewNameTextBox" Grid.Row="4" Grid.Column="1" TextAlignment="Center" materialDesign:HintAssist.Hint="Имя" Width="165" Height="25" Visibility="Hidden" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,8,0,8"></TextBox>
+            <TextBox Name="NewSurenameTextBox" Grid.Row="5" Grid.Column="1" TextAlignment="Center" materialDesign:HintAssist.Hint="Фамилия" Width="165" Height="26" Visibility="Hidden" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,8,0,8"></TextBox>
+
 
             <Button x:Name="ExitFromTopUpBalaneButton" ToolTip="Закрыть" Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Grid.Column="1" Margin="0 3 5 0" Height="Auto" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ExitFromTopUpBalaneButton_Click">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <materialDesign:PackIcon Kind="Close" Foreground="Black"  Width="25" Height="25"  />
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                <Button.Template>
+                    <ControlTemplate>
+                        <materialDesign:PackIcon Kind="Close" Foreground="Black"  Width="25" Height="25"  />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
 
-            <Button Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" BorderBrush="White" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="10" Foreground="MediumPurple" Background="Transparent" Grid.Row="6" VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Right" Height="30" Width="123" Margin="0 0 10 0"  Content="Редактировать"></Button>
+            <Button Name="ChangeProfileDetailsButton" Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" BorderBrush="White" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="10" Visibility="Visible" Foreground="MediumPurple" Background="Transparent" Grid.Row="6" VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Right" Height="30" Width="123" Margin="0 0 10 0"  Content="Редактировать" Click="ChangeProfileDetailsButton_Click"></Button>
+            <Button Name="SaveChangefProfileDetailsButton" Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" BorderBrush="White" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="10" Foreground="MediumPurple" Background="Transparent" Grid.Row="6" VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Right" Height="30" Width="123" Margin="0 0 10 0"  Content="Сохранить" Visibility="Hidden" Click="SaveChangefProfileDetailsButton_Click"></Button>
 
-            </Grid>
 
-        </Border>
-   
+        </Grid>
+
+    </Border>
+
 </Window>

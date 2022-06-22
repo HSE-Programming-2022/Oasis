@@ -15,6 +15,8 @@ using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
+using System.Net;
+using System.Net.Mail;
 
 namespace Oasis.Design
 {
@@ -33,7 +35,7 @@ namespace Oasis.Design
                 parentWindow: Application.Current.MainWindow,
                 corner: Corner.BottomCenter,
                 offsetX: 100,
-                offsetY: 5);
+                offsetY: 20);
 
             cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
                 notificationLifetime: TimeSpan.FromSeconds(3),
@@ -66,9 +68,44 @@ namespace Oasis.Design
 
         private void SendCodeButton_Click(object sender, RoutedEventArgs e)
         {
+            int randomnumber = 770238;
             SendCodeButton.Visibility = Visibility.Hidden;
             CodeConfirmationPasswordBox.Visibility = Visibility.Visible;
             ConfirmButton.Visibility = Visibility.Visible;
+
+            if (EmailConfirmationTextBox.Text != "")
+            {
+                try
+                {
+                    SmtpClient Client = new SmtpClient();
+                    Client.Credentials = new NetworkCredential("paveldzhankaraev@mail.ru", "RV6tbnrHQgCtovAkkfD8");
+                    Client.Host = "smtp.mail.ru";
+                    Client.Port = 587;
+                    Client.EnableSsl = true;
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress("paveldzhankaraev@mail.ru");
+                    mail.To.Add(new MailAddress(EmailConfirmationTextBox.Text));
+                    mail.Subject = "Восстановление пароля";
+                    mail.IsBodyHtml = true;
+                    mail.Body = "Ваш код восстановления: " + randomnumber;
+                    Client.Send(mail);
+                    notifier.ShowSuccess("Код для восстановления пароля успешно отправлен");
+                }
+                catch { }
+            }
+                
+
+        }
+
+        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow taskWindow = new MainWindow();
+
+            taskWindow.Owner = this.Owner;
+            taskWindow.Show();
+            Close();
+           
+
         }
     }
 }

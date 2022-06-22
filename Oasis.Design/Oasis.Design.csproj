@@ -216,5 +216,11 @@
   <ItemGroup>
     <Resource Include="Recources\pro.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recources\newicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recources\vk.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

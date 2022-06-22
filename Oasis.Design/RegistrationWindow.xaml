@@ -45,11 +45,12 @@
                     <TextBlock Width="80" Text="OASIS" Foreground="#41518f" FontSize="25" FontWeight="SemiBold" ></TextBlock>
                 </Grid>
             </StackPanel>
-            <TextBox x:Name="EmailConfirmationTextBox" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="50 130 50 10" Width="300" Height="60" FontSize="15" materialDesign:HintAssist.Hint="Email" BorderThickness="2"/>
+            <TextBox x:Name="EmailConfirmationTextBox" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="50 100 50 10" Width="300" Height="60" FontSize="15" materialDesign:HintAssist.Hint="Email" BorderThickness="2"/>
             <PasswordBox Margin="50 10 50 0" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Name="CodeConfirmationPasswordBox" Visibility="Hidden" Width="300" Height="60" FontSize="15" materialDesign:HintAssist.Hint="Recieved Code" BorderThickness="2"/>
 
+
             <Button Name="SendCodeButton" Margin="0 50 0 0" Style="{StaticResource MaterialDesignFlatMidBgButton}" Visibility="Visible" Width="300" Content="Отправить код" materialDesign:ButtonAssist.CornerRadius="10" Height="40" Click="SendCodeButton_Click" ></Button>
-            <Button Name="ConfirmButton" Style="{StaticResource MaterialDesignFlatButton}" BorderBrush="MediumPurple" BorderThickness="0.999" Width="300"  Content="Подтвердить" Margin="0 20 0 0" materialDesign:ButtonAssist.CornerRadius="10" Visibility="Hidden" Height="40" ></Button>
+            <Button Name="ConfirmButton" Style="{StaticResource MaterialDesignFlatButton}" BorderBrush="MediumPurple" BorderThickness="0.999" Width="300"  Content="Подтвердить" Margin="0 20 0 0" materialDesign:ButtonAssist.CornerRadius="10" Visibility="Hidden" Height="40" Click="ConfirmButton_Click"></Button>
 
 
         </StackPanel>

@@ -29,6 +29,8 @@ namespace Oasis.Design
             LoginText.Text = user.Login;
             NameText.Text = user.Name;
             SurenameText.Text = user.Surname;
+
+
         }
 
         private void ExitFromTopUpBalaneButton_Click(object sender, RoutedEventArgs e)
@@ -42,11 +44,33 @@ namespace Oasis.Design
                 this.DragMove();
         }
 
-        private void ChangeProfileDetails_Click(object sender, RoutedEventArgs e)
+        
+
+        private void ChangeProfileDetailsButton_Click(object sender, RoutedEventArgs e)
         {
-            //UserEmailDetailsTextBlock.Visibility = Visibility.Hidden;
-            //NewUserEmailTextBox.Visibility = Visibility.Visible;
+            EmailText.Visibility = Visibility.Hidden;
+            PhoneText.Visibility = Visibility.Hidden;
+            LoginText.Visibility = Visibility.Hidden;
+            NameText.Visibility = Visibility.Hidden;
+            SurenameText.Visibility = Visibility.Hidden;
+
+            NewEmailTextBox.Visibility = Visibility.Visible;
+            NewPhoneTextBox.Visibility = Visibility.Visible;
+            NewLoginTextBox.Visibility = Visibility.Visible;
+            NewNameTextBox.Visibility = Visibility.Visible;
+            NewSurenameTextBox.Visibility = Visibility.Visible;
+
+            ChangeProfileDetailsButton.Visibility = Visibility.Hidden;
+            SaveChangefProfileDetailsButton.Visibility = Visibility.Visible;
+
+
             
+
+        }
+
+        private void SaveChangefProfileDetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
