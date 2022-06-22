@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Oasis.Core;
 using Oasis.Core.Models;
+using System.Data.OleDb;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Oasis.Design
 {
@@ -25,7 +29,9 @@ namespace Oasis.Design
 
         public HistoryOfUserReservations(User user)
         {
+
             InitializeComponent();
+            binddatagrid();
             using (Context _context = new Context())
             {
                 foreach (var item in _context.People)
@@ -40,6 +46,25 @@ namespace Oasis.Design
                 }
             }
             BalanceUserHistoryButton.Content = $"{CurrentUser.Balance} р.";
+            
+        }
+
+        private void binddatagrid()
+        {
+            
+            SqlConnection DBConnection = new SqlConnection(@"Data Source=vm-as35.staff.corp.local;Initial Catalog=OasisDB;User ID=student;Password=sql2020;Integrated Security=False");  
+
+            DBConnection.Open();
+            string cmd = "SELECT Login, Name, Surname, Balance FROM People WHERE Discriminator = 'User'"; // Из какой таблицы нужен вывод 
+            SqlCommand createCommand = new SqlCommand(cmd, DBConnection);
+            createCommand.ExecuteNonQuery();
+
+            SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
+            DataTable dt = new DataTable("People"); // В скобках указываем название таблицы
+            dataAdp.Fill(dt);
+            HistoryOfUserReservationsDataGrid.ItemsSource = dt.DefaultView; // Сам вывод 
+            DBConnection.Close();
+
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -130,5 +155,17 @@ namespace Oasis.Design
             UserProfileWindow taskWindow = new UserProfileWindow(CurrentUser);
             taskWindow.ShowDialog();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
+
+        
     }
 }
