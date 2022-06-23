@@ -126,7 +126,7 @@ namespace Oasis.Design
                             BodyBldr.TextBody = "Ваш код: " + VerificationCode;
 
                             var Message = new MimeMessage();
-                            Message.Subject = "Подтверждения почты для регистрации в Oasis";
+                            Message.Subject = "Подтверждение почты для регистрации";
                             Message.Body = BodyBldr.ToMessageBody();
                             Message.To.Add(MailboxAddress.Parse(NewUserEmail));
                             Message.From.Add(new MailboxAddress("Компьютерный клуб Oasis", "oasis.computer.club@yandex.ru"));
@@ -149,7 +149,9 @@ namespace Oasis.Design
                     _context.SaveChanges();
                 }
                 notifier.ShowWarning("Регистрация прошла успешно!");
+
                 MainWindow taskWindow = new MainWindow();
+
                 taskWindow.Owner = this.Owner;
                 taskWindow.Show();
                 Close();

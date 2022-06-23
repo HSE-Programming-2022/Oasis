@@ -10,11 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using Oasis.Core;
+using Oasis.Core.Models;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
+using MailKit.Net.Smtp;
+using MimeKit;
 
 namespace Oasis.Design
 {
@@ -23,10 +29,9 @@ namespace Oasis.Design
     /// </summary>
     public partial class UserForgetPasswordWindow : Window
     {
-        public UserForgetPasswordWindow()
-        {
-            InitializeComponent();
-        }
+        string UserEmail;
+        string VerificationCode;
+
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
@@ -42,21 +47,89 @@ namespace Oasis.Design
             cfg.Dispatcher = Application.Current.Dispatcher;
         });
 
+        public UserForgetPasswordWindow()
+        {
+            InitializeComponent();
+        }
+
         private void SendCodeButton_Click(object sender, RoutedEventArgs e)
         {
-            CodeConfirmationTextBox.Visibility = Visibility.Visible;
-            SendCodeButton.Visibility = Visibility.Hidden;
-            ConfirmButton.Visibility = Visibility.Visible;
+            UserEmail = EmailConfirmationTextBox.Text;
+            bool EmailExists = false;
+            if (UserEmail == "")
+            {
+                notifier.ShowWarning("Введите почту");
+            }
+            else
+            {
+                using (Context _context = new Context())
+                {
+                    foreach (var item in _context.People)
+                    {
+                        if (item is User)
+                        {
+                            User CurrentUser = item as User;
+                            if (CurrentUser.Email == UserEmail)
+                            {
+                                EmailExists = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (EmailExists)
+                    {
+                        SendCodeButton.Visibility = Visibility.Hidden;
+                        CodeConfirmationTextBox.Visibility = Visibility.Visible;
+                        ConfirmButton.Visibility = Visibility.Visible;
+
+                        using (var smtp = new SmtpClient())
+                        {
+                            smtp.Connect("smtp.yandex.ru", 465, true);
+                            smtp.Authenticate("oasis.computer.club@yandex.ru", "brbhekcpgskbzgfo");
+
+                            VerificationCode = new Random().Next(1000, 9999).ToString("D4");
+                            var BodyBldr = new BodyBuilder();
+                            BodyBldr.TextBody = "Ваш код: " + VerificationCode;
+
+                            var Message = new MimeMessage();
+                            Message.Subject = "Восстановление забытого пароля";
+                            Message.Body = BodyBldr.ToMessageBody();
+                            Message.To.Add(MailboxAddress.Parse(UserEmail));
+                            Message.From.Add(new MailboxAddress("Компьютерный клуб Oasis", "oasis.computer.club@yandex.ru"));
+
+                            smtp.Send(Message);
+                        }
+                    }
+                    else
+                    {
+                        notifier.ShowWarning("Пользователь с данной почтой отсутствует");
+                    }
+                }
+            }
         }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
+            if (CodeConfirmationTextBox.Text == VerificationCode)
+            {
+                CreatingNewPassword taskWindow = new CreatingNewPassword(UserEmail);
 
+                taskWindow.Owner = this.Owner;
+                taskWindow.Show();
+                Close();
+            }
+            else
+            {
+                notifier.ShowWarning("Неверный код");
+            }
         }
 
         private void ExitInPasswordrecoveryButton_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            MainWindow main = new MainWindow();
+            main.Show();
+            Close();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

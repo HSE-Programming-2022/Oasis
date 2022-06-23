@@ -100,6 +100,7 @@ namespace Oasis.Design
                         else
                         {
                             RegistrationWindow taskWindow = new RegistrationWindow(NewUserLogin, NewUserPassword);
+
                             taskWindow.Show();
                             Close();
                         }
