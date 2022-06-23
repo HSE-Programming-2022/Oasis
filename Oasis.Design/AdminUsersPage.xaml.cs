@@ -91,8 +91,8 @@ namespace Oasis.Design
 
         private void ReservationButton_Click(object sender, RoutedEventArgs e)
         {
-            UserBookingWindow window = new UserBookingWindow("All");
-            window.ShowDialog();
+            //UserBookingWindow window = new UserBookingWindow("All");
+            //window.ShowDialog();
         }
 
         private void HistoryButton_Click(object sender, RoutedEventArgs e)

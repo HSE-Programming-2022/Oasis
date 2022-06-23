@@ -22,14 +22,17 @@ namespace Oasis.Design
     /// </summary>
     public partial class UserBookingWindow : Window
     {
+        User CurrentUser;
         string _selectedHall;
         int _numberOfPeople;
         DateTime _selectedDate;
         Dictionary<int, List<int>> SortedDictionary;
         Button[] allbuttons;
         bool IfFirstTimeChosen = false;
+        List<int[]> ListOfPossibleSeatNumbers = new List<int[]> { };
+        int price;
 
-        public UserBookingWindow(string type)
+        public UserBookingWindow(string type, User user)
         {
             InitializeComponent();
             using(Context context = new Context())
@@ -47,6 +50,7 @@ namespace Oasis.Design
                 _numberOfPeople = 1;
             }
             allbuttons = new Button[] { Button0, Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9, Button10, Button11, Button12, Button13, Button14, Button15, Button16, Button17, Button18, Button19, Button20, Button21, Button22, Button23 };
+            CurrentUser = user;
         }
 
         private Dictionary<int, List<int>> CheckingFreeTimeSlots() // Выводит словарь {Номер временного слота - список свободных компьютеров}
@@ -55,10 +59,6 @@ namespace Oasis.Design
             {
                 List<Reservation> reservations = context.Reservations.Include("Seat").Include("User").ToList();
                 List<Seat> seats = SeatsOfHall();
-                //foreach (var item in context.Reservations.ToList())
-                //{
-                //    resrvations.Add(item);
-                //}
                 var sortedReservations = reservations
                     .Where(res => res.Seat.HallId == context.Halls.Where(h => h.Name == _selectedHall).ToList()[0].Id)
                     .Where(res => res.StartTime.Date.CompareTo(_selectedDate.Date) == 0)
@@ -77,11 +77,6 @@ namespace Oasis.Design
                         dicitionaryOfTime[item.StartTime.Hour + index] = correctedSeats;
                         hours--;
                         index++;
-                        //List<int> correctedSeats1 = dicitionaryOfTime[item.StartTime.Hour + index];
-                        //correctedSeats.Remove(item.Seat.Id);
-                        //dicitionaryOfTime[item.StartTime.Hour + index] = correctedSeats1;
-                        //index++;
-                        //hours--;
                     }
                 }
                 return dicitionaryOfTime;
@@ -92,20 +87,6 @@ namespace Oasis.Design
         {
             using (Context context = new Context())
             {
-
-                //List<Seat> seats = new List<Seat>();
-                //var seats = context.Seats.Include(x => x.Hall).ToList();
-                //var a = context.Seats.ToList()[1].Hall.Name;
-                //foreach (var item in context.Halls) 
-                //{
-                //    if (item.Name == _selectedHall)
-                //    {
-                //        foreach (var seat in item.Seats)
-                //        {
-                //            seats.Add(seat);
-                //        }
-                //    }
-                //}
                 return context.Seats.Include(x => x.Hall).Where(n => n.Hall.Name == _selectedHall).ToList(); // все ситы из выбранного хола
             }
         }
@@ -114,13 +95,13 @@ namespace Oasis.Design
         {
             List<Seat> seats = SeatsOfHall();
             var dicitionaryOfTime = new Dictionary<int, List<int>>();
-            var enitialListOfSeats = new List<int>();
-            for (int i = 0; i < seats.Count(); i++)
-            {
-                enitialListOfSeats.Add(seats[i].Id);
-            }
             for (int i = 0; i < 24; i++)
             {
+                var enitialListOfSeats = new List<int>();
+                for (int j = 0; j < seats.Count(); j++)
+                {
+                    enitialListOfSeats.Add(seats[j].Id);
+                }
                 dicitionaryOfTime.Add(i, enitialListOfSeats);
             }
             return dicitionaryOfTime;
@@ -162,6 +143,9 @@ namespace Oasis.Design
                 SortedDictionary = CheckingFreeTimeSlots();
                 SetButtons();
             }
+            SetNewTotalPrice();
+            IfFirstTimeChosen = false;
+            ListOfPossibleSeatNumbers = new List<int[]> { };
         }
 
         private void ComboBoxHall_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -170,6 +154,7 @@ namespace Oasis.Design
             using (Context context = new Context())
             {
                 ComboBoxNumberOfPeople.ItemsSource = Enumerable.Range(1, context.Seats.Include(x => x.Hall).Where(n => n.Hall.Name == _selectedHall).ToList().Count()).ToArray();
+                price = context.Halls.Where(x => _selectedHall == x.Name).ToList()[0].Price;
             }
             if (ComboBoxNumberOfPeople.SelectedItem != null && ChoosingDatePicker.SelectedDate != null)
             {
@@ -177,34 +162,52 @@ namespace Oasis.Design
                 SetButtons();
             }
             ComboBoxNumberOfPeople.IsEnabled = true;
+            SetNewTotalPrice();
+            IfFirstTimeChosen = false;
+            ListOfPossibleSeatNumbers = new List<int[]> { };
         }
 
         private void ComboBoxNumberOfPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _numberOfPeople = ComboBoxNumberOfPeople.SelectedIndex + 1;
+            _numberOfPeople = Convert.ToInt32(ComboBoxNumberOfPeople.SelectedItem.ToString());
             if (ComboBoxHall.SelectedItem != null && ChoosingDatePicker.SelectedDate != null)
             {
                 SortedDictionary = CheckingFreeTimeSlots();
                 SetButtons();
             }
-            _numberOfPeople = Convert.ToInt32(ComboBoxNumberOfPeople.SelectedItem.ToString());
+            SetNewTotalPrice();
+            IfFirstTimeChosen = false;
+            ListOfPossibleSeatNumbers = new List<int[]> { };
         }
 
+        private void SetNewTotalPrice()
+        {
+            int totalPrice = 0;
+            foreach (var button in allbuttons)
+            {
+                if (button.Background == Brushes.MediumSeaGreen)
+                    totalPrice += price;
+            }
+            CurrentPrice.Text = $"{totalPrice * _numberOfPeople} р.";
+        }
 
         private void SetButtons()
         {
             int currhour = 0;
-            if (_selectedDate == DateTime.Today)
+            if (_selectedDate >= DateTime.Today)
             {
-                currhour = DateTime.Now.Hour + 1;
+                if (_selectedDate == DateTime.Today)
+                    currhour = DateTime.Now.Hour + 1;
+                EnableAllButtons(false);
+                for (int i = currhour; i < allbuttons.Count(); i++)
+                {
+                    if (_numberOfPeople <= SortedDictionary[i].Count && IfAnySeatsTogether(allbuttons[i]))
+                        allbuttons[i].IsEnabled = true;
+                    allbuttons[i].Background = (Brush)(new BrushConverter()).ConvertFrom("#FF673AB7");
+                }
             }
-            EnableAllButtons(false);
-            for (int i = currhour; i < allbuttons.Count(); i++)
-            {
-                if (_numberOfPeople <= SortedDictionary[i].Count)
-                    allbuttons[i].IsEnabled = true;
-                allbuttons[i].Background = (Brush)(new BrushConverter()).ConvertFrom("#FF673AB7");
-            }
+            else
+                EnableAllButtons(false);
         }
 
         private void EnableAllButtons(bool fl)
@@ -234,15 +237,15 @@ namespace Oasis.Design
                 if (i == button)
                 {
                     endfl = true;
-                    i.Background = Brushes.Indigo;
+                    i.Background = Brushes.MediumSeaGreen;
                 }
-                else if (i.Background == Brushes.Indigo && !endfl && button != i)
+                else if (i.Background == Brushes.MediumSeaGreen && !endfl && button != i)
                     fl = true;
                 else if (fl && button != i && !endfl)
-                    i.Background = Brushes.Indigo;
+                    i.Background = Brushes.MediumSeaGreen;
                 else if (fl && button == i && !endfl)
                 {
-                    i.Background = Brushes.Indigo;
+                    i.Background = Brushes.MediumSeaGreen;
                     endfl = true;
                 }
                 else if (endfl)
@@ -250,25 +253,133 @@ namespace Oasis.Design
             }
         }
 
+        private void CheckReservationPossibility(Button button)
+        {
+            List<int> IntersectListOfSeats = SortedDictionary[GetHourOfButton(button)];
+            bool startfl = false;
+            bool tryingToDeleteLastArrayOfSeats = false;
+            for (int i = 0; i < allbuttons.Count(); i++)
+            {
+                if(startfl)
+                {
+                    for (int j = 0; j < ListOfPossibleSeatNumbers.Count(); j++)
+                    {
+                        if (SortedDictionary[i].Intersect(ListOfPossibleSeatNumbers[j]).Count() != ListOfPossibleSeatNumbers[j].Count())
+                        {
+                            if (ListOfPossibleSeatNumbers.Count() > 1)
+                            {
+                                ListOfPossibleSeatNumbers.Remove(ListOfPossibleSeatNumbers[j]);
+                                j--;
+                            }
+                            else
+                                tryingToDeleteLastArrayOfSeats = true;
+                        }
+                    }
+                    if (tryingToDeleteLastArrayOfSeats == true)
+                        startfl = false;
+                }
+                if (allbuttons[i].Name == button.Name)
+                    startfl = true;
+                if (!startfl)
+                    allbuttons[i].IsEnabled = false;
+            }
+        }
+
+        private bool IfAnySeatsTogether(Button button)
+        {
+            int hourOfButton = GetHourOfButton(button);
+            for (int k = 0; k < SortedDictionary[hourOfButton].Count(); k++)
+            {
+                if (k + _numberOfPeople <= SortedDictionary[hourOfButton].Count())
+                {
+                    bool SeatsNotTogether = false;
+                    int[] nearbyseats = new int[_numberOfPeople];
+                    for (int j = 0; j < _numberOfPeople; j++)
+                    {
+                        if (j == 0)
+                            nearbyseats[j] = SortedDictionary[hourOfButton][k + j];
+                        else if (nearbyseats[j - 1] == SortedDictionary[hourOfButton][k + j] - 1)
+                            nearbyseats[j] = SortedDictionary[hourOfButton][k + j];
+                        else
+                            SeatsNotTogether = true;
+                    }
+                    if (!SeatsNotTogether)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        private void SetListOfPossibleSeatNumbers(Button button)
+        {
+            int hourOfButton = GetHourOfButton(button);
+            for (int k = 0; k < SortedDictionary[hourOfButton].Count(); k++)
+            {
+                if (k + _numberOfPeople <= SortedDictionary[hourOfButton].Count())
+                {
+                    bool SeatsNotTogether = false;
+                    int[] nearbyseats = new int[_numberOfPeople];
+                    for (int j = 0; j < _numberOfPeople; j++)
+                    {
+                        if (j == 0)
+                            nearbyseats[j] = SortedDictionary[hourOfButton][k + j];
+                        else if (nearbyseats[j - 1] == SortedDictionary[hourOfButton][k + j] - 1)
+                            nearbyseats[j] = SortedDictionary[hourOfButton][k + j];
+                        else
+                            SeatsNotTogether = true;
+                    }
+                    if (!SeatsNotTogether)
+                        ListOfPossibleSeatNumbers.Add(nearbyseats);
+                }
+            }
+        }
+
         private void ClickForAll(Button button)
         {
-            int inndex = Array.FindIndex(allbuttons, x => x.Name == button.Name);
-            if (button.Background == Brushes.Indigo && allbuttons[Array.FindIndex(allbuttons, x => x.Name == button.Name) - 1].IsEnabled == false)
+            int indexofbutton = GetHourOfButton(button);
+            if (indexofbutton - 1 > -1)
             {
-                SetButtons();
-                button.Background = (Brush)(new BrushConverter()).ConvertFrom("#FF673AB7");
-                IfFirstTimeChosen = false;
+                if (button.Background == Brushes.MediumSeaGreen && allbuttons[indexofbutton - 1].IsEnabled == false)
+                {
+                    SetButtons();
+                    button.Background = (Brush)(new BrushConverter()).ConvertFrom("#FF673AB7");
+                    IfFirstTimeChosen = false;
+                    ListOfPossibleSeatNumbers = new List<int[]> { };
+                }
+                else if (!IfFirstTimeChosen)
+                {
+                    IfFirstTimeChosen = true;
+                    DisableButtonsTill(button);
+                    button.Background = Brushes.MediumSeaGreen;
+                    SetListOfPossibleSeatNumbers(button);
+                    CheckReservationPossibility(button);
+                }
+                else if (IfFirstTimeChosen)
+                {
+                    PaintingButtons(button);
+                }
+                SetNewTotalPrice();
             }
             else if (!IfFirstTimeChosen)
             {
                 IfFirstTimeChosen = true;
-                DisableButtonsTill(button);
-                button.Background = Brushes.Indigo;
+                button.Background = Brushes.MediumSeaGreen;
+                SetListOfPossibleSeatNumbers(button);
+                CheckReservationPossibility(button);
             }
-            else if(IfFirstTimeChosen)
+            else if (IfFirstTimeChosen)
             {
-                PaintingButtons(button);
+                SetButtons();
+                button.Background = (Brush)(new BrushConverter()).ConvertFrom("#FF673AB7");
+                IfFirstTimeChosen = false;
+                ListOfPossibleSeatNumbers = new List<int[]> { };
             }
+
+        }
+
+        private int GetHourOfButton(Button button)
+        {
+            return Array.FindIndex(allbuttons, x => x.Name == button.Name);
         }
 
         private void Button0_Click(object sender, RoutedEventArgs e)
@@ -384,6 +495,50 @@ namespace Oasis.Design
         private void Button23_Click(object sender, RoutedEventArgs e)
         {
             ClickForAll(sender as Button);
+        }
+
+        private void ReserveButton_Click(object sender, RoutedEventArgs e)
+        {
+            int totalPrice = 0;
+            int hours = 0;
+            int startHour = -1;
+            for (int i = 0; i < allbuttons.Count(); i++)
+            {
+                if (allbuttons[i].Background == Brushes.MediumSeaGreen)
+                {
+                    if (startHour == -1)
+                        startHour = i;
+                    totalPrice += price;
+                    hours++;
+                }
+            }
+            totalPrice = totalPrice * _numberOfPeople;
+            if (CurrentUser.Balance >= totalPrice)
+            {
+                using(Context _context = new Context())
+                {
+                    foreach (var item in _context.People)
+                    {
+                        if (item is User)
+                        {
+                            if ((item as User).Login == CurrentUser.Login)
+                            {
+                                (item as User).Balance -= totalPrice;
+                                CurrentUser = (item as User);
+                            }
+                        }
+                    }
+                    List<Reservation> newReservations = new List<Reservation> { };
+                    foreach (var item in ListOfPossibleSeatNumbers[0])
+                    {
+                        Seat seat = _context.Seats.Where(x => x.Id == item).ToList()[0];
+                        newReservations.Add(new Reservation(CurrentUser, _selectedDate.AddHours(startHour), hours, seat, price));
+                    }
+                    _context.Reservations.AddRange(newReservations);
+                    _context.SaveChanges();
+                }
+                Close();
+            }
         }
     }
 }
