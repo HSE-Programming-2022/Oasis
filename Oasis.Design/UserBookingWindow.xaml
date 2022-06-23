@@ -80,8 +80,8 @@
                 <DatePicker Name="ChoosingDatePicker" Language="RU" Height="34" Width="200" FontSize="15" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Выберите дату"  Grid.Row="1" Grid.Column="1" SelectedDateChanged="ChoosingDatePicker_SelectedDateChanged_1"></DatePicker>
                 <ComboBox Name="ComboBoxHall" FontSize="15" Grid.Column="2" Width="120" Height="30" materialDesign:HintAssist.Hint="Выберите зал" SelectionChanged="ComboBoxHall_SelectionChanged"/>
                 <ComboBox Name="ComboBoxNumberOfPeople" Margin="10,0" Grid.Column="3" Width="70" ToolTip="Количество людей" FontSize="15" Height="30" materialDesign:HintAssist.Hint="Кол-во" IsEnabled="false" SelectionChanged="ComboBoxNumberOfPeople_SelectionChanged"/>
-                <TextBlock Name="CurrentPrice" ToolTip="Сумма к оплате" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Text="659 р." Grid.Column="4"/>
-                <Button Name="ReserveButton" Margin="10,0" Grid.Column="5" Width="100" Content="Оплатить"/>
+                <TextBlock Name="CurrentPrice" ToolTip="Сумма к оплате" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Text="0 р." Grid.Column="4"/>
+                <Button Name="ReserveButton" Margin="10,0" Grid.Column="5" Width="100" Content="Оплатить" Click="ReserveButton_Click"/>
 
             </Grid>
 
@@ -94,12 +94,12 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Name="Button0" Grid.Column="0" Width="107" Content="00:00-01:00" IsEnabled="False" Click="Button0_Click"></Button>
-                <Button Name="Button1" Grid.Column="1" Width="107" Content="01:00-02:00" IsEnabled="False" Click="Button1_Click"></Button>
-                <Button Name="Button2" Grid.Column="2" Width="107" Content="02:00-03:00" IsEnabled="False" Click="Button2_Click"></Button>
-                <Button Name="Button3" Grid.Column="3" Width="107" Content="03:00-04:00" IsEnabled="False" Click="Button3_Click"></Button>
-                <Button Name="Button4" Grid.Column="4" Width="107" Content="04:00-05:00" IsEnabled="False" Click="Button4_Click"></Button>
-                <Button Name="Button5" Grid.Column="5" Width="107" Content="05:00-06:00" IsEnabled="False" Click="Button5_Click"></Button>
+                <Button Name="Button0" Grid.Column="0" Width="107" Content="00:00-01:00" IsEnabled="False" Click="Button0_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button1" Grid.Column="1" Width="107" Content="01:00-02:00" IsEnabled="False" Click="Button1_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button2" Grid.Column="2" Width="107" Content="02:00-03:00" IsEnabled="False" Click="Button2_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button3" Grid.Column="3" Width="107" Content="03:00-04:00" IsEnabled="False" Click="Button3_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button4" Grid.Column="4" Width="107" Content="04:00-05:00" IsEnabled="False" Click="Button4_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button5" Grid.Column="5" Width="107" Content="05:00-06:00" IsEnabled="False" Click="Button5_Click" BorderBrush="{x:Null}"></Button>
             </Grid>
             <Grid Grid.Row="3" Grid.Column="0" >
                 <Grid.ColumnDefinitions>
@@ -110,12 +110,12 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Name="Button6" Grid.Column="0" Width="107" Content="06:00-07:00" IsEnabled="False"></Button>
-                <Button Name="Button7" Grid.Column="1" Width="107" Content="07:00-08:00" IsEnabled="False" Click="Button7_Click"></Button>
-                <Button Name="Button8" Grid.Column="2" Width="107" Content="08:00-09:00" IsEnabled="False" Click="Button8_Click"></Button>
-                <Button Name="Button9" Grid.Column="3" Width="107" Content="09:00-10:00" IsEnabled="False" Click="Button9_Click"></Button>
-                <Button Name="Button10" Grid.Column="4" Width="107" Content="10:00-11:00" IsEnabled="False" Click="Button10_Click"></Button>
-                <Button Name="Button11" Grid.Column="5" Width="107" Content="11:00-12:00" IsEnabled="False" Click="Button11_Click"></Button>
+                <Button Name="Button6" Grid.Column="0" Width="107" Content="06:00-07:00" IsEnabled="False" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button7" Grid.Column="1" Width="107" Content="07:00-08:00" IsEnabled="False" Click="Button7_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button8" Grid.Column="2" Width="107" Content="08:00-09:00" IsEnabled="False" Click="Button8_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button9" Grid.Column="3" Width="107" Content="09:00-10:00" IsEnabled="False" Click="Button9_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button10" Grid.Column="4" Width="107" Content="10:00-11:00" IsEnabled="False" Click="Button10_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button11" Grid.Column="5" Width="107" Content="11:00-12:00" IsEnabled="False" Click="Button11_Click" BorderBrush="{x:Null}"></Button>
             </Grid>
             <Grid Grid.Row="4" Grid.Column="0" >
                 <Grid.ColumnDefinitions>
@@ -126,12 +126,12 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Name="Button12" Grid.Column="0" Width="107" Content="12:00-13:00" IsEnabled="False" Click="Button12_Click"></Button>
-                <Button Name="Button13" Grid.Column="1" Width="107" Content="13:00-14:00" IsEnabled="False" Click="Button13_Click"></Button>
-                <Button Name="Button14" Grid.Column="2" Width="107" Content="14:00-15:00" IsEnabled="False" Click="Button14_Click"></Button>
-                <Button Name="Button15" Grid.Column="3" Width="107" Content="15:00-16:00" IsEnabled="False" Click="Button15_Click"></Button>
-                <Button Name="Button16" Grid.Column="4" Width="107" Content="16:00-17:00" IsEnabled="False" Click="Button16_Click"></Button>
-                <Button Name="Button17" Grid.Column="5" Width="107" Content="17:00-18:00" IsEnabled="False" Click="Button17_Click"></Button>
+                <Button Name="Button12" Grid.Column="0" Width="107" Content="12:00-13:00" IsEnabled="False" Click="Button12_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button13" Grid.Column="1" Width="107" Content="13:00-14:00" IsEnabled="False" Click="Button13_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button14" Grid.Column="2" Width="107" Content="14:00-15:00" IsEnabled="False" Click="Button14_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button15" Grid.Column="3" Width="107" Content="15:00-16:00" IsEnabled="False" Click="Button15_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button16" Grid.Column="4" Width="107" Content="16:00-17:00" IsEnabled="False" Click="Button16_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button17" Grid.Column="5" Width="107" Content="17:00-18:00" IsEnabled="False" Click="Button17_Click" BorderBrush="{x:Null}"></Button>
             </Grid>
 
             <Grid Grid.Row="5" Grid.Column="0" >
@@ -143,12 +143,12 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Name="Button18" Grid.Column="0" Width="107" Content="18:00-19:00" IsEnabled="False" Click="Button18_Click"></Button>
-                <Button Name="Button19" Grid.Column="1" Width="107" Content="19:00-20:00" IsEnabled="False" Click="Button19_Click"></Button>
-                <Button Name="Button20" Grid.Column="2" Width="107" Content="20:00-21:00" IsEnabled="False" Click="Button20_Click"></Button>
-                <Button Name="Button21" Grid.Column="3" Width="107" Content="21:00-22:00" IsEnabled="False" Click="Button21_Click"></Button>
-                <Button Name="Button22" Grid.Column="4" Width="107" Content="22:00-23:00" IsEnabled="False" Click="Button22_Click"></Button>
-                <Button Name="Button23" Grid.Column="5" Width="107" Content="23:00-00:00" IsEnabled="False" Click="Button23_Click"></Button>
+                <Button Name="Button18" Grid.Column="0" Width="107" Content="18:00-19:00" IsEnabled="False" Click="Button18_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button19" Grid.Column="1" Width="107" Content="19:00-20:00" IsEnabled="False" Click="Button19_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button20" Grid.Column="2" Width="107" Content="20:00-21:00" IsEnabled="False" Click="Button20_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button21" Grid.Column="3" Width="107" Content="21:00-22:00" IsEnabled="False" Click="Button21_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button22" Grid.Column="4" Width="107" Content="22:00-23:00" IsEnabled="False" Click="Button22_Click" BorderBrush="{x:Null}"></Button>
+                <Button Name="Button23" Grid.Column="5" Width="107" Content="23:00-00:00" IsEnabled="False" Click="Button23_Click" BorderBrush="{x:Null}"></Button>
             </Grid>
 
 
