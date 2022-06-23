@@ -50,7 +50,9 @@ namespace Oasis.Design
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            MainWindow main = new MainWindow();
+            main.Show();
+            Close();
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)

@@ -31,9 +31,11 @@ namespace Oasis.Design
         bool IfFirstTimeChosen = false;
         List<int[]> ListOfPossibleSeatNumbers = new List<int[]> { };
         int price;
+        string Type;
 
         public UserBookingWindow(string type, User user)
         {
+            Type = type;
             InitializeComponent();
             using(Context context = new Context())
             {
@@ -43,6 +45,16 @@ namespace Oasis.Design
                 }
                 else
                     ComboBoxHall.ItemsSource = context.Halls.Select(x => x.Name).ToList();
+                foreach (var item in context.People)
+                {
+                    if (item is User)
+                    {
+                        if ((item as User).Login == user.Login)
+                        {
+                            CurrentUser = (item as User);
+                        }
+                    }
+                }
             }
             if (type == "PS")
             {
@@ -50,7 +62,6 @@ namespace Oasis.Design
                 _numberOfPeople = 1;
             }
             allbuttons = new Button[] { Button0, Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9, Button10, Button11, Button12, Button13, Button14, Button15, Button16, Button17, Button18, Button19, Button20, Button21, Button22, Button23 };
-            CurrentUser = user;
         }
 
         private Dictionary<int, List<int>> CheckingFreeTimeSlots() // Выводит словарь {Номер временного слота - список свободных компьютеров}
@@ -106,10 +117,29 @@ namespace Oasis.Design
             }
             return dicitionaryOfTime;
         }
+
+        private void OpenPreviousWindow()
+        {
+            if (Type == "All")
+            {
+                AdminWindow UsersInAdmin = new AdminWindow();
+                UsersInAdmin.Show();
+                UsersInAdmin.Admin.Content = new AdminUsersPage();
+                UsersInAdmin.DashboardStickButton.Visibility = Visibility.Hidden;
+                UsersInAdmin.UsersStickButton.Visibility = Visibility.Visible;
+                UsersInAdmin.StatisticksStickButton.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                UserChoosingTypeofActivity UserWindow = new UserChoosingTypeofActivity(CurrentUser);
+                UserWindow.Show();
+            }
+        }
         
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            OpenPreviousWindow();
+            Close();
         }
 
         private void RemoveInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
@@ -537,6 +567,7 @@ namespace Oasis.Design
                     _context.Reservations.AddRange(newReservations);
                     _context.SaveChanges();
                 }
+                OpenPreviousWindow();
                 Close();
             }
         }

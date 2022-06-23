@@ -108,19 +108,22 @@ namespace Oasis.Design
         private void ChooseTypeOfActivityPSButton_Click(object sender, RoutedEventArgs e)
         {
             UserBookingWindow taskWindow = new UserBookingWindow("PS", CurrentUser);
-            taskWindow.ShowDialog();
+            taskWindow.Show();
+            Close();
         }
 
         private void ChooseTypeOfActivityVIPButton_Click(object sender, RoutedEventArgs e)
         {
             UserBookingWindow taskWindow = new UserBookingWindow("PC VIP", CurrentUser);
-            taskWindow.ShowDialog();
+            taskWindow.Show();
+            Close();
         }
 
         private void ChooseTypeOfActivityPCButton_Click(object sender, RoutedEventArgs e)
         {
             UserBookingWindow taskWindow = new UserBookingWindow("PC", CurrentUser);
-            taskWindow.ShowDialog();
+            taskWindow.Show();
+            Close();
         }
 
         private void ProfileInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)

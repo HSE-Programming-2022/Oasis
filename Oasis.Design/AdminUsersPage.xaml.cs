@@ -18,6 +18,8 @@ using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Oasis.Design
 {
@@ -29,16 +31,7 @@ namespace Oasis.Design
         public AdminUsersPage()
         {
             InitializeComponent();
-            using (Context _context = new Context())
-            {
-                AllPeople = _context.People.ToList();
-                for (int i = 0; i < AllPeople.Count; i++)
-                {
-                    if (AllPeople[i] is Admin)
-                        AllPeople.Remove(AllPeople[i]);
-                }
-                UsersListBox.ItemsSource = AllPeople;
-            }
+            DataGridBinding();
         }
 
         Notifier notifier = new Notifier(cfg =>
@@ -56,32 +49,21 @@ namespace Oasis.Design
             cfg.Dispatcher = Application.Current.Dispatcher;
         });
 
-        private void UserLogin_Initialized(object sender, EventArgs e)
+        private void DataGridBinding()
         {
-            TextBlock login = sender as TextBlock;
-            User user = login.DataContext as User;
-            login.Text = (user as User).Login;
-        }
 
-        private void UserName_Initialized(object sender, EventArgs e)
-        {
-            TextBlock name = sender as TextBlock;
-            User user = name.DataContext as User;
-            name.Text = (user as User).Name;
-        }
+            SqlConnection DBConnection = new SqlConnection(@"Data Source=vm-as35.staff.corp.local;Initial Catalog=OasisDB;User ID=student;Password=sql2020;Integrated Security=False");
 
-        private void UserSurename_Initialized(object sender, EventArgs e)
-        {
-            TextBlock surename = sender as TextBlock;
-            User user = surename.DataContext as User;
-            surename.Text = (user as User).Surname;
-        }
+            DBConnection.Open();
+            string cmd = "SELECT Login, Name, Surname, Balance FROM People WHERE Discriminator = 'User'"; // Из какой таблицы нужен вывод 
+            SqlCommand createCommand = new SqlCommand(cmd, DBConnection);
+            createCommand.ExecuteNonQuery();
 
-        private void Balance_Initialized(object sender, EventArgs e)
-        {
-            TextBlock balance = sender as TextBlock;
-            User user = balance.DataContext as User;
-            balance.Text = (user as User).Balance.ToString();
+            SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
+            DataTable dt = new DataTable("People"); // В скобках указываем название таблицы
+            dataAdp.Fill(dt);
+            UsersDataGrid.ItemsSource = dt.DefaultView; // Сам вывод 
+            DBConnection.Close();
         }
 
         private void ChangeBalanceButton_Click(object sender, RoutedEventArgs e)
@@ -114,8 +96,6 @@ namespace Oasis.Design
                     count++;
                 }
             }
-            UsersListBox.ItemsSource = null;
-            UsersListBox.ItemsSource = AllPeople;
             if (count > 0)
             {
                 notifier.ShowSuccess($"Найдено {count} пользователей");
@@ -125,6 +105,23 @@ namespace Oasis.Design
                 notifier.ShowWarning($"Найдено {count} пользователей");
             }
 
+        }
+
+        private void SearchingTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SqlConnection DBConnection = new SqlConnection(@"Data Source=vm-as35.staff.corp.local;Initial Catalog=OasisDB;User ID=student;Password=sql2020;Integrated Security=False");
+
+            DBConnection.Open();
+            string cmd = $"SELECT Login, Name, Surname, Balance FROM People WHERE Discriminator = 'User'"; // Из какой таблицы нужен вывод 
+            SqlCommand createCommand = new SqlCommand(cmd, DBConnection);
+            createCommand.ExecuteNonQuery();
+            SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
+            DataTable dt = new DataTable("People"); // В скобках указываем название таблицы
+            dataAdp.Fill(dt);
+            DataView SearchView = new DataView(dt);
+            SearchView.RowFilter = string.Format("Login LIKE '%{0}%'", SearchingTextBox.Text);
+            UsersDataGrid.ItemsSource = SearchView;
+            DBConnection.Close();
         }
     }
 }

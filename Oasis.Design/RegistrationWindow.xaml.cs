@@ -79,7 +79,9 @@ namespace Oasis.Design
 
         private void ExitInPasswordrecoveryButton_Click_1(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            MainWindow main = new MainWindow();
+            main.Show();
+            Close();
         }
 
         private void SendCodeButton_Click(object sender, RoutedEventArgs e)
