@@ -61,7 +61,7 @@
             <Button Name="GoToWebSiteButton" Margin="347,-30,0,00" Background="Transparent" Style="{StaticResource MaterialDesignIconButton}" Width="30" Height="30" BorderThickness="0" Click="GoToWebSiteButton_Click">
                 <Image Source="Recources/newicon.png" Height="Auto"></Image>
             </Button>
-            <Button Name="GoToVkButton" Margin="280,-29,0,00" Background="Transparent" Style="{StaticResource MaterialDesignIconButton}" Width="30" Height="30" BorderThickness="0" Click="GoToVkButton_Click">
+            <Button Name="GoToVkButton" Margin="280,-29.3,0,00" Background="Transparent" Style="{StaticResource MaterialDesignIconButton}" Width="30" Height="30" BorderThickness="0" Click="GoToVkButton_Click">
                 <Image Source="Recources/vk.png" Height="auto" Width="auto"></Image>
             </Button>
 

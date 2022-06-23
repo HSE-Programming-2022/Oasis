@@ -142,11 +142,7 @@ namespace Oasis.Design
 
         private void ForgetPasswordButton_Click(object sender, RoutedEventArgs e)
         {
-            RegistrationWindow taskWindow = new RegistrationWindow();
-
-            taskWindow.Owner = this.Owner;
-            taskWindow.Show();
-            Close();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
