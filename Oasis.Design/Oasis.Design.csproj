@@ -73,6 +73,9 @@
     <Compile Include="AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreatingNewPassword.xaml.cs">
+      <DependentUpon>CreatingNewPassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HistoryOfUserReservations.xaml.cs">
       <DependentUpon>HistoryOfUserReservations.xaml</DependentUpon>
     </Compile>
@@ -87,6 +90,9 @@
     </Compile>
     <Compile Include="UserChoosingTypeofActivity.xaml.cs">
       <DependentUpon>UserChoosingTypeofActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserForgetPasswordWindow.xaml.cs">
+      <DependentUpon>UserForgetPasswordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserProfileWindow.xaml.cs">
       <DependentUpon>UserProfileWindow.xaml</DependentUpon>
@@ -111,6 +117,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreatingNewPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserChoosingTypeofActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserForgetPasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

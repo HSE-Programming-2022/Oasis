@@ -30,6 +30,12 @@ namespace Oasis.Design
             NameText.Text = user.Name;
             SurenameText.Text = user.Surname;
 
+            NewEmailTextBox.Text = user.Email;
+            NewPhoneTextBox.Text = user.Phone;
+            NewLoginTextBox.Text = user.Login;
+            NewNameTextBox.Text = user.Name;
+            NewSurenameTextBox.Text = user.Surname;
+
 
         }
 
