@@ -33,5 +33,10 @@ namespace Oasis.Core.Models
             Phone = phone;
             Balance = 0;
         }
+
+        public User(string login, string password, string email) : base(login, password)
+        {
+            Email = email;
+        }
     }
 }

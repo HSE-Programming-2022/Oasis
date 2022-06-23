@@ -45,10 +45,13 @@
                         <RowDefinition/>
                         <RowDefinition Height="75"/>
                     </Grid.RowDefinitions>
-
-                    <Button Name="GoToDashboardPageButton" Grid.Row="2" Height="50" Content="Dashboard" Foreground="#c2cfff" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToDashboardPageButton_Click" Grid.ColumnSpan="2"></Button>
+                    <Button Name="GoToDashboardPageButton" Grid.Row="2" Grid.ColumnSpan="2" Height="52" Content="Dashboard" Foreground="#c2cfff" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToDashboardPageButton_Click"></Button>
                     <Button Name="GoToUsersPageButton" Grid.Row="3" Content="Users"  Foreground="#c2cfff" Height="50" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToUsersPageButton_Click" Grid.ColumnSpan="2"></Button>
-                    <Button Name="GoToStatisticsPageButton"  Grid.Row="4" Content="Statistics"  Foreground="#c2cfff" Height="50" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToStatisticsPageButton_Click" Grid.ColumnSpan="2"></Button>
+                    <Button x:Name="GoToStatisticsPageButton"  Grid.Row="4" Content="Statistics"  Foreground="#c2cfff" Height="50" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToStatisticsPageButton_Click" Grid.ColumnSpan="2"></Button>
+                    <Button Name="DashboardStickButton" BorderBrush="{x:Null}" Background="White" Grid.Column="0" Visibility="Hidden"  Grid.Row="2"  Margin="0,1" Height="Auto" />
+                    <Button Name="UsersStickButton"  Background="White" Grid.Column="0" BorderBrush="{x:Null}" Visibility="Hidden" Grid.Row="3" Width="20"  Margin="0,1" Height="Auto" ></Button>
+                    <Button Name="StatisticksStickButton" BorderBrush="{x:Null}" Background="White" Grid.Column="0" Visibility="Hidden" Grid.Row="4" Width="20" Margin="0,1" Height="Auto"></Button>
+
                     <Grid Grid.Row="6" Grid.ColumnSpan="2" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="30"/>
@@ -97,21 +100,21 @@
                             <ColumnDefinition Width="30"/>
                             <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="ExitButton" Grid.Row="0" Grid.Column="2"  Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ExitButton_Click">
+                        <Button x:Name="ExitButton" Grid.Row="0" ToolTip="Закрыть" Grid.Column="2"  Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ExitButton_Click">
                             <Button.Template>
                                 <ControlTemplate>
                                     <Ellipse Width="13" Height="13" Fill="Red" />
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <Button Name="RemoveInUserChoosingTypeofActivityButton" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RemoveInUserChoosingTypeofActivityButton_Click" >
+                        <Button Name="RemoveInUserChoosingTypeofActivityButton" ToolTip="Свернуть" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RemoveInUserChoosingTypeofActivityButton_Click" >
                             <Button.Template>
                                 <ControlTemplate>
                                     <Ellipse Width="13" Height="13" Fill="Orange" />
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <Button Name="OpenBigButton" Grid.Row="0" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="OpenBigButton_Click" >
+                        <Button Name="OpenBigButton" ToolTip="Развернуть/Уменьшить" Grid.Row="0" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="OpenBigButton_Click" >
                             <Button.Template>
                                 <ControlTemplate>
                                     <Ellipse Width="13" Height="13" Fill="Gray" />

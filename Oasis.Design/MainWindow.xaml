@@ -20,7 +20,7 @@
                 <Grid Height="32">
 
 
-                    <Button x:Name="ExitButton" ToolTip="Закрыть" Click="ExitButton_Click" Height="Auto" VerticalAlignment="Center">
+                    <Button x:Name="ExitButton" Click="ExitButton_Click" Height="Auto" VerticalAlignment="Center">
                         <Button.Template>
                             <ControlTemplate>
                                 <Ellipse Width="11" Height="11" Fill="Red" HorizontalAlignment="Center" Margin="37 10 -320 0" />
@@ -31,7 +31,7 @@
                         </Button.Template>
                     </Button>
                 </Grid>
-                <Button x:Name="RemoveButton" ToolTip="Свернуть" Click="RemoveButton_Click">
+                <Button x:Name="RemoveButton" Click="RemoveButton_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="11" Height="11" Fill="Orange" HorizontalAlignment="Center" Margin="-10 -54 -320 0" VerticalAlignment="Center" />
@@ -43,7 +43,7 @@
                 </Button>
             </StackPanel>
 
-            <TextBox x:Name="LoginTextBox" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="50 130 50 10" Width="300" Height="60" FontSize="15" materialDesign:HintAssist.Hint="Email" BorderThickness="2"/>
+            <TextBox x:Name="LoginOrEmailTextBox" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="50 130 50 10" Width="300" Height="60" FontSize="15" materialDesign:HintAssist.Hint="Login / Email" BorderThickness="2" TextChanged="LoginOrEmailTextBox_TextChanged"/>
             <PasswordBox Margin="50 10 50 0" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" x:Name="PasswordBox" Width="300" Height="60" FontSize="15" materialDesign:HintAssist.Hint="Password" BorderThickness="2">
 
             </PasswordBox>
@@ -58,7 +58,12 @@
             <ToggleButton Width="45" Margin="52,14,302,0" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" />
             <TextBlock Text="User" FontWeight="SemiBold" HorizontalAlignment="Center" FontSize="10"  Margin="25,-16,345,0" />
             <TextBlock Text="Admin" FontWeight="SemiBold" HorizontalAlignment="Center" TextAlignment="Center" FontSize="10"  Margin="68,-16,246,0" Width="45" />
-
+            <Button Name="GoToWebSiteButton" Margin="347,-30,0,00" Background="Transparent" Style="{StaticResource MaterialDesignIconButton}" Width="30" Height="30" BorderThickness="0" Click="GoToWebSiteButton_Click">
+                <Image Source="Recources/newicon.png" Height="Auto"></Image>
+            </Button>
+            <Button Name="GoToVkButton" Margin="280,-29,0,00" Background="Transparent" Style="{StaticResource MaterialDesignIconButton}" Width="30" Height="30" BorderThickness="0" Click="GoToVkButton_Click">
+                <Image Source="Recources/vk.png" Height="auto" Width="auto"></Image>
+            </Button>
 
 
         </StackPanel>

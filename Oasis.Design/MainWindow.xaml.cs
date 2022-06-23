@@ -96,17 +96,18 @@ namespace Oasis.Design
         {
             using (Context _context = new Context())
             {
-                bool fl = true;
+                bool UserExists = false;
                 foreach(var item in _context.People)
                 {
                     if (item is User)
                     {
-                        if (item.Login == LoginTextBox.Text)
+                        User CurrentUser = item as User;
+                        if (CurrentUser.Login == LoginOrEmailTextBox.Text || CurrentUser.Email == LoginOrEmailTextBox.Text)
                         {
-                            fl = false;
-                            if (item.Password == PasswordBox.Password)
+                            UserExists = true;
+                            if (CurrentUser.Password == PasswordBox.Password)
                             {
-                                UserChoosingTypeofActivity taskWindow = new UserChoosingTypeofActivity(item as User);
+                                UserChoosingTypeofActivity taskWindow = new UserChoosingTypeofActivity(CurrentUser);
                                 taskWindow.Show();
                                 Close();
                             }
@@ -118,9 +119,18 @@ namespace Oasis.Design
                         }
                     }
                 }
-                if(fl)
+                if (!UserExists)
                     notifier.ShowWarning("Пользователь не найден!");
             }
+        }
+
+        private void RigistrationButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserRegisteringWindow taskWindow = new UserRegisteringWindow();
+
+            taskWindow.Owner = this.Owner;
+            taskWindow.Show();
+            Close();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -138,8 +148,6 @@ namespace Oasis.Design
             taskWindow.Show();
             Close();
         }
-
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -163,22 +171,27 @@ namespace Oasis.Design
             taskWindow.Owner = this.Owner;
             taskWindow.Show();
             Close();
-
-
-        }
-
-        private void RigistrationButton_Click(object sender, RoutedEventArgs e)
-        {
-            UserRegisteringWindow taskWindow = new UserRegisteringWindow();
-
-            taskWindow.Owner = this.Owner;
-            taskWindow.Show();
-            Close();
         }
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             NewStackpanel.Background = Brushes.White;
+        }
+
+        private void LoginOrEmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void GoToWebSiteButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://ez-katka.ru/");
+
+        }
+
+        private void GoToVkButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://vk.com/ezyas");
         }
     }
 }

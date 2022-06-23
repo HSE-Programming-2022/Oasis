@@ -131,10 +131,17 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
 
-            </ListBox>-->
-            <TextBox Name="SearchTextBox" Grid.Row="2" VerticalAlignment="Bottom" Height="30" Width="400" Margin="0 0 0 10" TextChanged="TextBox_TextChanged"></TextBox>
-            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Click" Grid.Row="2" Width="120" Click="Button_Click" ></Button>
-            <DataGrid x:Name="HistoryOfUserReservationsDataGrid" Foreground="White" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True" Margin="50" GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" Background="#41518f" AutoGenerateColumns="False" Grid.Row="2" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All">
+            </ListBox>--> 
+            <DataGrid x:Name="HistoryOfUserReservationsDataGrid" SelectionUnit="FullRow" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True" Margin="50"  GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" Background="#41518f" AutoGenerateColumns="False" Grid.Row="2" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All" Foreground="White">
+                
+                    
+                
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Foreground" Value="White" />
+                        </Style>
+                    </DataGrid.Resources>
+                
                 <DataGrid.Columns>
                     <materialDesign:DataGridTextColumn Foreground="White" Header="Login" IsReadOnly="True" Width="*" Binding="{Binding Login}"></materialDesign:DataGridTextColumn>
 

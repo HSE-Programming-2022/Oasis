@@ -6,13 +6,16 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Oasis.Design"
         mc:Ignorable="d"
-        Title="TopUpBalance" Height="225" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize" MouseDown="Window_MouseDown">
-    <Border Width="Auto" Height="Auto"
+        Title="TopUpBalance" Height="270" Width="360" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize" MouseDown="Window_MouseDown">
+    <Border Margin="30"
     
           
           Background="White"
           BorderThickness="1"
           CornerRadius="10">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="10"></DropShadowEffect>
+        </Border.Effect>
         <Grid>
 
             <Grid.RowDefinitions>
