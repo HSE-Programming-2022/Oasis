@@ -20,10 +20,6 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBox Name="SearchingTextBox" Grid.Column="0" Height="50" materialDesign:HintAssist.Foreground="White" materialDesign:HintAssist.Hint="Введите логин пользователя" Width="400" Foreground="White" Style="{StaticResource MaterialDesignFilledTextBox}" Margin="12,0,0,0" TextChanged="SearchingTextBox_TextChanged" ></TextBox>
-            <!--<Button Name="SearchButton"  Grid.Column="1" Width="32" Height="32" Background="{x:Null}" HorizontalAlignment="Left"  VerticalAlignment="Center" BorderBrush="{x:Null}"  Style="{DynamicResource MaterialDesignToolForegroundButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="SearchButton_Click" Margin="25,0,0,0">
-                <materialDesign:PackIcon Kind="Search"  Width="30" Height="30" Foreground="White"></materialDesign:PackIcon>
-                 
-            </Button>-->
         </Grid>
         <DataGrid x:Name="UsersDataGrid" SelectionUnit="FullRow" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True" Margin="10"  GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" Grid.Row="1" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All" Foreground="White">
             <DataGrid.Background>
@@ -38,11 +34,11 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <materialDesign:DataGridTextColumn Foreground="White" Header="Login" IsReadOnly="True" Width="*" Binding="{Binding Login}"></materialDesign:DataGridTextColumn>
-                <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Name" IsReadOnly="True" Width="*" Binding="{Binding Name}"></materialDesign:DataGridTextColumn>
-                <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Surname" IsReadOnly="True" Width="*" Binding="{Binding Surname}"></materialDesign:DataGridTextColumn>
-                <materialDesign:DataGridTextColumn CanUserResize="False" Header="Balance" IsReadOnly="True" Width="*" Binding="{Binding Balance}"></materialDesign:DataGridTextColumn>
-                <DataGridTemplateColumn Header="Operations" CanUserResize="False" IsReadOnly="True" Width="99">
+                <materialDesign:DataGridTextColumn Foreground="White" Header="Логин" IsReadOnly="True" Width="*" Binding="{Binding Login}"></materialDesign:DataGridTextColumn>
+                <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Имя" IsReadOnly="True" Width="*" Binding="{Binding Name}"></materialDesign:DataGridTextColumn>
+                <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Фамилия" IsReadOnly="True" Width="*" Binding="{Binding Surname}"></materialDesign:DataGridTextColumn>
+                <materialDesign:DataGridTextColumn CanUserResize="False" Header="Баланс" IsReadOnly="True" Width="*" Binding="{Binding Balance}"></materialDesign:DataGridTextColumn>
+                <DataGridTemplateColumn Header="Опции" CanUserResize="False" IsReadOnly="True" Width="80">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

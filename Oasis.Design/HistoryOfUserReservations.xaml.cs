@@ -56,7 +56,7 @@ namespace Oasis.Design
                 {
                     if (item is User)
                     {
-                        if ((item as User).Login == user.Login)
+                        if ((item as User).Email == user.Email)
                         {
                             CurrentUser = item as User;
                         }
@@ -64,7 +64,7 @@ namespace Oasis.Design
                 }
             }
             BalanceUserHistoryButton.Content = $"{CurrentUser.Balance} р.";
-            FillGrid(); 
+            FillGrid();
         }
 
         private void FillGrid()

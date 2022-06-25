@@ -21,20 +21,34 @@ namespace Oasis.Design
     /// </summary>
     public partial class UserProfileWindow : Window
     {
+        User CurrentUser;
+
         public UserProfileWindow(User user)
         {
             InitializeComponent();
-            EmailText.Text = user.Email;
-            PhoneText.Text = user.Phone;
-            LoginText.Text = user.Login;
-            NameText.Text = user.Name;
-            SurenameText.Text = user.Surname;
+            using (Context _context = new Context())
+            {
+                foreach (var item in _context.People)
+                {
+                    if (item is User)
+                    {
+                        if ((item as User).Email == user.Email)
+                        {
+                            CurrentUser = item as User;
+                        }
+                    }
+                }
+            }
+            EmailText.Text = CurrentUser.Email;
+            PhoneText.Text = CurrentUser.Phone;
+            LoginText.Text = CurrentUser.Login;
+            NameText.Text = CurrentUser.Name;
+            SurenameText.Text = CurrentUser.Surname;
 
-            NewEmailTextBox.Text = user.Email;
-            NewPhoneTextBox.Text = user.Phone;
-            NewLoginTextBox.Text = user.Login;
-            NewNameTextBox.Text = user.Name;
-            NewSurenameTextBox.Text = user.Surname;
+            NewPhoneTextBox.Text = CurrentUser.Phone;
+            NewLoginTextBox.Text = CurrentUser.Login;
+            NewNameTextBox.Text = CurrentUser.Name;
+            NewSurenameTextBox.Text = CurrentUser.Surname;
 
 
         }
@@ -54,13 +68,11 @@ namespace Oasis.Design
 
         private void ChangeProfileDetailsButton_Click(object sender, RoutedEventArgs e)
         {
-            EmailText.Visibility = Visibility.Hidden;
             PhoneText.Visibility = Visibility.Hidden;
             LoginText.Visibility = Visibility.Hidden;
             NameText.Visibility = Visibility.Hidden;
             SurenameText.Visibility = Visibility.Hidden;
 
-            NewEmailTextBox.Visibility = Visibility.Visible;
             NewPhoneTextBox.Visibility = Visibility.Visible;
             NewLoginTextBox.Visibility = Visibility.Visible;
             NewNameTextBox.Visibility = Visibility.Visible;
@@ -68,15 +80,28 @@ namespace Oasis.Design
 
             ChangeProfileDetailsButton.Visibility = Visibility.Hidden;
             SaveChangefProfileDetailsButton.Visibility = Visibility.Visible;
-
-
-            
-
         }
 
         private void SaveChangefProfileDetailsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            using (Context _context = new Context())
+            {
+                foreach (var item in _context.People)
+                {
+                    if (item is User)
+                    {
+                        if ((item as User).Email == CurrentUser.Email)
+                        {
+                            (item as User).Phone = NewPhoneTextBox.Text;
+                            (item as User).Login = NewLoginTextBox.Text;
+                            (item as User).Name = NewNameTextBox.Text;
+                            (item as User).Surname = NewSurenameTextBox.Text;
+                        }
+                    }
+                }
+                _context.SaveChanges();
+            }
+            Close();
         }
     }
 }
