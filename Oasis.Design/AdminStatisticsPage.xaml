@@ -3,13 +3,49 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
       xmlns:local="clr-namespace:Oasis.Design"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminStatisticsPage">
 
     <Grid>
-        <TextBlock Text="Statistics" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="32"></TextBlock>
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--<Grid Grid.Row="0" HorizontalAlignment="Right" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" x:Name="StatisticsForeDayButton" Width="80" FontSize="12" Content="День" Margin="5 10 0 0" materialDesign:ButtonAssist.CornerRadius="15" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}" Click="StatisticsForeDayButton_Click"/>
+
+            <Button Name="StatisticsForeMonthButton" Grid.Column="1" Width="80" FontSize="12" Margin="5 10 0 0" Content="Неделя" materialDesign:ButtonAssist.CornerRadius="15" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}" Click="StatisticsForeMonthButton_Click"/>
+            <Button Name="StatisticsForeYearButton" Grid.Column="2" Width="80" FontSize="12" Margin="5 10 10 0" Content="Месяц" Foreground="White" materialDesign:ButtonAssist.CornerRadius="15" Style="{StaticResource MaterialDesignFlatButton}" Click="StatisticsForeYearButton_Click"/>
+
+        </Grid>-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox materialDesign:HintAssist.Hint="Выберите зал" Foreground="White" Grid.Column="0" Margin="20"></ComboBox>
+            <materialDesign:TimePicker Grid.Column="1"  Foreground="White" materialDesign:HintAssist.Hint="Время начала" Margin="20"></materialDesign:TimePicker>
+            <materialDesign:TimePicker Margin="20" Foreground="White" materialDesign:HintAssist.Hint="Время конца" Grid.Column="2"></materialDesign:TimePicker>
+        </Grid>
+
+
+
+
+
 
     </Grid>
 </Page>

@@ -28,6 +28,7 @@ namespace Oasis.Design
             InitializeComponent();
             DataPanelsUpdate(FormingListOfValidReses());
 
+
         }
 
         public List<Reservation> FormingListOfValidReses()
@@ -124,16 +125,26 @@ namespace Oasis.Design
 
         private void StatisticsForeDayButton_Click(object sender, RoutedEventArgs e)
         {
+
+            StatisticsForeDayButton.Background = Brushes.DarkBlue;
+            StatisticsForeMonthButton.Background = Brushes.Transparent;
+            StatisticsForeYearButton.Background = Brushes.Transparent;
             _periodOfTime = "День";
         }
 
         private void StatisticsForeMonthButton_Click(object sender, RoutedEventArgs e)
         {
+            StatisticsForeDayButton.Background = Brushes.Transparent;
+            StatisticsForeMonthButton.Background = Brushes.DarkBlue;
+            StatisticsForeYearButton.Background = Brushes.Transparent;
             _periodOfTime = "Неделя";
         }
 
         private void StatisticsForeYearButton_Click(object sender, RoutedEventArgs e)
         {
+            StatisticsForeDayButton.Background = Brushes.Transparent;
+            StatisticsForeMonthButton.Background = Brushes.Transparent;
+            StatisticsForeYearButton.Background = Brushes.DarkBlue;
             _periodOfTime = "Месяц";
         }
     }
