@@ -24,5 +24,20 @@ namespace Oasis.Design
         {
             InitializeComponent();
         }
+
+        private void StatisticsForeDayButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void StatisticsForeMonthButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void StatisticsForeYearButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
