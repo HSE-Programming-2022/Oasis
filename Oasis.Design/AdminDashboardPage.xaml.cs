@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Oasis.Core;
+using Oasis.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,119 @@ namespace Oasis.Design
     /// </summary>
     public partial class AdminDashboardPage : Page
     {
+        string _periodOfTime = "День";
         public AdminDashboardPage()
         {
             InitializeComponent();
+            DataPanelsUpdate(FormingListOfValidReses());
+
+        }
+
+        public List<Reservation> FormingListOfValidReses()
+        {
+            using (Context context = new Context())
+            {
+                List<Reservation> reservations = context.Reservations.Include("Seat").Include("User").ToList();
+                List<Reservation> validReservations = new List<Reservation>();
+                DateTime dateTime = DateTime.Now;
+                if (_periodOfTime == "День")
+                {
+                    foreach (var res in reservations)
+                    {
+                        if (res.StartTime.Date == dateTime.Date)
+                        {
+                            validReservations.Add(res);
+                        }
+                    }
+                }
+                else if (_periodOfTime == "Неделя")
+                {
+                    while (true)
+                    { 
+                        foreach (var res in reservations)
+                        {
+                            if (res.StartTime.Date == dateTime.Date)
+                            {
+                                validReservations.Add(res);
+                            }
+                        }
+                        dateTime.AddDays(-1);
+                        if (dateTime.DayOfWeek == DayOfWeek.Sunday)
+                        {
+                            break;
+                        }
+                    }
+                }
+                else if (_periodOfTime == "Месяц")
+                {
+                    int month = dateTime.Month;
+                    while (true)
+                    {
+                        foreach (var res in reservations)
+                        {
+                            if (res.StartTime.Date == dateTime.Date)
+                            {
+                                validReservations.Add(res);
+                            }
+                        }
+                        dateTime.AddDays(-1);
+                        if (dateTime.Month != month)
+                        {
+                            break;
+                        }
+                    }
+                }
+                return validReservations;
+            }
+        }
+
+        public int AmountOfSpentHours(List<Reservation> reservations)
+        {
+            int amountOfSpentHours = 0;
+            foreach (var res in reservations)
+            {
+                amountOfSpentHours += res.Hours;
+            }
+            return amountOfSpentHours;
+        }
+
+        public double TotalRevenue(List<Reservation> reservations)
+        {
+            double totalRevenue = 0;
+            foreach (var res in reservations)
+            {
+                totalRevenue += res.Hours * res.Price;
+            }
+            return totalRevenue;
+        }
+
+        public void DataPanelsUpdate(List<Reservation> reservations)
+        {
+            double totalRevenue = TotalRevenue(reservations);
+            int amountOfSpentHours = AmountOfSpentHours(reservations);
+            NumberOfSpentHours.Text = $"{amountOfSpentHours} ч.";
+            TotalRevenue_TextBlock.Text = $"{totalRevenue} ₽";
+            AmountOfClients_TextBlock.Text = $"{reservations.Count()} ч.";
+            AmountOfClientsPerPeriod.Text = $"Статистика {_periodOfTime}";
+            NumberOfSpentHoursPerPeriod.Text = $"Статистика {_periodOfTime}";
+            TotalRevenuePerPeriod.Text = $"Статистика {_periodOfTime}";
+        }
+
+
+
+        private void StatisticsForeDayButton_Click(object sender, RoutedEventArgs e)
+        {
+            _periodOfTime = "День";
+        }
+
+        private void StatisticsForeMonthButton_Click(object sender, RoutedEventArgs e)
+        {
+            _periodOfTime = "Неделя";
+        }
+
+        private void StatisticsForeYearButton_Click(object sender, RoutedEventArgs e)
+        {
+            _periodOfTime = "Месяц";
         }
     }
 }

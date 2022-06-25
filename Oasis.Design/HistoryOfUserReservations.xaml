@@ -118,12 +118,14 @@
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
+
                     <materialDesign:DataGridTextColumn Foreground="White" Header="Номер места" IsReadOnly="True" Width="*" Binding="{Binding SeatId}"></materialDesign:DataGridTextColumn>
 
                     <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Зал" IsReadOnly="True" Width="*" Binding="{Binding Name}"></materialDesign:DataGridTextColumn>
                     <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Время" IsReadOnly="True" Width="*" Binding="{Binding StartTime}"></materialDesign:DataGridTextColumn>
                     <materialDesign:DataGridTextColumn CanUserResize="False" Header="Стоимость" IsReadOnly="True" Width="*" Binding="{Binding Price}"></materialDesign:DataGridTextColumn>
                     <DataGridTemplateColumn Header="Отмена" CanUserResize="False" IsReadOnly="True" Width="99">
+
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
