@@ -56,8 +56,8 @@
                         <Button Grid.Row="1" Visibility="Hidden"></Button>
                         <materialDesign:PackIcon Kind="AccountGroupOutline" Foreground="White" Grid.Row="1" Width="65" Height="65" FontFamily="Bold" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 0 10 0"></materialDesign:PackIcon>
                         <TextBlock Text="Посещения" FontWeight="SemiBold" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="16" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" Margin="20 18 0 0"></TextBlock>
-                        <TextBlock Text="Количество посещений сегодня" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="12" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke" Opacity="0.7"></TextBlock>
-                        <TextBlock Text="129 чел." Foreground="White" FontSize="24" FontWeight="SemiBold"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0"></TextBlock>
+                        <TextBlock x:Name="AmountOfClientsPerPeriod" Text="Количество посещений сегодня" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="12" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke" Opacity="0.7"></TextBlock>
+                        <TextBlock x:Name="AmountOfClients_TextBlock" Text="129 чел." Foreground="White" FontSize="24" FontWeight="SemiBold"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0"></TextBlock>
 
                     </Grid>
                 </StackPanel>
@@ -85,8 +85,8 @@
                         <Button Grid.Row="1" Visibility="Hidden"></Button>
                         <materialDesign:PackIcon Kind="Hours24" Foreground="White" Grid.Row="1" Width="60" Height="60" FontFamily="Bold" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 0 10 0"></materialDesign:PackIcon>
                         <TextBlock Text="Отыгранные часы" FontWeight="SemiBold" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="16" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" Margin="20 18 0 0"></TextBlock>
-                        <TextBlock Text="Статистика за сегодня" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="12" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke" Opacity="0.7"></TextBlock>
-                        <TextBlock Text="129 ч." Foreground="White" FontSize="24" FontWeight="SemiBold"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0"></TextBlock>
+                        <TextBlock x:Name="NumberOfSpentHoursPerPeriod" Text="Статистика за сегодня" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="12" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke" Opacity="0.7"></TextBlock>
+                        <TextBlock Name="NumberOfSpentHours" Text="129 ч." Foreground="White" FontSize="24" FontWeight="SemiBold"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0"></TextBlock>
                        
 
                     </Grid>
@@ -113,9 +113,9 @@
                         </Grid.RowDefinitions>
                         <Button Grid.Row="1" Visibility="Hidden"></Button>
                         <materialDesign:PackIcon Kind="CashMultiple" Foreground="White" Grid.Row="1" Width="65" Height="65" FontFamily="Bold" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 0 10 0"></materialDesign:PackIcon>
-                        <TextBlock Text="Общая прибыль" FontWeight="SemiBold" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="16" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" Margin="20 18 0 0"></TextBlock>
-                        <TextBlock Text="Статистика за сегодня" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="12" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke" Opacity="0.7"></TextBlock>
-                        <TextBlock Text="129 р." Foreground="White" FontSize="24" FontWeight="SemiBold"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0"></TextBlock>                        
+                        <TextBlock Text="Общая выручка" FontWeight="SemiBold" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="16" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" Margin="20 18 0 0"></TextBlock>
+                        <TextBlock x:Name="TotalRevenuePerPeriod" Text="Статистика за сегодня" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="12" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke" Opacity="0.7"></TextBlock>
+                        <TextBlock x:Name="TotalRevenue_TextBlock" Text="129 р." Foreground="White" FontSize="24" FontWeight="SemiBold"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0"></TextBlock>                        
                     </Grid>
                 </StackPanel>
             </Border>
