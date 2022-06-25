@@ -108,15 +108,15 @@
             <Separator Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="2000" Background="Blue" Style="{StaticResource MaterialDesignDarkSeparator}"></Separator>
 
             <DataGrid x:Name="HistoryOfUserReservationsDataGrid" SelectionUnit="FullRow" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True" Margin="20"  GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" Background="#41518f" AutoGenerateColumns="False" Grid.Row="2" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All" Foreground="White">
-                
-                    
-                
-                    <DataGrid.Resources>
-                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="Foreground" Value="White" />
-                        </Style>
-                    </DataGrid.Resources>
-                
+
+
+
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Foreground" Value="White" />
+                    </Style>
+                </DataGrid.Resources>
+
                 <DataGrid.Columns>
                     <materialDesign:DataGridTextColumn Foreground="White" Header="Номер места" IsReadOnly="True" Width="*" Binding="{Binding SeatId}"></materialDesign:DataGridTextColumn>
 
@@ -132,17 +132,15 @@
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate> 
-                        
-                        
+                        </DataGridTemplateColumn.CellTemplate>
+
+
                     </DataGridTemplateColumn>
 
                 </DataGrid.Columns>
-                
+
             </DataGrid>
-
-
-
+            
         </Grid>
 
 
