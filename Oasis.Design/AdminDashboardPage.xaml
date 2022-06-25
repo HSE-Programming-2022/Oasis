@@ -12,19 +12,33 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="180"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+
+        <Grid Grid.Row="0" HorizontalAlignment="Right" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" x:Name="StatisticsForeDayButton" Width="80" FontSize="12" Content="День" Margin="5 10 0 0" materialDesign:ButtonAssist.CornerRadius="15" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}"/>
+            
+            <Button Grid.Column="1" Width="80" FontSize="12" Margin="5 10 0 0" Content="Неделя" materialDesign:ButtonAssist.CornerRadius="15" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}"/>
+            <Button Grid.Column="2" Width="80" FontSize="12" Margin="5 10 10 0" Content="Месяц" Foreground="White" materialDesign:ButtonAssist.CornerRadius="15" Style="{StaticResource MaterialDesignFlatButton}"/>
+
+        </Grid>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Margin="30 40 30 20"   CornerRadius="12">
-                <Border.Effect>
-                    <DropShadowEffect ShadowDepth="0" BlurRadius="8"></DropShadowEffect>
-                </Border.Effect>
+            
+            <Border Grid.Column="0" Margin="30 30 30 30"   CornerRadius="12">
+                
                 <Border.Background>
                     <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                         <GradientStop Color="#827bff" Offset="0"/>
@@ -52,10 +66,8 @@
 
 
 
-            <Border Grid.Column="1" Margin="30 40 30 20" CornerRadius="12">
-                <Border.Effect>
-                    <DropShadowEffect ShadowDepth="0" BlurRadius="8"></DropShadowEffect>
-                </Border.Effect>
+            <Border Grid.Column="1" Margin="30 30 30 30" CornerRadius="12">
+                
                 <Border.Background>
                     <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                         <GradientStop Color="#fd8a87" Offset="0"/>
@@ -84,10 +96,8 @@
 
 
 
-            <Border Grid.Column="2"  Margin="30 40 30 20"  CornerRadius="12">
-                <Border.Effect>
-                    <DropShadowEffect ShadowDepth="0" BlurRadius="8"></DropShadowEffect>
-                </Border.Effect>
+            <Border Grid.Column="2"  Margin="30 30 30 30"  CornerRadius="12">
+                
                 <Border.Background>
                     <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                         <GradientStop Color="#fc84cb" Offset="0"/>
@@ -115,7 +125,7 @@
         </Grid>
 
 
-        <Border Grid.Row="1" CornerRadius="20" Background="#243771" Margin="90,10">
+        <Border Grid.Row="2" CornerRadius="20" Background="#243771" Margin="90,10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

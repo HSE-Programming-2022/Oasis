@@ -143,10 +143,10 @@
                     </DataGrid.Resources>
                 
                 <DataGrid.Columns>
-                    <materialDesign:DataGridTextColumn Foreground="White" Header="Login" IsReadOnly="True" Width="*" Binding="{Binding Login}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn Foreground="White" Header="Дата и время начала" IsReadOnly="True" Width="*" Binding="{Binding Login}"></materialDesign:DataGridTextColumn>
 
-                    <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Name" IsReadOnly="True" Width="*" Binding="{Binding Name}"></materialDesign:DataGridTextColumn>
-                    <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Surname" IsReadOnly="True" Width="*" Binding="{Binding Surname}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Количество часов" IsReadOnly="True" Width="*" Binding="{Binding Hours}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Стоимость" IsReadOnly="True" Width="*" Binding="{Binding Price}"></materialDesign:DataGridTextColumn>
                     <materialDesign:DataGridTextColumn CanUserResize="False" Header="Balance" IsReadOnly="True" Width="*" Binding="{Binding Balance}"></materialDesign:DataGridTextColumn>
                     <DataGridTemplateColumn Header="Operations" CanUserResize="False" IsReadOnly="True" Width="99">
                         <DataGridTemplateColumn.CellTemplate>
