@@ -17,6 +17,10 @@ using System.Data.OleDb;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace Oasis.Design
 {
@@ -27,11 +31,25 @@ namespace Oasis.Design
     {
         public User CurrentUser { get; set; }
 
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.BottomCenter,
+                offsetX: 100,
+                offsetY: 5);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
+
         public HistoryOfUserReservations(User user)
         {
 
             InitializeComponent();
-            binddatagrid();
             using (Context _context = new Context())
             {
                 foreach (var item in _context.People)
@@ -46,24 +64,84 @@ namespace Oasis.Design
                 }
             }
             BalanceUserHistoryButton.Content = $"{CurrentUser.Balance} р.";
-            
+            FillGrid(); 
         }
 
-        private void binddatagrid()
+        private void FillGrid()
         {
-            
-            SqlConnection DBConnection = new SqlConnection(@"Data Source=vm-as35.staff.corp.local;Initial Catalog=OasisDB;User ID=student;Password=sql2020;Integrated Security=False");  
+            string DBConnectionString = @"Data Source=vm-as35.staff.corp.local;Initial Catalog=OasisDB;User ID=student;Password=sql2020;Integrated Security=False";
+            DataTable FullTable = new DataTable("UserReservationInfo");
+            using (SqlConnection DBConnection = new SqlConnection(DBConnectionString))
+            {
+                try
+                {
+                    DBConnection.Open();
+                    string GetFullInfoString = "SELECT Reservations.Id, Reservations.SeatId, Halls.Name, Reservations.StartTime, Reservations.Hours, Reservations.Price FROM Reservations JOIN Seats on Reservations.SeatId = Seats.Id JOIN Halls ON Seats.HallId = Halls.Id WHERE UserId = " + CurrentUser.Id;
+                    SqlCommand GetFullInfoCommand = new SqlCommand(GetFullInfoString, DBConnection);
+                    GetFullInfoCommand.ExecuteNonQuery();
+                    SqlDataAdapter DataAdapter = new SqlDataAdapter(GetFullInfoCommand);
+                    DataAdapter.Fill(FullTable);
+                    HistoryOfUserReservationsDataGrid.ItemsSource = FullTable.DefaultView;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    notifier.ShowWarning("На стороне сервера возникла ошибка");
+                }
+            }
+        }
 
-            DBConnection.Open();
-            string cmd = "SELECT Login, Name, Surname, Balance FROM People WHERE Discriminator = 'User'"; // Из какой таблицы нужен вывод 
-            SqlCommand createCommand = new SqlCommand(cmd, DBConnection);
-            createCommand.ExecuteNonQuery();
+        private void DeleteReservationButton_Click(object sender, RoutedEventArgs e)
+        {
+            int ReservationId = Convert.ToInt32(((Button)sender).Tag);
+            bool ReservationDeleted = false;
+            using (Context _context = new Context())
+            {
+                foreach (var item in _context.Reservations)
+                {
+                    if (item.Id == ReservationId)
+                    {
+                        if (item.StartTime > DateTime.Now)
+                        {
+                            float ReservationPrice = (float)item.Price;
+                            CurrentUser.Balance += ReservationPrice;
+                            _context.People.Attach(CurrentUser);
+                            _context.Entry(CurrentUser).Property(x => x.Balance).IsModified = true;
+                            _context.Reservations.Remove(item);
+                            ReservationDeleted = true;
+                            notifier.ShowSuccess("Успешно отменено, деньги возвращены на ваш баланс");
+                            break;
+                        } 
+                        else
+                        {
+                            notifier.ShowWarning("Отменить можно только не начавшуюся резервацию");
+                        }
+                    }
+                }
+                _context.SaveChanges();
+            }
+            if (ReservationDeleted)
+            {
+                HistoryOfUserReservations taskWindow = new HistoryOfUserReservations(CurrentUser);
+                taskWindow.Show();
+                Close();
+            }
+        }
 
-            SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
-            DataTable dt = new DataTable("People"); // В скобках указываем название таблицы
-            dataAdp.Fill(dt);
-            HistoryOfUserReservationsDataGrid.ItemsSource = dt.DefaultView; // Сам вывод 
-            DBConnection.Close();
+        private void LogOutFromUserHistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow taskWindow = new MainWindow();
+
+            taskWindow.Owner = this.Owner;
+            taskWindow.Show();
+            Close();
+        }
+
+        private void MakeNewOrderUserHistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserChoosingTypeofActivity taskWindow = new UserChoosingTypeofActivity(CurrentUser);
+            taskWindow.Show();
+            Close();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -95,15 +173,6 @@ namespace Oasis.Design
             this.WindowState = WindowState.Minimized;
         }
 
-        private void LogOutFromUserHistoryButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow taskWindow = new MainWindow();
-
-            taskWindow.Owner = this.Owner;
-            taskWindow.Show();
-            Close();
-        }
-
         private void ReservationDate_Initialized(object sender, EventArgs e)
         {
 
@@ -129,17 +198,6 @@ namespace Oasis.Design
 
         }
 
-        private void MakeNewOrderUserHistoryButton_Click(object sender, RoutedEventArgs e)
-        {
-            UserChoosingTypeofActivity taskWindow = new UserChoosingTypeofActivity(CurrentUser);
-            taskWindow.Show();
-            Close();
-        }
-
-        private void DeleteReservation_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void BalanceUserHistoryButton_Click(object sender, RoutedEventArgs e)
         {
             TopUpBalance taskWindow = new TopUpBalance(CurrentUser, BalanceUserHistoryButton);
@@ -164,6 +222,9 @@ namespace Oasis.Design
             
         }
 
-        
+        private void HistoryOfUserReservationsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

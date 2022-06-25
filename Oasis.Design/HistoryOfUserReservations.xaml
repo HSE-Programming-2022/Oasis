@@ -107,32 +107,7 @@
 
             <Separator Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="2000" Background="Blue" Style="{StaticResource MaterialDesignDarkSeparator}"></Separator>
 
-            <!--<ListBox Grid.Row="2" Width="878" Height="438" HorizontalAlignment="Center" Background="Blue" VerticalAlignment="Center" Margin="10,18,10,10">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Name="ReservationDate" Margin="10,0" Grid.Column="0" FontSize="20" FontFamily="Monsterrat" Initialized="ReservationDate_Initialized"/>
-                            <TextBlock Name="ReservationStartTime" Margin="10,0" Grid.Column="1" FontSize="20" FontFamily="Monsterrat" Initialized="ReservationStartTime_Initialized"/>
-                            <TextBlock Name="ReservationEndTime" Margin="10,0" Grid.Column="2" FontSize="20" FontFamily="Monsterrat" Initialized="ReservationEndTime_Initialized"/>
-                            <TextBlock Name="TypeOfActivity" Margin="10,0" Grid.Column="2" FontSize="20" FontFamily="Monsterrat" Initialized="TypeOfActivity_Initialized"/>
-                            <TextBlock Name="TypeOfHall" Margin="10,0" Grid.Column="2" FontSize="20" FontFamily="Monsterrat" Initialized="TypeOfHall_Initialized"/>
-                            <materialDesign:PopupBox >
-                                <StackPanel>
-                                    <Button Name="ChangeReservation" Width="150" Content="Изменить"></Button>
-                                    <Button Name="DeleteReservation" Content="Удалить бронь" Click="DeleteReservation_Click"></Button>
-                                </StackPanel>
-                            </materialDesign:PopupBox>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-
-            </ListBox>--> 
-            <DataGrid x:Name="HistoryOfUserReservationsDataGrid" SelectionUnit="FullRow" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True" Margin="50"  GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" Background="#41518f" AutoGenerateColumns="False" Grid.Row="2" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All" Foreground="White">
+            <DataGrid x:Name="HistoryOfUserReservationsDataGrid" SelectionUnit="FullRow" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True" Margin="20"  GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" Background="#41518f" AutoGenerateColumns="False" Grid.Row="2" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All" Foreground="White">
                 
                     
                 
@@ -143,23 +118,18 @@
                     </DataGrid.Resources>
                 
                 <DataGrid.Columns>
-                    <materialDesign:DataGridTextColumn Foreground="White" Header="Login" IsReadOnly="True" Width="*" Binding="{Binding Login}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn Foreground="White" Header="Номер места" IsReadOnly="True" Width="*" Binding="{Binding SeatId}"></materialDesign:DataGridTextColumn>
 
-                    <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Name" IsReadOnly="True" Width="*" Binding="{Binding Name}"></materialDesign:DataGridTextColumn>
-                    <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Surname" IsReadOnly="True" Width="*" Binding="{Binding Surname}"></materialDesign:DataGridTextColumn>
-                    <materialDesign:DataGridTextColumn CanUserResize="False" Header="Balance" IsReadOnly="True" Width="*" Binding="{Binding Balance}"></materialDesign:DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Operations" CanUserResize="False" IsReadOnly="True" Width="99">
+                    <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Зал" IsReadOnly="True" Width="*" Binding="{Binding Name}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Время" IsReadOnly="True" Width="*" Binding="{Binding StartTime}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn CanUserResize="False" Header="Стоимость" IsReadOnly="True" Width="*" Binding="{Binding Price}"></materialDesign:DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Отмена" CanUserResize="False" IsReadOnly="True" Width="99">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PopupBox Margin="15 0 0 0">
-                                    <StackPanel>
-                                    <Button Name="ChangeBalanceButton" Width="150" Content="Изменить баланс"/>
-                                    <Button Name="HistoryButton" Content="История резерваций"/>
-                                    <Button Name="ReservationButton" Content="Зарезервировать"/>
-                                    <Button Name="UserProfileDetailsButton" Content="Данные клиента"/>
-                                </StackPanel>
-                                </materialDesign:PopupBox>
+                                <StackPanel>
+                                    <Button Name="DeleteReservationButton" Tag="{Binding Id}" Width="50" Click="DeleteReservationButton_Click">
+                                        <Image Source="Recources/trash.png" Width="20" Height="20"/>
+                                    </Button>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate> 
