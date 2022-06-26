@@ -132,7 +132,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <materialDesign:PackIcon Kind="CircleOutline" Width="14" Height="14" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="20,10,10,10"/>
-                <TextBlock Text="Profit" FontSize="14" HorizontalAlignment="Left" Foreground="White" Margin="40,8,10,10"/>
+                <TextBlock Text="Занятость" FontSize="14" HorizontalAlignment="Left" Foreground="White" Margin="40,8,10,10"/>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -202,7 +202,7 @@
                     </lvc:CartesianChart.AxisY>
 
                     <lvc:CartesianChart.Series>
-                        <lvc:LineSeries Stroke="#ada4fd" StrokeThickness="2" PointGeometrySize="0" Values="0, 40, 100, 150, 50, 75, 100">
+                        <lvc:LineSeries Name="DashBoardGraph" Stroke="#ada4fd" StrokeThickness="2" PointGeometrySize="0" Values="0, 40, 100, 150, 50, 75, 100">
                             <lvc:LineSeries.Fill>
                                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                                     <GradientStop Color="#b397e2" Offset="0.4"></GradientStop>
