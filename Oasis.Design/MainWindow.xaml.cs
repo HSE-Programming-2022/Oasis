@@ -94,35 +94,77 @@ namespace Oasis.Design
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            using (Context _context = new Context())
+            if (SwitcherToggleButton.IsChecked == false)
             {
-                bool UserExists = false;
-                foreach(var item in _context.People)
+                using (Context _context = new Context())
                 {
-                    if (item is User)
+                    bool UserExists = false;
+                    foreach (var item in _context.People)
                     {
-                        User CurrentUser = item as User;
-                        if (CurrentUser.Login == LoginOrEmailTextBox.Text || CurrentUser.Email == LoginOrEmailTextBox.Text)
+                        if (item is User)
                         {
-                            UserExists = true;
-                            if (CurrentUser.Password == PasswordBox.Password)
+                            User CurrentUser = item as User;
+                            if (CurrentUser.Login == LoginOrEmailTextBox.Text || CurrentUser.Email == LoginOrEmailTextBox.Text)
                             {
-                                UserChoosingTypeofActivity taskWindow = new UserChoosingTypeofActivity(CurrentUser);
-                                taskWindow.Show();
-                                Close();
-                            }
-                            else
-                            {
-                                notifier.ShowWarning("Неверный пароль!");
-                                break;
+                                UserExists = true;
+                                if (CurrentUser.Password == PasswordBox.Password)
+                                {
+                                    UserChoosingTypeofActivity taskWindow = new UserChoosingTypeofActivity(CurrentUser);
+                                    taskWindow.Show();
+                                    Close();
+                                }
+                                else
+                                {
+                                    notifier.ShowWarning("Неверный пароль!");
+                                    break;
+                                }
                             }
                         }
                     }
+                    if (!UserExists)
+                        notifier.ShowWarning("Пользователь не найден!");
                 }
-                if (!UserExists)
-                    notifier.ShowWarning("Пользователь не найден!");
+            }
+            if (SwitcherToggleButton.IsChecked == true)
+            {
+                using (Context _context = new Context())
+                {
+                    bool AdminExists = false;
+                    foreach (var item in _context.People)
+                    {
+                        if (item is Admin)
+                        {
+                            Admin CurrentAdmin = item as Admin;
+                            if (CurrentAdmin.Login == LoginOrEmailTextBox.Text)
+                            {
+                                AdminExists = true;
+                                if (CurrentAdmin.Password == PasswordBox.Password)
+                                {
+                                    AdminWindow taskWindow = new AdminWindow();
+                                    taskWindow.Show();
+                                    Close();
+                                }
+                                else
+                                {
+                                    notifier.ShowWarning("Неверный пароль!");
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (!AdminExists)
+                        notifier.ShowWarning("Пользователь не найден!");
+                }
             }
         }
+
+
+
+
+    
+            
+            
+           
 
         private void RigistrationButton_Click(object sender, RoutedEventArgs e)
         {
@@ -164,19 +206,7 @@ namespace Oasis.Design
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
-        {
-            AdminWindow taskWindow = new AdminWindow();
-
-            taskWindow.Owner = this.Owner;
-            taskWindow.Show();
-            Close();
-        }
-
-        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            NewStackpanel.Background = Brushes.White;
-        }
+        
 
         private void LoginOrEmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -192,6 +222,18 @@ namespace Oasis.Design
         private void GoToVkButton_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://vk.com/ezyas");
+        }
+
+        private void SwitcherToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RigistrationButton.Visibility = Visibility.Hidden;
+            ForgetPasswordButton.Visibility = Visibility.Hidden;
+        }
+
+        private void SwitcherToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RigistrationButton.Visibility = Visibility.Visible;
+            ForgetPasswordButton.Visibility = Visibility.Hidden;
         }
     }
 }

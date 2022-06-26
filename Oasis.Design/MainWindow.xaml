@@ -55,7 +55,7 @@
             </StackPanel>
             <Button Name="LoginButton" Margin="0 50 0 0" Style="{StaticResource MaterialDesignFlatMidBgButton}" Width="300" Content="Войти" materialDesign:ButtonAssist.CornerRadius="10" Height="40" Click="LoginButton_Click" ></Button>
             <Button Name="RigistrationButton" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"  Width="300" Content="Зарегестрироваться" Margin="0 20 0 0" materialDesign:ButtonAssist.CornerRadius="10" Height="40" Click="RigistrationButton_Click" ></Button>
-            <ToggleButton Width="45" Margin="52,14,302,0" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" />
+            <ToggleButton Name="SwitcherToggleButton"  Width="45" Margin="52,14,302,0" Checked="SwitcherToggleButton_Checked" Unchecked="SwitcherToggleButton_Unchecked" />
             <TextBlock Text="User" FontWeight="SemiBold" HorizontalAlignment="Center" FontSize="10"  Margin="25,-16,345,0" />
             <TextBlock Text="Admin" FontWeight="SemiBold" HorizontalAlignment="Center" TextAlignment="Center" FontSize="10"  Margin="68,-16,246,0" Width="45" />
             <Button Name="GoToWebSiteButton" Margin="347,-30,0,00" Background="Transparent" Style="{StaticResource MaterialDesignIconButton}" Width="30" Height="30" BorderThickness="0" Click="GoToWebSiteButton_Click">

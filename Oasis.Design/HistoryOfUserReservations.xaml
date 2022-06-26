@@ -107,30 +107,30 @@
 
             <Separator Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="2000" Background="Blue" Style="{StaticResource MaterialDesignDarkSeparator}"></Separator>
 
-            <DataGrid x:Name="HistoryOfUserReservationsDataGrid" SelectionUnit="FullRow" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True" Margin="20"  GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" Background="#41518f" AutoGenerateColumns="False" Grid.Row="2" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All" Foreground="White">
+            <DataGrid x:Name="HistoryOfUserReservationsDataGrid"  SelectionUnit="FullRow" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True" Margin="20"  GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" Background="White" AutoGenerateColumns="False" Grid.Row="2" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All" Foreground="White">
 
 
 
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Foreground" Value="Black" />
                     </Style>
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
 
-                    <materialDesign:DataGridTextColumn Foreground="White" Header="Номер места" IsReadOnly="True" Width="*" Binding="{Binding SeatId}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn Foreground="Black" Header="Номер места" IsReadOnly="True" Width="*" Binding="{Binding SeatId}"></materialDesign:DataGridTextColumn>
 
-                    <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Зал" IsReadOnly="True" Width="*" Binding="{Binding Name}"></materialDesign:DataGridTextColumn>
-                    <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Время" IsReadOnly="True" Width="*" Binding="{Binding StartTime}"></materialDesign:DataGridTextColumn>
-                    <materialDesign:DataGridTextColumn CanUserResize="False" Header="Стоимость" IsReadOnly="True" Width="*" Binding="{Binding Price}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn Foreground="Black" CanUserResize="False"  Header="Зал" IsReadOnly="True" Width="*" Binding="{Binding Name}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn Foreground="Black" CanUserResize="False"  Header="Время" IsReadOnly="True" Width="*" Binding="{Binding StartTime}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn Foreground="Black" CanUserResize="False" Header="Стоимость" IsReadOnly="True" Width="*" Binding="{Binding Price}"></materialDesign:DataGridTextColumn>
                     <DataGridTemplateColumn Header="Отмена" CanUserResize="False" IsReadOnly="True" Width="99">
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <Button Name="DeleteReservationButton" Tag="{Binding Id}" Width="50" Click="DeleteReservationButton_Click">
-                                        <Image Source="Recources/trash.png" Width="20" Height="20"/>
+                                    <Button Name="DeleteReservationButton" Tag="{Binding Id}" materialDesign:ButtonAssist.CornerRadius="10" Width="50" Click="DeleteReservationButton_Click" Margin="-20 0 0 0">
+                                        <materialDesign:PackIcon Kind="Delete" Foreground="White" Width="20" Height="20"/>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>

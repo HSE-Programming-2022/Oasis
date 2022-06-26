@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      
       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
       xmlns:local="clr-namespace:Oasis.Design"
       mc:Ignorable="d" 
@@ -16,6 +17,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
 
         <!--<Grid Grid.Row="0" HorizontalAlignment="Right" >
             <Grid.ColumnDefinitions>
@@ -32,14 +34,47 @@
         </Grid>-->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <ComboBox materialDesign:HintAssist.Hint="Выберите зал" Foreground="White" Grid.Column="0" Margin="20"></ComboBox>
-            <materialDesign:TimePicker Grid.Column="1"  Foreground="White" materialDesign:HintAssist.Hint="Время начала" Margin="20"></materialDesign:TimePicker>
-            <materialDesign:TimePicker Margin="20" Foreground="White" materialDesign:HintAssist.Hint="Время конца" Grid.Column="2"></materialDesign:TimePicker>
+            <materialDesign:TimePicker Grid.Column="0" SelectedTimeFormat="Long"  Foreground="White" materialDesign:HintAssist.Hint="Время начала" Margin="70 20 70 20"></materialDesign:TimePicker>
+            <materialDesign:TimePicker Foreground="White" materialDesign:HintAssist.Hint="Время конца" Grid.Column="1" Margin="70 20 70 20"></materialDesign:TimePicker>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <lvc:PieChart Hoverable="False" LegendLocation="Bottom" Foreground="White" Grid.Column="0" Margin="10 40 70 30">
+                <lvc:PieChart.Series>
+                    <lvc:PieSeries Title="Bootcamp1" Values="25" DataLabels="True"/>
+                    <lvc:PieSeries Title="Bootcamp2" Values="25" DataLabels="True"/>
+                    <lvc:PieSeries Title="Bootcamp3" Values="25" DataLabels="True"/>
+                    <lvc:PieSeries Title="Bootcamp4" Values="25" DataLabels="True"/>
+                </lvc:PieChart.Series>
+            </lvc:PieChart>
+            <lvc:CartesianChart Grid.Column="1" Margin="40 40 40 40">
+                <lvc:CartesianChart.Series>
+                    <lvc:ColumnSeries Title="Среднее количество отыгранных часов"
+                                  Values="{Binding Results}"
+                                  Configuration="{Binding Mapper}"/>
+                </lvc:CartesianChart.Series>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Labels="{Binding Labels}" DisableAnimations="True">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator Step="1"></lvc:Separator>
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis LabelFormatter="{Binding MillionFormatter}"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
+            
+            
         </Grid>
 
 
@@ -49,3 +84,4 @@
 
     </Grid>
 </Page>
+ 
