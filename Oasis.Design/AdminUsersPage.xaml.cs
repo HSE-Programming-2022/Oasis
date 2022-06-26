@@ -83,30 +83,6 @@ namespace Oasis.Design
             //window.ShowDialog();
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            int count = 0;
-            for(int i = 0; i <AllPeople.Count; i++)
-            {
-                if((AllPeople[i] as User).Login.ToLower().Contains(SearchingTextBox.Text.ToLower()) && SearchingTextBox.Text != "")
-                {
-                    Person found = AllPeople[i];
-                    AllPeople.RemoveAt(i);
-                    AllPeople.Insert(0, found);
-                    count++;
-                }
-            }
-            if (count > 0)
-            {
-                notifier.ShowSuccess($"Найдено {count} пользователей");
-            }
-            else
-            {
-                notifier.ShowWarning($"Найдено {count} пользователей");
-            }
-
-        }
-
         private void SearchingTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             SqlConnection DBConnection = new SqlConnection(@"Data Source=vm-as35.staff.corp.local;Initial Catalog=OasisDB;User ID=student;Password=sql2020;Integrated Security=False");

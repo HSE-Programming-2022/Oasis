@@ -10,7 +10,7 @@
     <Border Width="Auto" Height="Auto" Name="windowFrame"
     
           
-          Background="Transparent"
+          Background="#223266"
           BorderThickness="1"
           CornerRadius="10">
         <Grid>
@@ -21,7 +21,7 @@
 
 
             <!--Left Menu-->
-            <Border CornerRadius="10 0 0 10">
+            <Border CornerRadius="10 0 0 10" BorderThickness="0">
 
 
                 <Border.Background>
@@ -79,7 +79,7 @@
             <Border Background="Transparent" Grid.Column="1" Grid.Row="0">
 
             </Border>
-            <Border Grid.Column="1" CornerRadius="0 10 10 0"  MouseDown="Border_MouseDown">
+            <Border Grid.Column="1" CornerRadius="0 10 10 0" BorderThickness="0" MouseDown="Border_MouseDown">
 
 
                 <Border.Background>
@@ -123,7 +123,7 @@
                         </Button>
                     </Grid>
 
-                    <Frame Name="Admin" Grid.Row="1" NavigationUIVisibility="Hidden" BorderBrush="#41518f"></Frame>
+                    <Frame Name="Admin" Grid.Row="1" NavigationUIVisibility="Hidden" BorderThickness="0" BorderBrush="#41518f"></Frame>
 
 
                 </Grid>

@@ -14,6 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.Entity;
+using ToastNotifications;
+using ToastNotifications.Position;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
 
 namespace Oasis.Design
 {
@@ -32,6 +36,20 @@ namespace Oasis.Design
         List<int[]> ListOfPossibleSeatNumbers = new List<int[]> { };
         int price;
         string Type;
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.BottomCenter,
+                offsetX: 100,
+                offsetY: 5);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
 
         public UserBookingWindow(string type, User user)
         {
@@ -49,7 +67,7 @@ namespace Oasis.Design
                 {
                     if (item is User)
                     {
-                        if ((item as User).Login == user.Login)
+                        if ((item as User).Email == user.Email)
                         {
                             CurrentUser = (item as User);
                         }
@@ -551,7 +569,7 @@ namespace Oasis.Design
                     {
                         if (item is User)
                         {
-                            if ((item as User).Login == CurrentUser.Login)
+                            if ((item as User).Email == CurrentUser.Email)
                             {
                                 (item as User).Balance -= totalPrice;
                                 CurrentUser = (item as User);
@@ -562,13 +580,17 @@ namespace Oasis.Design
                     foreach (var item in ListOfPossibleSeatNumbers[0])
                     {
                         Seat seat = _context.Seats.Where(x => x.Id == item).ToList()[0];
-                        newReservations.Add(new Reservation(CurrentUser, _selectedDate.AddHours(startHour), hours, seat, price));
+                        newReservations.Add(new Reservation(CurrentUser, _selectedDate.AddHours(startHour), hours, seat, price * hours));
                     }
                     _context.Reservations.AddRange(newReservations);
                     _context.SaveChanges();
                 }
                 OpenPreviousWindow();
                 Close();
+            }
+            else
+            {
+                notifier.ShowWarning("Не достаточно денег на балансе");
             }
         }
     }

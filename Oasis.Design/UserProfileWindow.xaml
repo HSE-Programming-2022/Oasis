@@ -47,7 +47,6 @@
             <TextBlock Name="NameText" Grid.Row="4" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" Visibility="Visible" HorizontalAlignment="Left"></TextBlock>
             <TextBlock Name="SurenameText" Grid.Row="5" Grid.Column="1" TextAlignment="Center" Margin="10" FontSize="14" VerticalAlignment="Center" Visibility="Visible" HorizontalAlignment="Left"></TextBlock>
 
-            <TextBox Name="NewEmailTextBox" Grid.Row="1" materialDesign:HintAssist.Hint="Почта" Width="165" Height="26"  Grid.Column="1" TextAlignment="Center" Visibility="Hidden" Margin="10,0,0,8" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBox>
             <TextBox Name="NewPhoneTextBox" Grid.Row="2" Grid.Column="1" TextAlignment="Center" materialDesign:HintAssist.Hint="Телефон" Width="165" Height="26" Visibility="Hidden"  FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,8"></TextBox>
             <TextBox Name="NewLoginTextBox" Grid.Row="3" Grid.Column="1" TextAlignment="Center" materialDesign:HintAssist.Hint="Логин" Width="165" Height="26" Visibility="Hidden" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,8"></TextBox>
             <TextBox Name="NewNameTextBox" Grid.Row="4" Grid.Column="1" TextAlignment="Center" materialDesign:HintAssist.Hint="Имя" Width="165" Height="26" Visibility="Hidden" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,8"></TextBox>

@@ -33,6 +33,7 @@ namespace Oasis.Design
             DataPanelsUpdate(FormingListOfValidReses());
             UpdatingGraphValues(CheckingFreeTimeSlots());
 
+
         }
 
         public void CountingAllSeats()
@@ -191,6 +192,10 @@ namespace Oasis.Design
 
         private void StatisticsForeDayButton_Click(object sender, RoutedEventArgs e)
         {
+
+            StatisticsForeDayButton.Background = Brushes.DarkBlue;
+            StatisticsForeMonthButton.Background = Brushes.Transparent;
+            StatisticsForeYearButton.Background = Brushes.Transparent;
             _periodOfTime = "День";
             DataPanelsUpdate(FormingListOfValidReses());
             UpdatingGraphValues(CheckingFreeTimeSlots());
@@ -198,6 +203,9 @@ namespace Oasis.Design
 
         private void StatisticsForeMonthButton_Click(object sender, RoutedEventArgs e)
         {
+            StatisticsForeDayButton.Background = Brushes.Transparent;
+            StatisticsForeMonthButton.Background = Brushes.DarkBlue;
+            StatisticsForeYearButton.Background = Brushes.Transparent;
             _periodOfTime = "Неделя";
             DataPanelsUpdate(FormingListOfValidReses());
             UpdatingGraphValues(CheckingFreeTimeSlots());
@@ -205,6 +213,9 @@ namespace Oasis.Design
 
         private void StatisticsForeYearButton_Click(object sender, RoutedEventArgs e)
         {
+            StatisticsForeDayButton.Background = Brushes.Transparent;
+            StatisticsForeMonthButton.Background = Brushes.Transparent;
+            StatisticsForeYearButton.Background = Brushes.DarkBlue;
             _periodOfTime = "Месяц";
             DataPanelsUpdate(FormingListOfValidReses());
             UpdatingGraphValues(CheckingFreeTimeSlots());

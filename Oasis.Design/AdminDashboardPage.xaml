@@ -24,10 +24,9 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" x:Name="StatisticsForeDayButton" Width="80" FontSize="12" Content="День" Margin="5 10 0 0" materialDesign:ButtonAssist.CornerRadius="15" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}" Click="StatisticsForeDayButton_Click"/>
-
-            <Button Name="StatisticsForeMonthButton" Grid.Column="1" Width="80" FontSize="12" Margin="5 10 0 0" Content="Неделя" materialDesign:ButtonAssist.CornerRadius="15" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}" Click="StatisticsForeMonthButton_Click"/>
-            <Button Name="StatisticsForeYearButton" Grid.Column="2" Width="80" FontSize="12" Margin="5 10 10 0" Content="Месяц" Foreground="White" materialDesign:ButtonAssist.CornerRadius="15" Style="{StaticResource MaterialDesignFlatButton}" Click="StatisticsForeYearButton_Click"/>
+            <Button Grid.Column="0" Name="StatisticsForeDayButton" ToolTip="Нажмите если хотите увидеть статистике за текущий день" Width="80" FontSize="12" Content="День" Margin="5 10 0 0" materialDesign:ButtonAssist.CornerRadius="15" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}" Click="StatisticsForeDayButton_Click"></Button>
+            <Button Name="StatisticsForeMonthButton" Grid.Column="1" ToolTip="Нажмите если хотите увидеть статистику за неделю" Width="80" FontSize="12" Margin="5 10 0 0" Content="Неделя" materialDesign:ButtonAssist.CornerRadius="15" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}" Click="StatisticsForeMonthButton_Click"/>
+            <Button Name="StatisticsForeYearButton" Grid.Column="2" ToolTip="Нажмите если хотите увидеть статистику за месяц" Width="80" FontSize="12" Margin="5 10 10 0" Content="Месяц" Foreground="White" materialDesign:ButtonAssist.CornerRadius="15" Style="{StaticResource MaterialDesignFlatButton}" Click="StatisticsForeYearButton_Click"/>
 
         </Grid>
         <Grid Grid.Row="1">
