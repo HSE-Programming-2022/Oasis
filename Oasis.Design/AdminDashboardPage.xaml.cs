@@ -29,10 +29,9 @@ namespace Oasis.Design
         public AdminDashboardPage()
         {
             InitializeComponent();
-            CountingAllSeats();
+            //CountingAllSeats();
             DataPanelsUpdate(FormingListOfValidReses());
             UpdatingGraphValues(CheckingFreeTimeSlots());
-
 
         }
 
@@ -75,7 +74,7 @@ namespace Oasis.Design
                             }
                         }
                         _numberOfDays += 1;
-                        dateTime.AddDays(-1);
+                        dateTime = dateTime.Subtract(new TimeSpan(1, 0, 0, 0));
                         if (dateTime.DayOfWeek == DayOfWeek.Sunday)
                         {
                             break;
@@ -95,7 +94,7 @@ namespace Oasis.Design
                             }
                         }
                         _numberOfDays += 1;
-                        dateTime.AddDays(-1);
+                        dateTime = dateTime.Subtract(new TimeSpan(1, 0, 0, 0));
                         if (dateTime.Month != month)
                         {
                             break;
