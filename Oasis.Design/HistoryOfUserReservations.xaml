@@ -107,7 +107,7 @@
 
             <Separator Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="2000" Background="Blue" Style="{StaticResource MaterialDesignDarkSeparator}"></Separator>
 
-            <DataGrid x:Name="HistoryOfUserReservationsDataGrid"  SelectionUnit="FullRow" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True" Margin="20"  GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" Background="White" AutoGenerateColumns="False" Grid.Row="2" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All" Foreground="White">
+            <DataGrid x:Name="HistoryOfUserReservationsDataGrid" Margin="0 20 0 0" SelectionUnit="FullRow" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True"  GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" Background="WhiteSmoke" AutoGenerateColumns="False" Grid.Row="2" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All" Foreground="White">
 
 
 
@@ -129,7 +129,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <Button Name="DeleteReservationButton" Tag="{Binding Id}" materialDesign:ButtonAssist.CornerRadius="10" Width="50" Click="DeleteReservationButton_Click" Margin="-20 0 0 0">
+                                    <Button Name="DeleteReservationButton" ToolTip="Нажмите если хотите отменить бронь" Tag="{Binding Id}" materialDesign:ButtonAssist.CornerRadius="10" Width="50" Click="DeleteReservationButton_Click" Margin="-20 0 0 0">
                                         <materialDesign:PackIcon Kind="Delete" Foreground="White" Width="20" Height="20"/>
                                     </Button>
                                 </StackPanel>

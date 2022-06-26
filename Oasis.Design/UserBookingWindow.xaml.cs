@@ -563,7 +563,7 @@ namespace Oasis.Design
             totalPrice = totalPrice * _numberOfPeople;
             if (CurrentUser.Balance >= totalPrice)
             {
-                using(Context _context = new Context())
+                using (Context _context = new Context())
                 {
                     foreach (var item in _context.People)
                     {
@@ -587,11 +587,17 @@ namespace Oasis.Design
                 }
                 OpenPreviousWindow();
                 Close();
+
+
             }
             else
             {
                 notifier.ShowWarning("Не достаточно денег на балансе");
             }
+
+
+
+
         }
     }
 }

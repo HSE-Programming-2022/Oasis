@@ -47,8 +47,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="0 60 0 60" Orientation="Vertical" Background="#223266" HorizontalAlignment="Right" Width="1"></StackPanel>
 
-            <lvc:PieChart Hoverable="False" LegendLocation="Bottom" Foreground="White" Grid.Column="0" Margin="10 40 70 30">
+            <lvc:PieChart Hoverable="False" LegendLocation="Bottom" Foreground="White" Grid.Column="0" Margin="60 60 70 60">
                 <lvc:PieChart.Series>
                     <lvc:PieSeries Title="Bootcamp1" Values="25" DataLabels="True"/>
                     <lvc:PieSeries Title="Bootcamp2" Values="25" DataLabels="True"/>
@@ -56,10 +57,14 @@
                     <lvc:PieSeries Title="Bootcamp4" Values="25" DataLabels="True"/>
                 </lvc:PieChart.Series>
             </lvc:PieChart>
-            <lvc:CartesianChart Grid.Column="1" Margin="40 40 40 40">
+            <lvc:CartesianChart Grid.Column="1" Margin="60 60 60 60">
+                
+                <lvc:CartesianChart.ToolTip>
+                    <lvc:DefaultTooltip Background="#24336a" Foreground="#d5e2ff" ></lvc:DefaultTooltip>
+                </lvc:CartesianChart.ToolTip>
                 <lvc:CartesianChart.Series>
-                    <lvc:ColumnSeries Title="Среднее количество отыгранных часов"
-                                  Values="{Binding Results}"
+                    <lvc:ColumnSeries Title="Среднее количество отыгранных часов" 
+                                  Values="30, 40, 50, 50"
                                   Configuration="{Binding Mapper}"/>
                 </lvc:CartesianChart.Series>
                 <lvc:CartesianChart.AxisX>

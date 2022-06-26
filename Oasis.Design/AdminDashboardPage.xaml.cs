@@ -131,7 +131,7 @@ namespace Oasis.Design
             int amountOfSpentHours = AmountOfSpentHours(reservations);
             NumberOfSpentHours.Text = $"{amountOfSpentHours} ч.";
             TotalRevenue_TextBlock.Text = $"{totalRevenue} ₽";
-            AmountOfClients_TextBlock.Text = $"{reservations.Count()} ч.";
+            AmountOfClients_TextBlock.Text = $"{reservations.Count()} чел.";
             AmountOfClientsPerPeriod.Text = $"Статистика {_periodOfTime}";
             NumberOfSpentHoursPerPeriod.Text = $"Статистика {_periodOfTime}";
             TotalRevenuePerPeriod.Text = $"Статистика {_periodOfTime}";
