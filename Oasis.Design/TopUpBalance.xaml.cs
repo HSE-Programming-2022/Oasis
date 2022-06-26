@@ -33,7 +33,7 @@ namespace Oasis.Design
                 {
                     if (item is User)
                     {
-                        if ((item as User).Login == user.Login)
+                        if ((item as User).Email == user.Email)
                         {
                             CurrentUser = item as User;
                         }
@@ -63,7 +63,7 @@ namespace Oasis.Design
                 {
                     if(item is User)
                     {
-                        if((item as User).Login == CurrentUser.Login)
+                        if((item as User).Email == CurrentUser.Email)
                         {
                             (item as User).Balance += int.Parse(SumOfUserTopUp.Text);
                             main.Content = $"{(item as User).Balance} р.";

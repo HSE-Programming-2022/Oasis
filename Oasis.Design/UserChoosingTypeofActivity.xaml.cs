@@ -32,7 +32,7 @@ namespace Oasis.Design
                 {
                     if (item is User)
                     {
-                        if ((item as User).Login == user.Login)
+                        if ((item as User).Email == user.Email)
                         {
                             CurrentUser = item as User;
                         }
@@ -40,7 +40,6 @@ namespace Oasis.Design
                 }
             }
             BalanceButton.Content = $"{CurrentUser.Balance} р.";
-            CurrentUser = user;
         }
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -94,8 +93,7 @@ namespace Oasis.Design
         private void BalanceButton_Click(object sender, RoutedEventArgs e)
         {
             TopUpBalance taskWindow = new TopUpBalance(CurrentUser, BalanceButton);
-            taskWindow.Owner = this;
-            taskWindow.ShowDialog();        
+            taskWindow.ShowDialog();
         }
 
         private void StatisticsInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)

@@ -40,11 +40,11 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <materialDesign:DataGridTextColumn Foreground="White" Header="Login" IsReadOnly="True" Width="*" Binding="{Binding Login}"></materialDesign:DataGridTextColumn>
-                <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Name" IsReadOnly="True" Width="*" Binding="{Binding Name}"></materialDesign:DataGridTextColumn>
-                <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Surname" IsReadOnly="True" Width="*" Binding="{Binding Surname}"></materialDesign:DataGridTextColumn>
-                <materialDesign:DataGridTextColumn CanUserResize="False" Header="Balance" IsReadOnly="True" Width="*" Binding="{Binding Balance}"></materialDesign:DataGridTextColumn>
-                <DataGridTemplateColumn Header="Operations" CanUserResize="False" IsReadOnly="True" Width="99">
+                <materialDesign:DataGridTextColumn Foreground="White" Header="Логин" IsReadOnly="True" Width="*" Binding="{Binding Login}"></materialDesign:DataGridTextColumn>
+                <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Имя" IsReadOnly="True" Width="*" Binding="{Binding Name}"></materialDesign:DataGridTextColumn>
+                <materialDesign:DataGridTextColumn CanUserResize="False"  Header="Фамилия" IsReadOnly="True" Width="*" Binding="{Binding Surname}"></materialDesign:DataGridTextColumn>
+                <materialDesign:DataGridTextColumn CanUserResize="False" Header="Баланс" IsReadOnly="True" Width="*" Binding="{Binding Balance}"></materialDesign:DataGridTextColumn>
+                <DataGridTemplateColumn Header="Опции" CanUserResize="False" IsReadOnly="True" Width="80">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
