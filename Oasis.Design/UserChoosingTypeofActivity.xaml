@@ -123,7 +123,7 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <TextBlock VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" FontSize="17" Grid.Row="1" Text="Компютеры"></TextBlock>
-                    <TextBlock Grid.Row="2" Text="150 руб/час" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"  VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock Grid.Row="2" Text="100 руб/час" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"  VerticalAlignment="Center" ></TextBlock>
 
                     <Ellipse Grid.Row="0" Height="50" Width="50">
                         <Ellipse.Fill>
@@ -169,7 +169,7 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" FontSize="17" Grid.Row="1" Text="VIP компьюьеры"></TextBlock>
-                    <TextBlock Grid.Row="2" Foreground="White" Text="350 руб/час" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"  VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock Grid.Row="2" Foreground="White" Text="250 руб/час" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"  VerticalAlignment="Center" ></TextBlock>
 
                     <Ellipse Grid.Row="0" Height="50" Width="50">
                         <Ellipse.Fill>
@@ -219,7 +219,7 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <TextBlock VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" FontSize="17" Grid.Row="1" Text="PlayStation"></TextBlock>
-                    <TextBlock Grid.Row="2" Text="250 руб/час" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"  VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock Grid.Row="2" Text="200 руб/час" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="14"  VerticalAlignment="Center" ></TextBlock>
 
                     <Ellipse Grid.Row="0" Height="50" Width="50">
                         <Ellipse.Fill>
