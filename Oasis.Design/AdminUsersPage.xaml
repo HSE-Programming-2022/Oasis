@@ -50,10 +50,10 @@
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PopupBox Margin="15 0 0 0">
                                     <StackPanel>
-                                        <Button Name="UserProfileDetailsButton" Content="Данные клиента"/>
-                                        <Button Name="ChangeBalanceButton" Width="150" Content="Изменить баланс"/>
-                                        <Button Name="HistoryButton" Content="История резерваций"/>
-                                        <Button Name="ReservationButton" Content="Зарезервировать"/>
+                                        <Button Name="UserProfileDetailsButton" Content="Данные клиента" Tag="{Binding Login}" Click="ProfileButton_Click"/>
+                                        <Button Name="ChangeBalanceButton" Width="150" Content="Изменить баланс" Tag="{Binding Login}" Click="ChangeBalanceButton_Click"/>
+                                        <Button Name="HistoryButton" Content="История резерваций" Tag="{Binding Login}" Click="HistoryButton_Click"/>
+                                        <Button Name="ReservationButton" Content="Зарезервировать" Tag="{Binding Login}" Click="ReservationButton_Click"/>
                                     </StackPanel>
                                 </materialDesign:PopupBox>
                             </StackPanel>

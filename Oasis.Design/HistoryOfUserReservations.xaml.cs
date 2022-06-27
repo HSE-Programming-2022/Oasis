@@ -21,6 +21,7 @@ using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
+using System.Threading;
 
 namespace Oasis.Design
 {
@@ -103,13 +104,13 @@ namespace Oasis.Design
                     {
                         if (item.StartTime > DateTime.Now)
                         {
+                            notifier.ShowSuccess("Успешно отменено, деньги возвращены на ваш баланс");
                             float ReservationPrice = (float)item.Price;
                             CurrentUser.Balance += ReservationPrice;
                             _context.People.Attach(CurrentUser);
                             _context.Entry(CurrentUser).Property(x => x.Balance).IsModified = true;
                             _context.Reservations.Remove(item);
                             ReservationDeleted = true;
-                            notifier.ShowSuccess("Успешно отменено, деньги возвращены на ваш баланс");
                             break;
                         } 
                         else
@@ -122,6 +123,7 @@ namespace Oasis.Design
             }
             if (ReservationDeleted)
             {
+                Thread.Sleep(3000);
                 HistoryOfUserReservations taskWindow = new HistoryOfUserReservations(CurrentUser);
                 taskWindow.Show();
                 Close();
