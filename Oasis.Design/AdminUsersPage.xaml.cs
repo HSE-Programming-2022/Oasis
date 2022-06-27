@@ -25,14 +25,7 @@ namespace Oasis.Design
 {
     public partial class AdminUsersPage : Page
     {
-
         private List<Person> AllPeople { get; set; }
-
-        public AdminUsersPage()
-        {
-            InitializeComponent();
-            DataGridBinding();
-        }
 
         Notifier notifier = new Notifier(cfg =>
         {
@@ -48,6 +41,32 @@ namespace Oasis.Design
 
             cfg.Dispatcher = Application.Current.Dispatcher;
         });
+
+        private User GetUserByLogin(string Login)
+        {
+            User SelectedUser = null;
+            using (Context _context = new Context())
+            {
+                foreach (var item in _context.People)
+                {
+                    if (item is User)
+                    {
+                        if ((item as User).Login == Login)
+                        {
+                            SelectedUser = item as User;
+                            break;
+                        }
+                    }
+                }
+            }
+            return SelectedUser;
+        }
+
+        public AdminUsersPage()
+        {
+            InitializeComponent();
+            DataGridBinding();
+        }
 
         private void DataGridBinding()
         {
@@ -66,21 +85,65 @@ namespace Oasis.Design
             DBConnection.Close();
         }
 
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            string SelectedUserLogin = ((Button)sender).Tag.ToString();
+            User SelectedUser = GetUserByLogin(SelectedUserLogin);
+            if (SelectedUser == null)
+            {
+                notifier.ShowWarning("Пользователь не найден");
+            }
+            else
+            {
+                UserProfileWindow window = new UserProfileWindow(SelectedUser);
+                window.ShowDialog();
+            }
+        }
+
         private void ChangeBalanceButton_Click(object sender, RoutedEventArgs e)
         {
-
+            string SelectedUserLogin = ((Button)sender).Tag.ToString();
+            Button NewButton = new Button();
+            User SelectedUser = GetUserByLogin(SelectedUserLogin);
+            if (SelectedUser == null)
+            {
+                notifier.ShowWarning("Пользователь не найден");
+            }
+            else
+            {
+                TopUpBalance window = new TopUpBalance(SelectedUser, NewButton);
+                window.ShowDialog();
+            }
         }
 
         private void ReservationButton_Click(object sender, RoutedEventArgs e)
         {
-            //UserBookingWindow window = new UserBookingWindow("All");
-            //window.ShowDialog();
+            string SelectedUserLogin = ((Button)sender).Tag.ToString();
+            User SelectedUser = GetUserByLogin(SelectedUserLogin);
+            if (SelectedUser == null)
+            {
+                notifier.ShowWarning("Пользователь не найден");
+            }
+            else
+            {
+                UserBookingWindow window = new UserBookingWindow("All", SelectedUser);
+                window.ShowDialog();
+            }
         }
 
         private void HistoryButton_Click(object sender, RoutedEventArgs e)
         {
-            //HistoryOfUserReservations window = new HistoryOfUserReservations(UsersListBox.SelectedItem as User);
-            //window.ShowDialog();
+            string SelectedUserLogin = ((Button)sender).Tag.ToString();
+            User SelectedUser = GetUserByLogin(SelectedUserLogin);
+            if (SelectedUser == null)
+            {
+                notifier.ShowWarning("Пользователь не найден");
+            }
+            else
+            {
+                HistoryOfUserReservations window = new HistoryOfUserReservations(SelectedUser);
+                window.ShowDialog();
+            }
         }
 
         private void SearchingTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -88,7 +151,7 @@ namespace Oasis.Design
             SqlConnection DBConnection = new SqlConnection(@"Data Source=vm-as35.staff.corp.local;Initial Catalog=OasisDB;User ID=student;Password=sql2020;Integrated Security=False");
 
             DBConnection.Open();
-            string cmd = $"SELECT Login, Name, Surname, Balance FROM People WHERE Discriminator = 'User'"; // Из какой таблицы нужен вывод 
+            string cmd = $"SELECT Id, Login, Name, Surname, Balance FROM People WHERE Discriminator = 'User'"; // Из какой таблицы нужен вывод 
             SqlCommand createCommand = new SqlCommand(cmd, DBConnection);
             createCommand.ExecuteNonQuery();
             SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);

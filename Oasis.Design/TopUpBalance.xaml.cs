@@ -24,7 +24,7 @@ namespace Oasis.Design
         public User CurrentUser { get; set; }
         public Button main;
 
-        public TopUpBalance( User user, Button win)
+        public TopUpBalance(User user, Button win)
         {
             InitializeComponent();
             using (Context _context = new Context())
