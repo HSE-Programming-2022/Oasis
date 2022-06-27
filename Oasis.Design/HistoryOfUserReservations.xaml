@@ -130,7 +130,7 @@
                             <DataTemplate>
                                 <StackPanel>
                                     <Button Name="DeleteReservationButton" ToolTip="Нажмите если хотите отменить бронь" Tag="{Binding Id}" materialDesign:ButtonAssist.CornerRadius="10" Width="50" Click="DeleteReservationButton_Click" Margin="-20 0 0 0">
-                                        <materialDesign:PackIcon Kind="Delete" Foreground="White" Width="20" Height="20"/>
+                                        <materialDesign:PackIcon Kind="Delete" Foreground="White" Margin="-1 0 0 0" Width="20" Height="20"/>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>

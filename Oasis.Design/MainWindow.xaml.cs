@@ -233,7 +233,7 @@ namespace Oasis.Design
         private void SwitcherToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             RigistrationButton.Visibility = Visibility.Visible;
-            ForgetPasswordButton.Visibility = Visibility.Hidden;
+            ForgetPasswordButton.Visibility = Visibility.Visible;
         }
     }
 }
