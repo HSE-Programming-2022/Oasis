@@ -112,7 +112,7 @@ namespace Oasis.Design
 
         private void ChooseTypeOfActivityVIPButton_Click(object sender, RoutedEventArgs e)
         {
-            UserBookingWindow taskWindow = new UserBookingWindow("PC VIP", CurrentUser);
+            UserBookingWindow taskWindow = new UserBookingWindow("VIP PC", CurrentUser);
             taskWindow.Show();
             Close();
         }

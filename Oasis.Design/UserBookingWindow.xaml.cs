@@ -18,6 +18,7 @@ using ToastNotifications;
 using ToastNotifications.Position;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
+using System.Threading;
 
 namespace Oasis.Design
 {
@@ -186,7 +187,7 @@ namespace Oasis.Design
         private void ChoosingDatePicker_SelectedDateChanged_1(object sender, SelectionChangedEventArgs e)
         {
             _selectedDate = DateTime.Parse(ChoosingDatePicker.SelectedDate.ToString());
-            if (ComboBoxNumberOfPeople.SelectedItem != null && ComboBoxHall.SelectedItem != null)
+            if ((ComboBoxNumberOfPeople.SelectedItem != null && ComboBoxHall.SelectedItem != null) || (ComboBoxHall.SelectedItem != null && Type == "PS"))
             {
                 SortedDictionary = CheckingFreeTimeSlots();
                 SetButtons();
@@ -199,12 +200,21 @@ namespace Oasis.Design
         private void ComboBoxHall_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _selectedHall = ComboBoxHall.SelectedItem.ToString();
+            if (_selectedHall.Contains("PS"))
+            {
+                _numberOfPeople = 1;
+                Type = "PS";
+            }
+            else if (_selectedHall.Contains("VIP"))
+                Type = "VIP PC";
+            else
+                Type = "PC";
             using (Context context = new Context())
             {
                 ComboBoxNumberOfPeople.ItemsSource = Enumerable.Range(1, context.Seats.Include(x => x.Hall).Where(n => n.Hall.Name == _selectedHall).ToList().Count()).ToArray();
                 price = context.Halls.Where(x => _selectedHall == x.Name).ToList()[0].Price;
             }
-            if (ComboBoxNumberOfPeople.SelectedItem != null && ChoosingDatePicker.SelectedDate != null)
+            if ((ComboBoxNumberOfPeople.SelectedItem != null && ChoosingDatePicker.SelectedDate != null) || (ChoosingDatePicker.SelectedDate != null && Type == "PS"))
             {
                 SortedDictionary = CheckingFreeTimeSlots();
                 SetButtons();
@@ -242,20 +252,18 @@ namespace Oasis.Design
         private void SetButtons()
         {
             int currhour = 0;
-            if (_selectedDate >= DateTime.Today)
+            if (_selectedDate == DateTime.Today)
+                currhour = DateTime.Now.Hour + 1;
+            EnableAllButtons(false);
+            for (int i = currhour; i < allbuttons.Count(); i++)
             {
-                if (_selectedDate == DateTime.Today)
-                    currhour = DateTime.Now.Hour + 1;
-                EnableAllButtons(false);
-                for (int i = currhour; i < allbuttons.Count(); i++)
+                if (_selectedDate >= DateTime.Today)
                 {
                     if (_numberOfPeople <= SortedDictionary[i].Count && IfAnySeatsTogether(allbuttons[i]))
                         allbuttons[i].IsEnabled = true;
-                    allbuttons[i].Background = (Brush)(new BrushConverter()).ConvertFrom("#FF673AB7");
                 }
+                allbuttons[i].Background = (Brush)(new BrushConverter()).ConvertFrom("#FF673AB7");
             }
-            else
-                EnableAllButtons(false);
         }
 
         private void EnableAllButtons(bool fl)
@@ -561,8 +569,9 @@ namespace Oasis.Design
                 }
             }
             totalPrice = totalPrice * _numberOfPeople;
-            if (CurrentUser.Balance >= totalPrice)
+            if (CurrentUser.Balance >= totalPrice && totalPrice != 0)
             {
+                notifier.ShowSuccess("Места успешно забронированы");
                 using (Context _context = new Context())
                 {
                     foreach (var item in _context.People)
@@ -586,18 +595,16 @@ namespace Oasis.Design
                     _context.SaveChanges();
                 }
                 OpenPreviousWindow();
+                this.Topmost = true;
+                Thread.Sleep(3000);
                 Close();
 
 
             }
-            else
+            else if(CurrentUser.Balance < totalPrice)
             {
                 notifier.ShowWarning("Не достаточно денег на балансе");
             }
-
-
-
-
         }
     }
 }
