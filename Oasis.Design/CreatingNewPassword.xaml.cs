@@ -28,7 +28,7 @@ namespace Oasis.Design
     /// </summary>
     public partial class CreatingNewPassword : Window
     {
-        string UserEmail;
+        private string UserEmail;
 
         Notifier notifier = new Notifier(cfg =>
         {
@@ -60,12 +60,7 @@ namespace Oasis.Design
 
         private void RemoveInPasswordrecoveryButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void ExitInPasswordrecoveryButton_Click_1(object sender, RoutedEventArgs e)
-        {
-
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
         private void CreateNewPaswordButton_Click(object sender, RoutedEventArgs e)
@@ -103,8 +98,6 @@ namespace Oasis.Design
                         _context.SaveChanges();
                     }
                     MainWindow taskWindow = new MainWindow();
-
-                    taskWindow.Owner = this.Owner;
                     taskWindow.Show();
                     Close();
                 }

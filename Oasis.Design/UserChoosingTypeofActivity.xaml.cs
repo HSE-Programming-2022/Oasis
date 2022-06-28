@@ -21,7 +21,7 @@ namespace Oasis.Design
     /// </summary>
     public partial class UserChoosingTypeofActivity : Window
     {
-        public User CurrentUser { get; set; }
+       private User CurrentUser { get; set; }
 
         public UserChoosingTypeofActivity(User user)
         {
@@ -46,11 +46,6 @@ namespace Oasis.Design
             Environment.Exit(0);
         }
 
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
         private void RemoveInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -60,16 +55,6 @@ namespace Oasis.Design
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
-        }
-
-        private void RemoveInUserChoosingTypeofActivityButton_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ProfileButton_ImageFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-
         }
 
         private void LogOutButton_Click(object sender, RoutedEventArgs e)

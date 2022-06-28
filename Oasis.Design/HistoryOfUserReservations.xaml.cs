@@ -30,11 +30,11 @@ namespace Oasis.Design
     /// </summary>
     public partial class HistoryOfUserReservations : Window
     {
-        public User CurrentUser { get; set; }
+        private User CurrentUser { get; set; }
 
-        bool IfMaximized = false;
+        private bool IfMaximized = false;
 
-        bool IsAdmin;
+        private bool IsAdmin;
 
         Notifier notifier = new Notifier(cfg =>
         {
@@ -147,8 +147,6 @@ namespace Oasis.Design
         private void LogOutFromUserHistoryButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow taskWindow = new MainWindow();
-
-            taskWindow.Owner = this.Owner;
             taskWindow.Show();
             Close();
         }
@@ -196,31 +194,6 @@ namespace Oasis.Design
             this.WindowState = WindowState.Minimized;
         }
 
-        private void ReservationDate_Initialized(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ReservationStartTime_Initialized(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ReservationEndTime_Initialized(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TypeOfActivity_Initialized(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TypeOfHall_Initialized(object sender, EventArgs e)
-        {
-
-        }
-
         private void BalanceUserHistoryButton_Click(object sender, RoutedEventArgs e)
         {
             TopUpBalance taskWindow = new TopUpBalance(CurrentUser, BalanceUserHistoryButton);
@@ -233,21 +206,6 @@ namespace Oasis.Design
         {
             UserProfileWindow taskWindow = new UserProfileWindow(CurrentUser);
             taskWindow.ShowDialog();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
-
-        private void HistoryOfUserReservationsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

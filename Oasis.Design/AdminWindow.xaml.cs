@@ -19,7 +19,7 @@ namespace Oasis.Design
     /// </summary>
     public partial class AdminWindow : Window
     {
-        bool IfMaximized = false;
+        private bool IfMaximized = false;
 
         public AdminWindow()
         {
@@ -92,8 +92,6 @@ namespace Oasis.Design
         private void LogOutAdminButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow taskWindow = new MainWindow();
-
-            taskWindow.Owner = this.Owner;
             taskWindow.Show();
             Close();
         }
