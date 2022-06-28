@@ -20,7 +20,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBox x:Name="SearchingTextBox" Grid.Column="0" Height="50" materialDesign:HintAssist.Foreground="White" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Введите логин пользователя" Width="400" Foreground="White" Style="{StaticResource MaterialDesignFilledTextBox}" Margin="12,0,0,0" TextChanged="SearchingTextBox_TextChanged"></TextBox>
-            <Button Name="SearchButton"  Grid.Column="1" Width="40" Height="40" Background="{x:Null}" HorizontalAlignment="Right"  VerticalAlignment="Center" BorderBrush="{x:Null}"  Style="{DynamicResource MaterialDesignToolForegroundButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="RefreshButton_Click" Margin="25,0,10,0">
+            <Button Name="SearchButton" ToolTip="Обновить данные" Grid.Column="1" Width="40" Height="40" Background="{x:Null}" HorizontalAlignment="Right"  VerticalAlignment="Center" BorderBrush="{x:Null}"  Style="{DynamicResource MaterialDesignToolForegroundButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="RefreshButton_Click" Margin="25,0,10,0">
                 <materialDesign:PackIcon Kind="DatabaseRefresh"  Width="30" Height="30" Foreground="White"></materialDesign:PackIcon>
             </Button>
         </Grid>

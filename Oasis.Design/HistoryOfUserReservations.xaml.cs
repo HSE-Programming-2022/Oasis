@@ -22,6 +22,8 @@ using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
 using System.Threading;
+using System.Globalization;
+using System.Diagnostics;
 
 namespace Oasis.Design
 {
@@ -108,6 +110,7 @@ namespace Oasis.Design
                             _context.Entry(CurrentUser).Property(x => x.Balance).IsModified = true;
                             _context.Reservations.Remove(item);
                             ReservationDeleted = true;
+                            Task.Delay(3000);
                             break;
                         } 
                         else
@@ -120,7 +123,6 @@ namespace Oasis.Design
             }
             if (ReservationDeleted)
             {
-                Thread.Sleep(3000);
                 FillGrid();
                 RefreshBalance();
             }

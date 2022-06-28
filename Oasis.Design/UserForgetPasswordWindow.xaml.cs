@@ -39,7 +39,7 @@ namespace Oasis.Design
                 parentWindow: Application.Current.MainWindow,
                 corner: Corner.BottomCenter,
                 offsetX: 100,
-                offsetY: 5);
+                offsetY: 30);
 
             cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
                 notificationLifetime: TimeSpan.FromSeconds(3),
@@ -52,6 +52,23 @@ namespace Oasis.Design
         {
             InitializeComponent();
         }
+        private bool IsEmailValid(string Email)
+        {
+
+            if (Email.EndsWith("."))
+            {
+                return false;
+            }
+            try
+            {
+                var ValidEmail = new System.Net.Mail.MailAddress(Email);
+                return ValidEmail.Address == Email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         private void SendCodeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -63,49 +80,56 @@ namespace Oasis.Design
             }
             else
             {
-                using (Context _context = new Context())
+                if (IsEmailValid(UserEmail))
                 {
-                    foreach (var item in _context.People)
+                    using (Context _context = new Context())
                     {
-                        if (item is User)
+                        foreach (var item in _context.People)
                         {
-                            User CurrentUser = item as User;
-                            if (CurrentUser.Email == UserEmail)
+                            if (item is User)
                             {
-                                EmailExists = true;
-                                break;
+                                User CurrentUser = item as User;
+                                if (CurrentUser.Email == UserEmail)
+                                {
+                                    EmailExists = true;
+                                    break;
+                                }
                             }
                         }
-                    }
-
-                    if (EmailExists)
-                    {
-                        SendCodeButton.Visibility = Visibility.Hidden;
-                        CodeConfirmationTextBox.Visibility = Visibility.Visible;
-                        ConfirmButton.Visibility = Visibility.Visible;
-
-                        using (var smtp = new SmtpClient())
+                        if (EmailExists)
                         {
-                            smtp.Connect("smtp.yandex.ru", 465, true);
-                            smtp.Authenticate("oasis.computer.club@yandex.ru", "brbhekcpgskbzgfo");
+                            SendCodeButton.Visibility = Visibility.Hidden;
+                            CodeConfirmationTextBox.Visibility = Visibility.Visible;
+                            ConfirmButton.Visibility = Visibility.Visible;
 
-                            VerificationCode = new Random().Next(1000, 9999).ToString("D4");
-                            var BodyBldr = new BodyBuilder();
-                            BodyBldr.TextBody = "Ваш код: " + VerificationCode;
+                            using (var smtp = new SmtpClient())
+                            {
+                                smtp.Connect("smtp.yandex.ru", 465, true);
+                                smtp.Authenticate("oasis.computer.club@yandex.ru", "brbhekcpgskbzgfo");
 
-                            var Message = new MimeMessage();
-                            Message.Subject = "Восстановление забытого пароля";
-                            Message.Body = BodyBldr.ToMessageBody();
-                            Message.To.Add(MailboxAddress.Parse(UserEmail));
-                            Message.From.Add(new MailboxAddress("Компьютерный клуб Oasis", "oasis.computer.club@yandex.ru"));
+                                VerificationCode = new Random().Next(1000, 9999).ToString("D4");
+                                var BodyBldr = new BodyBuilder();
+                                BodyBldr.TextBody = "Ваш код: " + VerificationCode;
 
-                            smtp.Send(Message);
+                                var Message = new MimeMessage();
+                                Message.Subject = "Восстановление забытого пароля";
+                                Message.Body = BodyBldr.ToMessageBody();
+                                Message.To.Add(MailboxAddress.Parse(UserEmail));
+                                Message.From.Add(new MailboxAddress("Компьютерный клуб Oasis", "oasis.computer.club@yandex.ru"));
+
+                                smtp.Send(Message);
+                            }
                         }
+                        else
+                        {
+                            notifier.ShowWarning("Пользователь с данной почтой отсутствует");
+                        }
+                        EmailConfirmationTextBox.IsReadOnly = true;
                     }
-                    else
-                    {
-                        notifier.ShowWarning("Пользователь с данной почтой отсутствует");
-                    }
+                }
+                else
+                {
+                    notifier.ShowWarning("Введенная почта не соответствует формату");
                 }
             }
         }
