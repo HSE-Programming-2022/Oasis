@@ -17,6 +17,10 @@ using LiveCharts.Helpers;
 using LiveCharts.Wpf;
 using Oasis.Core;
 using Oasis.Core.Models;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace Oasis.Design
 {
@@ -27,7 +31,22 @@ namespace Oasis.Design
     {
         DateTime _startDate;
         DateTime _finalDate;
-        
+
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.BottomCenter,
+                offsetX: 5,
+                offsetY: -23);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
+
         public AdminStatisticsPage()
         {
             _finalDate = DateTime.Now;
@@ -56,6 +75,8 @@ namespace Oasis.Design
             }
         }
 
+        //Фун-ции для пайчарта
+
         private Dictionary<string, int> FormingEmptyProfitPerTypeDictionary()
         {
             Dictionary<string, int> profitPerTypeEmptyDictionary = new Dictionary<string, int>();
@@ -80,47 +101,45 @@ namespace Oasis.Design
             using (Context context = new Context())
             {
                 List<Hall> halls = context.Halls.ToList();
-                foreach (var hall in halls)
+                foreach (var res in reservations)
                 {
-                    var sortedReservations = reservations
-                    .Where(r => r.Seat.HallId == context.Halls.Where(h => h.Type == hall.Type).ToList()[0].Id)
-                    .ToList();
-                    foreach (var res in sortedReservations)
+                    foreach (var hall in halls)
                     {
-                        profitPerType[hall.Type] += (int)res.Price;
+                        if (hall.Id == res.Seat.HallId)
+                        {
+                            profitPerType[hall.Type] += (int)res.Price;
+                            break;
+                        }
                     }
+                    
                 }
+                //foreach (var hall in halls)
+                //{
+                //    var sortedReservations = reservations
+                //    .Where(r => r.Seat.HallId == context.Halls.Where(h => h.Type == hall.Type).ToList()[0].Id)
+                //    .ToList();
+                //    foreach (var res in sortedReservations)
+                //    {
+                //        profitPerType[hall.Type] += (int)res.Price;
+                //    }
+                //}
             }
             return profitPerType;    
         }
 
         private void UpdatingPieChart(Dictionary<string, int> profitPerType)
         {
-            int totalProfit = 0;
-            foreach (var item in profitPerType)
-            {
-                totalProfit += item.Value;
-            }
-            
-            if (totalProfit == 0)
-            {
-                PCPartOfPieChart.Values = new ChartValues<int> { 0 };
-                VIP_PCPartOfPieChart.Values = new ChartValues<int> { 0 };
-                PSPartOfPieChart.Values = new ChartValues<int> { 0 };
-            }
-            else
-            {
-                int pcProfit = (int)profitPerType["PC"];
-                int vipPcProfit = (int)profitPerType["VIP PC"];
-                int psProfit = (int)profitPerType["PS"];
-                PCPartOfPieChart.Values = new ChartValues<double> { (int)profitPerType["PC"] };
-                VIP_PCPartOfPieChart.Values = new ChartValues<double> { (int)profitPerType["VIP PC"] };
-                PSPartOfPieChart.Values = new ChartValues<double> { (int)profitPerType["PS"] };
-            }
-            
+            int pcProfit = (int)profitPerType["PC"];
+            int vipPcProfit = (int)profitPerType["VIP PC"];
+            int psProfit = (int)profitPerType["PS"];
+            PCPartOfPieChart.Values = new ChartValues<double> { (int)profitPerType["PC"] };
+            VIP_PCPartOfPieChart.Values = new ChartValues<double> { (int)profitPerType["VIP PC"] };
+            PSPartOfPieChart.Values = new ChartValues<double> { (int)profitPerType["PS"] };
+
+
         }
        
-
+        // Фун-ции для графика
 
         private Dictionary<string, float> FormingEmptyAverageTimeOfUsingPerTypeDictionary()
         {
@@ -174,12 +193,24 @@ namespace Oasis.Design
         {
             List<double> listOfValues = new List<double>()
             {
-                double.Parse("0"),
+                //double.Parse("0"),
                 Math.Round(averageTimeOfUsingPerType["VIP PC"], 2),
                 Math.Round(averageTimeOfUsingPerType["PC"], 2),
                 Math.Round(averageTimeOfUsingPerType["PS"], 2)
             };
             StatisticsGraph.Values = listOfValues.AsChartValues();
+        }
+
+        private bool CheckingDataExistens()
+        {
+            if (FormingListOfValidReses().Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void PieChart_Loaded(object sender, RoutedEventArgs e)
@@ -192,12 +223,20 @@ namespace Oasis.Design
             _startDate = DateTime.Parse(ChoosingDatePicker.SelectedDate.ToString());
             if (_startDate.CompareTo(_finalDate) <= 0)
             {
-                UpdatingPieChart(ProfitPerType());
-                UpdatingCartesianChart(AverageTimeOfUsingPerType());
+                if (CheckingDataExistens())
+                {
+                    UpdatingPieChart(ProfitPerType());
+                    UpdatingCartesianChart(AverageTimeOfUsingPerType());
+                }
+                else
+                {
+                    notifier.ShowWarning("Нет данных!");
+                }
             }
-            
-            
-
+            else
+            {
+                notifier.ShowWarning("Некорректный интервал!");
+            }
         }
 
         private void ChoosingFinalDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -205,11 +244,21 @@ namespace Oasis.Design
             _finalDate = DateTime.Parse(ChoosingFinalDatePicker.SelectedDate.ToString());
             if (_finalDate.CompareTo(_startDate) >= 0)
             {
-                UpdatingPieChart(ProfitPerType());
-                UpdatingCartesianChart(AverageTimeOfUsingPerType());
+                if (CheckingDataExistens())
+                {
+                    UpdatingPieChart(ProfitPerType());
+                    UpdatingCartesianChart(AverageTimeOfUsingPerType());
+                }
+                else
+                {
+                    notifier.ShowWarning("Нет данных!");
+                }
             }
-            
-            
+            else
+            {
+                notifier.ShowWarning("Некорректный интервал!");
+            }
+
         }
     }
 }
