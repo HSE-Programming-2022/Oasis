@@ -49,18 +49,18 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <lvc:PieChart Hoverable="False" LegendLocation="Bottom" Foreground="White" Grid.Column="0" Margin="10 40 70 30" Loaded="PieChart_Loaded">
+            <lvc:PieChart Hoverable="False" LegendLocation="Bottom" Foreground="White" Grid.Column="0" Margin="40 40 40 35" Loaded="PieChart_Loaded">
                 <lvc:PieChart.Series>
-                    <lvc:PieSeries Name="PCPartOfPieChart" Title="PC" Values="33" DataLabels="True"/>
+                    <lvc:PieSeries Name="PCPartOfPieChart"  Title="PC" Values="33" DataLabels="True"/>
                     <lvc:PieSeries Name="VIP_PCPartOfPieChart" Title="VIP PC" Values="33" DataLabels="True"/>
                     <lvc:PieSeries Name="PSPartOfPieChart" Title="PS" Values="33" DataLabels="True"/>
                 </lvc:PieChart.Series>
             </lvc:PieChart>
 
-            <lvc:CartesianChart Grid.Column="1" Margin="40 40 40 40">
+            <lvc:CartesianChart Grid.Column="1" Margin="40">
                 <lvc:CartesianChart.Series>
                     <lvc:ColumnSeries Name="StatisticsGraph" Title="Среднее количество отыгранных часов"
-                                  Values="{Binding Results}"
+                                  Values="1, 2, 3, 5"
                                   Configuration="{Binding Mapper}"/>
                 </lvc:CartesianChart.Series>
                 <lvc:CartesianChart.AxisX>

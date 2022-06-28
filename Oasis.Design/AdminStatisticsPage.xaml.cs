@@ -36,7 +36,7 @@ namespace Oasis.Design
             InitializeComponent();
 
             UpdatingPieChart(ProfitPerType());
-            //UpdatingCartesianChart(AverageTimeOfUsingPerType());
+            UpdatingCartesianChart(AverageTimeOfUsingPerType());
         }
 
         private List<Reservation> FormingListOfValidReses()
@@ -94,43 +94,48 @@ namespace Oasis.Design
             return profitPerType;    
         }
 
-        private int TotalProfit()
+        private void UpdatingPieChart(Dictionary<string, int> profitPerType)
         {
-            var reservations = FormingListOfValidReses();
             int totalProfit = 0;
-            foreach (var res in reservations)
+            foreach (var item in profitPerType)
             {
-                totalProfit += (int)res.Price;
+                totalProfit += item.Value;
             }
-            return totalProfit;
+            
+            if (totalProfit == 0)
+            {
+                PCPartOfPieChart.Values = new ChartValues<int> { 0 };
+                VIP_PCPartOfPieChart.Values = new ChartValues<int> { 0 };
+                PSPartOfPieChart.Values = new ChartValues<int> { 0 };
+            }
+            else
+            {
+                int pcProfit = (int)profitPerType["PC"];
+                int vipPcProfit = (int)profitPerType["VIP PC"];
+                int psProfit = (int)profitPerType["PS"];
+                PCPartOfPieChart.Values = new ChartValues<double> { (int)profitPerType["PC"] };
+                VIP_PCPartOfPieChart.Values = new ChartValues<double> { (int)profitPerType["VIP PC"] };
+                PSPartOfPieChart.Values = new ChartValues<double> { (int)profitPerType["PS"] };
+            }
+            
         }
-
-        private void UpdatingPieChart(Dictionary<string, int> profitPerHall)
-        {
-            int totalProfit = TotalProfit();
-            int pcProfit = (int)profitPerHall["PC"];
-            int vipPcProfit = (int)profitPerHall["VIP PC"];
-            int psProfit = (int)profitPerHall["PS"];
-            PCPartOfPieChart.Values = new ChartValues<int> { (int)((float)pcProfit / (float)totalProfit * 100) };
-            VIP_PCPartOfPieChart.Values = new ChartValues<int> { (int)((float)vipPcProfit / totalProfit * 100) };
-            PSPartOfPieChart.Values = new ChartValues<int> { (int)((float)psProfit / totalProfit * 100) };
-        }
+       
 
 
         private Dictionary<string, float> FormingEmptyAverageTimeOfUsingPerTypeDictionary()
         {
-            Dictionary<string, float> profitPerTypeEmptyDictionary = new Dictionary<string, float>();
+            Dictionary<string, float> emptyAverageTimeOfUsingPerTypeDictionary = new Dictionary<string, float>();
             using (Context context = new Context())
             {
                 List<Hall> halls = context.Halls.ToList();
                 foreach (var hall in halls)
                 {
-                    if (!(profitPerTypeEmptyDictionary.ContainsKey($"{hall.Type}")))
+                    if (!(emptyAverageTimeOfUsingPerTypeDictionary.ContainsKey($"{hall.Type}")))
                     {
-                        profitPerTypeEmptyDictionary.Add(hall.Type, 0);
+                        emptyAverageTimeOfUsingPerTypeDictionary.Add(hall.Type, 0);
                     }
                 }
-                return profitPerTypeEmptyDictionary;
+                return emptyAverageTimeOfUsingPerTypeDictionary;
             }
         }
 
@@ -147,12 +152,19 @@ namespace Oasis.Design
                     var sortedReservations = reservations
                     .Where(r => r.Seat.HallId == context.Halls.Where(h => h.Type == hall.Type).ToList()[0].Id)
                     .ToList();
-                    foreach (var res in sortedReservations)
+                    if (sortedReservations.Count != 0)
                     {
-                        averageTimeOfUsingPerType[hall.Type] += (int)res.Price;
-                        amountOfReses += 1;
+                        foreach (var res in sortedReservations)
+                        {
+                            averageTimeOfUsingPerType[hall.Type] += (int)res.Hours;
+                            amountOfReses += 1;
+                        }
+                        averageTimeOfUsingPerType[hall.Type] = (float)averageTimeOfUsingPerType[hall.Type] / amountOfReses;
                     }
-                    averageTimeOfUsingPerType[hall.Type] = (float)averageTimeOfUsingPerType[hall.Type] / (float)amountOfReses;
+                    else
+                    {
+                        averageTimeOfUsingPerType[hall.Type] = 0;
+                    }
                 }
                 return averageTimeOfUsingPerType;
             }
@@ -160,11 +172,12 @@ namespace Oasis.Design
 
         private void UpdatingCartesianChart(Dictionary<string, float> averageTimeOfUsingPerType)
         {
-            List<float> listOfValues = new List<float>()
+            List<double> listOfValues = new List<double>()
             {
-                averageTimeOfUsingPerType["VIP PC"],
-                averageTimeOfUsingPerType["PC"],
-                averageTimeOfUsingPerType["PS"]
+                double.Parse("0"),
+                Math.Round(averageTimeOfUsingPerType["VIP PC"], 2),
+                Math.Round(averageTimeOfUsingPerType["PC"], 2),
+                Math.Round(averageTimeOfUsingPerType["PS"], 2)
             };
             StatisticsGraph.Values = listOfValues.AsChartValues();
         }
@@ -176,23 +189,27 @@ namespace Oasis.Design
 
         private void ChoosingDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DateTime.Parse(ChoosingDatePicker.SelectedDate.ToString()).CompareTo(_finalDate) <= 0)
+            _startDate = DateTime.Parse(ChoosingDatePicker.SelectedDate.ToString());
+            if (_startDate.CompareTo(_finalDate) <= 0)
             {
-                _startDate = DateTime.Parse(ChoosingDatePicker.SelectedDate.ToString());
+                UpdatingPieChart(ProfitPerType());
+                UpdatingCartesianChart(AverageTimeOfUsingPerType());
             }
-            UpdatingPieChart(ProfitPerType());
-            //UpdatingCartesianChart(AverageTimeOfUsingPerType());
+            
+            
 
         }
 
         private void ChoosingFinalDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DateTime.Parse(ChoosingFinalDatePicker.SelectedDate.ToString()).CompareTo(_startDate) >= 0)
+            _finalDate = DateTime.Parse(ChoosingFinalDatePicker.SelectedDate.ToString());
+            if (_finalDate.CompareTo(_startDate) >= 0)
             {
-                _finalDate = DateTime.Parse(ChoosingFinalDatePicker.SelectedDate.ToString());
+                UpdatingPieChart(ProfitPerType());
+                UpdatingCartesianChart(AverageTimeOfUsingPerType());
             }
-            UpdatingPieChart(ProfitPerType());
-            //UpdatingCartesianChart(AverageTimeOfUsingPerType());
+            
+            
         }
     }
 }
