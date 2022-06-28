@@ -37,6 +37,7 @@ namespace Oasis.Design
         List<int[]> ListOfPossibleSeatNumbers = new List<int[]> { };
         int price;
         string Type;
+        bool IsAdmin;
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
@@ -61,9 +62,13 @@ namespace Oasis.Design
                 if (type != "All")
                 {
                     ComboBoxHall.ItemsSource = context.Halls.Where(x => x.Type == type).Select(x => x.Name).ToList();
+                    IsAdmin = false;
                 }
                 else
+                {
                     ComboBoxHall.ItemsSource = context.Halls.Select(x => x.Name).ToList();
+                    IsAdmin = true;
+                }
                 foreach (var item in context.People)
                 {
                     if (item is User)
@@ -139,16 +144,7 @@ namespace Oasis.Design
 
         private void OpenPreviousWindow()
         {
-            if (Type == "All")
-            {
-                AdminWindow UsersInAdmin = new AdminWindow();
-                UsersInAdmin.Show();
-                UsersInAdmin.Admin.Content = new AdminUsersPage();
-                UsersInAdmin.DashboardStickButton.Visibility = Visibility.Hidden;
-                UsersInAdmin.UsersStickButton.Visibility = Visibility.Visible;
-                UsersInAdmin.StatisticksStickButton.Visibility = Visibility.Hidden;
-            }
-            else
+            if (!IsAdmin)
             {
                 UserChoosingTypeofActivity UserWindow = new UserChoosingTypeofActivity(CurrentUser);
                 UserWindow.Show();
@@ -164,18 +160,6 @@ namespace Oasis.Design
         private void RemoveInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
-        }
-
-        private void OpenBigButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
-            else
-            {
-                this.WindowState = WindowState.Maximized;
-            }
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -227,15 +211,18 @@ namespace Oasis.Design
 
         private void ComboBoxNumberOfPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _numberOfPeople = Convert.ToInt32(ComboBoxNumberOfPeople.SelectedItem.ToString());
-            if (ComboBoxHall.SelectedItem != null && ChoosingDatePicker.SelectedDate != null)
+            if(ComboBoxNumberOfPeople.SelectedItem != null)
             {
-                SortedDictionary = CheckingFreeTimeSlots();
-                SetButtons();
+                _numberOfPeople = Convert.ToInt32(ComboBoxNumberOfPeople.SelectedItem.ToString());
+                if (ComboBoxHall.SelectedItem != null && ChoosingDatePicker.SelectedDate != null)
+                {
+                    SortedDictionary = CheckingFreeTimeSlots();
+                    SetButtons();
+                }
+                SetNewTotalPrice();
+                IfFirstTimeChosen = false;
+                ListOfPossibleSeatNumbers = new List<int[]> { };
             }
-            SetNewTotalPrice();
-            IfFirstTimeChosen = false;
-            ListOfPossibleSeatNumbers = new List<int[]> { };
         }
 
         private void SetNewTotalPrice()

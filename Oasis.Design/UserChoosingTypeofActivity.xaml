@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Oasis.Design"
         mc:Ignorable="d"
-        Title="UserChoosingTypeofActivity" Height="550" Width="900" MouseDown="Window_MouseDown" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" BorderBrush="Transparent">
+        Title="UserChoosingTypeofActivity" Height="550" Width="900" MouseDown="Window_MouseDown" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" BorderBrush="Transparent" ResizeMode="NoResize">
     <Border Width="Auto" Height="Auto" Name="windowFrame"
     
           
@@ -56,7 +56,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Name="OpenBigButton" ToolTip="Развернуть/Уменьшить" Grid.Row="0" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="OpenBigButton_Click">
+                <Button Name="OpenBigButton" ToolTip="Развернуть/Уменьшить" Grid.Row="0" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="13" Height="13" Fill="Gray" />

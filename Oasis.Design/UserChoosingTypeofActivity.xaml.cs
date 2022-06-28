@@ -51,17 +51,6 @@ namespace Oasis.Design
 
         }
 
-        private void OpenBigButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
-            else
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-        }
         private void RemoveInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -98,7 +87,7 @@ namespace Oasis.Design
 
         private void StatisticsInUserChoosingTypeofActivityButton_Click(object sender, RoutedEventArgs e)
         {
-            HistoryOfUserReservations taskWindow = new HistoryOfUserReservations(CurrentUser);
+            HistoryOfUserReservations taskWindow = new HistoryOfUserReservations(CurrentUser, false);
             taskWindow.Show();
             Close();
         }

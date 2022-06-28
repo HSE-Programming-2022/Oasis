@@ -70,19 +70,26 @@ namespace Oasis.Design
 
         private void DataGridBinding()
         {
-
-            SqlConnection DBConnection = new SqlConnection(@"Data Source=vm-as35.staff.corp.local;Initial Catalog=OasisDB;User ID=student;Password=sql2020;Integrated Security=False");
-
-            DBConnection.Open();
-            string cmd = "SELECT Login, Name, Surname, Balance FROM People WHERE Discriminator = 'User'"; // Из какой таблицы нужен вывод 
-            SqlCommand createCommand = new SqlCommand(cmd, DBConnection);
-            createCommand.ExecuteNonQuery();
-
-            SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
-            DataTable dt = new DataTable("People"); // В скобках указываем название таблицы
-            dataAdp.Fill(dt);
-            UsersDataGrid.ItemsSource = dt.DefaultView; // Сам вывод 
-            DBConnection.Close();
+            string DBConnectionString = @"Data Source=vm-as35.staff.corp.local;Initial Catalog=OasisDB;User ID=student;Password=sql2020;Integrated Security=False";
+            DataTable dt = new DataTable("People");
+            using (SqlConnection DBConnection = new SqlConnection(DBConnectionString))
+            {
+                try
+                {
+                    DBConnection.Open();
+                    string cmd = "SELECT Login, Name, Surname, Balance FROM People WHERE Discriminator = 'User'";
+                    SqlCommand createCommand = new SqlCommand(cmd, DBConnection);
+                    createCommand.ExecuteNonQuery();
+                    SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
+                    dataAdp.Fill(dt);
+                    UsersDataGrid.ItemsSource = dt.DefaultView;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    notifier.ShowWarning("На стороне сервера возникла ошибка");
+                }
+            }
         }
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
@@ -141,26 +148,41 @@ namespace Oasis.Design
             }
             else
             {
-                HistoryOfUserReservations window = new HistoryOfUserReservations(SelectedUser);
+                HistoryOfUserReservations window = new HistoryOfUserReservations(SelectedUser, true);
                 window.ShowDialog();
             }
         }
 
         private void SearchingTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            SqlConnection DBConnection = new SqlConnection(@"Data Source=vm-as35.staff.corp.local;Initial Catalog=OasisDB;User ID=student;Password=sql2020;Integrated Security=False");
+            string DBConnectionString = @"Data Source=vm-as35.staff.corp.local;Initial Catalog=OasisDB;User ID=student;Password=sql2020;Integrated Security=False";
+            DataTable dt = new DataTable("People");
+            using (SqlConnection DBConnection = new SqlConnection(DBConnectionString))
+            {
+                try
+                {
+                    DBConnection.Open();
+                    string cmd = "SELECT Login, Name, Surname, Balance FROM People WHERE Discriminator = 'User'";
+                    SqlCommand createCommand = new SqlCommand(cmd, DBConnection);
+                    createCommand.ExecuteNonQuery();
+                    SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
+                    dataAdp.Fill(dt);
+                    DataView SearchView = new DataView(dt);
+                    SearchView.RowFilter = string.Format("Login LIKE '%{0}%'", SearchingTextBox.Text);
+                    UsersDataGrid.ItemsSource = SearchView;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    notifier.ShowWarning("На стороне сервера возникла ошибка");
+                }
+            }
+        }
 
-            DBConnection.Open();
-            string cmd = $"SELECT Id, Login, Name, Surname, Balance FROM People WHERE Discriminator = 'User'"; // Из какой таблицы нужен вывод 
-            SqlCommand createCommand = new SqlCommand(cmd, DBConnection);
-            createCommand.ExecuteNonQuery();
-            SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
-            DataTable dt = new DataTable("People"); // В скобках указываем название таблицы
-            dataAdp.Fill(dt);
-            DataView SearchView = new DataView(dt);
-            SearchView.RowFilter = string.Format("Login LIKE '%{0}%'", SearchingTextBox.Text);
-            UsersDataGrid.ItemsSource = SearchView;
-            DBConnection.Close();
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchingTextBox.Text = "";
+            DataGridBinding();
         }
     }
 }

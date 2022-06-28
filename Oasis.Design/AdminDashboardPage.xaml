@@ -35,9 +35,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
-            <Border Grid.Column="0" Margin="30 30 30 30"   CornerRadius="12">
-                
+
+            <Border Grid.Column="0" Margin="30"   CornerRadius="12">
+
                 <Border.Background>
                     <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                         <GradientStop Color="#827bff" Offset="0"/>
@@ -49,7 +49,6 @@
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
-                            
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Button Grid.Row="1" Visibility="Hidden"></Button>
@@ -57,13 +56,9 @@
                         <TextBlock Text="Посещения" FontWeight="SemiBold" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="16" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" Margin="20 18 0 0"></TextBlock>
                         <TextBlock x:Name="AmountOfClientsPerPeriod" Text="Количество посещений сегодня" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="12" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke" Opacity="0.7"></TextBlock>
                         <TextBlock x:Name="AmountOfClients_TextBlock" Text="129 чел." Foreground="White" FontSize="24" FontWeight="SemiBold"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0"></TextBlock>
-
                     </Grid>
                 </StackPanel>
             </Border>
-
-
-
 
             <Border Grid.Column="1" Margin="30 30 30 30" CornerRadius="12">
                 
@@ -124,7 +119,7 @@
         </Grid>
 
 
-        <Border Grid.Row="2" CornerRadius="20" Background="#243771" Margin="90,10">
+        <Border Grid.Row="2" CornerRadius="20" Background="#243771" Margin="30,10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
