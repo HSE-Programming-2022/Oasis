@@ -585,14 +585,12 @@ namespace Oasis.Design
                 this.Topmost = true;
                 Thread.Sleep(3000);
                 Close();
+
+
             }
             else if(CurrentUser.Balance < totalPrice)
             {
                 notifier.ShowWarning("Не достаточно денег на балансе");
-            }
-            else if (totalPrice == 0)
-            {
-                notifier.ShowWarning("Выберите время для бронирования");
             }
         }
     }

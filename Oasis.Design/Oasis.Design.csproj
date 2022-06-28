@@ -251,5 +251,8 @@
   <ItemGroup>
     <Resource Include="Recources\trash.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recources\order.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
