@@ -136,6 +136,7 @@ namespace Oasis.Design
 
                             smtp.Send(Message);
                         }
+                        EmailConfirmationTextBox.IsReadOnly = true;
                     }
                 }
             }

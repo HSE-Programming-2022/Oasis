@@ -34,7 +34,7 @@ namespace Oasis.Design
                 parentWindow: Application.Current.MainWindow,
                 corner: Corner.BottomCenter,
                 offsetX: 100,
-                offsetY: 5);
+                offsetY: 30);
 
             cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
                 notificationLifetime: TimeSpan.FromSeconds(3),

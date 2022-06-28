@@ -102,6 +102,7 @@ namespace Oasis.Design
         {
             UserProfileWindow taskWindow = new UserProfileWindow(CurrentUser);
             taskWindow.ShowDialog();
+            
         }
     }
 }

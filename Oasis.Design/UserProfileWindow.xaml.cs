@@ -33,7 +33,7 @@ namespace Oasis.Design
                 parentWindow: Application.Current.MainWindow,
                 corner: Corner.BottomCenter,
                 offsetX: 100,
-                offsetY: 5);
+                offsetY: 5); ;
 
             cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
                 notificationLifetime: TimeSpan.FromSeconds(3),
@@ -123,6 +123,7 @@ namespace Oasis.Design
             else
             {
                 notifier.ShowWarning("Значение телефон должно начинаться с +7 и содержать 12 символов");
+                
             }
         }
     }

@@ -64,7 +64,7 @@
                                   Configuration="{Binding Mapper}"/>
                 </lvc:CartesianChart.Series>
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis MinValue="1" MaxValue="4" Labels="{Binding Labels}" DisableAnimations="True">
+                    <lvc:Axis Labels="PC, PS, VIP PC" MaxValue="3" DisableAnimations="True">
                         <lvc:Axis.Separator>
                             <lvc:Separator Step="1"></lvc:Separator>
                         </lvc:Axis.Separator>

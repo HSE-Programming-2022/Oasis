@@ -29,8 +29,8 @@ namespace Oasis.Design
             cfg.PositionProvider = new WindowPositionProvider(
                 parentWindow: Application.Current.MainWindow,
                 corner: Corner.BottomCenter,
-                offsetX: 100,
-                offsetY: 5);
+                offsetX: 5,
+                offsetY: -23);
 
             cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
                 notificationLifetime: TimeSpan.FromSeconds(3),

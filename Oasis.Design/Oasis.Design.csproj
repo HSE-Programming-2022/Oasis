@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>db0a203fb5466f81605f7605f1dcc7cf %281%29.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
@@ -253,6 +256,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recources\order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG_6578.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG_6579.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="db0a203fb5466f81605f7605f1dcc7cf.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="db0a203fb5466f81605f7605f1dcc7cf %281%29.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

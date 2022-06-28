@@ -107,13 +107,8 @@
 
             <Separator Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="2000" Background="Blue" Style="{StaticResource MaterialDesignDarkSeparator}"></Separator>
 
-            <DataGrid x:Name="HistoryOfUserReservationsDataGrid"  SelectionUnit="FullRow" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True" Margin="20"  GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" Grid.Row="2" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All" Foreground="White">
-                <DataGrid.Background>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                        <GradientStop Color="#FFC2CFFF" Offset="0"/>
-                        <GradientStop Color="#FF88A2FF" Offset="1"/>
-                    </LinearGradientBrush>
-                </DataGrid.Background>
+            <DataGrid x:Name="HistoryOfUserReservationsDataGrid" Background="WhiteSmoke" SelectionUnit="FullRow" BorderThickness="0" CanUserResizeRows="False" SnapsToDevicePixels="True" Margin="20"  GridLinesVisibility="None" CanUserReorderColumns="False" SelectionMode="Single"  CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" Grid.Row="2" Style="{DynamicResource MaterialDesignDataGrid}" Template="{DynamicResource DataGridControlTemplate1}" HeadersVisibility="All" Foreground="White">
+                
 
 
                 <DataGrid.Resources>
