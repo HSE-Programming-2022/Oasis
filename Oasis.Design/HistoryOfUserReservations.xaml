@@ -127,7 +127,8 @@
                     <materialDesign:DataGridTextColumn Foreground="Black" Header="Номер места" IsReadOnly="True" Width="*" Binding="{Binding SeatId}"></materialDesign:DataGridTextColumn>
 
                     <materialDesign:DataGridTextColumn Foreground="Black" CanUserResize="False"  Header="Зал" IsReadOnly="True" Width="*" Binding="{Binding Name}"></materialDesign:DataGridTextColumn>
-                    <materialDesign:DataGridTextColumn Foreground="Black" CanUserResize="False"  Header="Время" IsReadOnly="True" Width="*" Binding="{Binding StartTime}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn Foreground="Black" CanUserResize="False"  Header="Начало" IsReadOnly="True" Width="*" Binding="{Binding StartTime, StringFormat=\{0:dd.MM.yy HH:mm\}}"></materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn Foreground="Black" CanUserResize="False"  Header="Кол-во часов" IsReadOnly="True" Width="*" Binding="{Binding Hours}"></materialDesign:DataGridTextColumn>
                     <materialDesign:DataGridTextColumn Foreground="Black" CanUserResize="False" Header="Стоимость" IsReadOnly="True" Width="*" Binding="{Binding Price}"></materialDesign:DataGridTextColumn>
                     <DataGridTemplateColumn Header="Отмена" CanUserResize="False" IsReadOnly="True" Width="99">
 

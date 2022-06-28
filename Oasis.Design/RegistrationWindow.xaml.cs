@@ -87,9 +87,27 @@ namespace Oasis.Design
             Close();
         }
 
+        private bool IsEmailValid(string Email)
+        {
+
+            if (Email.EndsWith("."))
+            {
+                return false;
+            }
+            try
+            {
+                var ValidEmail = new System.Net.Mail.MailAddress(Email);
+                return ValidEmail.Address == Email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private void SendCodeButton_Click(object sender, RoutedEventArgs e)
         {
-            NewUserEmail = EmailConfirmationTextBox.Text;
+            NewUserEmail = EmailConfirmationTextBox.Text.Trim();
             bool EmailExists = false;
             if (NewUserEmail == "")
             {
@@ -97,46 +115,52 @@ namespace Oasis.Design
             }
             else
             {
-                using (Context _context = new Context())
+                if (IsEmailValid(NewUserEmail))
                 {
-                    foreach (var item in _context.People)
+                    using (Context _context = new Context())
                     {
-                        if (item is User)
+                        foreach (var item in _context.People)
                         {
-                            User CurrentUser = item as User;
-                            if (CurrentUser.Email == NewUserEmail)
+                            if (item is User)
                             {
-                                EmailExists = true;
-                                notifier.ShowWarning("Пользователь с данной почтой уже существует");
-                                break;
+                                User CurrentUser = item as User;
+                                if (CurrentUser.Email == NewUserEmail)
+                                {
+                                    EmailExists = true;
+                                    notifier.ShowWarning("Пользователь с данной почтой уже существует");
+                                    break;
+                                }
+                            }
+                        }
+                        if (!EmailExists)
+                        {
+                            SendCodeButton.Visibility = Visibility.Hidden;
+                            CodeConfirmationTextBox.Visibility = Visibility.Visible;
+                            ConfirmButton.Visibility = Visibility.Visible;
+
+                            using (var smtp = new SmtpClient())
+                            {
+                                smtp.Connect("smtp.yandex.ru", 465, true);
+                                smtp.Authenticate("oasis.computer.club@yandex.ru", "brbhekcpgskbzgfo");
+
+                                VerificationCode = new Random().Next(1000, 9999).ToString("D4");
+                                var BodyBldr = new BodyBuilder();
+                                BodyBldr.TextBody = "Ваш код: " + VerificationCode;
+
+                                var Message = new MimeMessage();
+                                Message.Subject = "Подтверждение почты для регистрации";
+                                Message.Body = BodyBldr.ToMessageBody();
+                                Message.To.Add(MailboxAddress.Parse(NewUserEmail));
+                                Message.From.Add(new MailboxAddress("Компьютерный клуб Oasis", "oasis.computer.club@yandex.ru"));
+
+                                smtp.Send(Message);
                             }
                         }
                     }
-
-                    if (!EmailExists)
-                    {
-                        SendCodeButton.Visibility = Visibility.Hidden;
-                        CodeConfirmationTextBox.Visibility = Visibility.Visible;
-                        ConfirmButton.Visibility = Visibility.Visible;
-
-                        using (var smtp = new SmtpClient())
-                        {
-                            smtp.Connect("smtp.yandex.ru", 465, true);
-                            smtp.Authenticate("oasis.computer.club@yandex.ru", "brbhekcpgskbzgfo");
-
-                            VerificationCode = new Random().Next(1000, 9999).ToString("D4");
-                            var BodyBldr = new BodyBuilder();
-                            BodyBldr.TextBody = "Ваш код: " + VerificationCode;
-
-                            var Message = new MimeMessage();
-                            Message.Subject = "Подтверждение почты для регистрации";
-                            Message.Body = BodyBldr.ToMessageBody();
-                            Message.To.Add(MailboxAddress.Parse(NewUserEmail));
-                            Message.From.Add(new MailboxAddress("Компьютерный клуб Oasis", "oasis.computer.club@yandex.ru"));
-
-                            smtp.Send(Message);
-                        }
-                    }
+                }
+                else
+                {
+                    notifier.ShowWarning("Введенная почта не соответствует формату");
                 }
             }
         }
