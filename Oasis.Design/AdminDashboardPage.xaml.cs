@@ -171,7 +171,7 @@ namespace Oasis.Design
                 {
                     ints.Add(dicitionaryOfTime[i + j].Count());
                 }
-                listOfValues.Add(ints.Count());
+                listOfValues.Add(ints.ToArray().Sum());
                 ints.Clear();
             }
             listOfValues.Insert(0, listOfValues[0]); // графику нужно какое-то 0-вое значение, мы приравниваем его к первому

@@ -61,7 +61,7 @@
             </Border>
 
             <Border Grid.Column="1" Margin="30 30 30 30" CornerRadius="12">
-                
+
                 <Border.Background>
                     <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                         <GradientStop Color="#fd8a87" Offset="0"/>
@@ -81,7 +81,7 @@
                         <TextBlock Text="Отыгранные часы" FontWeight="SemiBold" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="16" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" Margin="20 18 0 0"></TextBlock>
                         <TextBlock x:Name="NumberOfSpentHoursPerPeriod" Text="Статистика за сегодня" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="12" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke" Opacity="0.7"></TextBlock>
                         <TextBlock Name="NumberOfSpentHours" Text="129 ч." Foreground="White" FontSize="24" FontWeight="SemiBold"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0"></TextBlock>
-                       
+
 
                     </Grid>
                 </StackPanel>
@@ -91,7 +91,7 @@
 
 
             <Border Grid.Column="2"  Margin="30 30 30 30"  CornerRadius="12">
-                
+
                 <Border.Background>
                     <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                         <GradientStop Color="#fc84cb" Offset="0"/>
@@ -109,7 +109,7 @@
                         <materialDesign:PackIcon Kind="CashMultiple" Foreground="White" Grid.Row="1" Width="65" Height="65" FontFamily="Bold" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 0 10 0"></materialDesign:PackIcon>
                         <TextBlock Text="Общая выручка" FontWeight="SemiBold" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="16" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" Margin="20 18 0 0"></TextBlock>
                         <TextBlock x:Name="TotalRevenuePerPeriod" Text="Статистика за сегодня" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="12" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke" Opacity="0.7"></TextBlock>
-                        <TextBlock x:Name="TotalRevenue_TextBlock" Text="129 р." Foreground="White" FontSize="24" FontWeight="SemiBold"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0"></TextBlock>                        
+                        <TextBlock x:Name="TotalRevenue_TextBlock" Text="129 р." Foreground="White" FontSize="24" FontWeight="SemiBold"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0"></TextBlock>
                     </Grid>
                 </StackPanel>
             </Border>
@@ -147,13 +147,13 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="280" Foreground="#717eb2" Margin="5"></TextBlock>
-                        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="240" Foreground="#717eb2" Margin="5"></TextBlock>
-                        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="200" Foreground="#717eb2" Margin="5"></TextBlock>
-                        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="160" Foreground="#717eb2" Margin="5"></TextBlock>
-                        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="120" Foreground="#717eb2" Margin="5"></TextBlock>
-                        <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="80" Foreground="#717eb2" Margin="5"></TextBlock>
-                        <TextBlock Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="40" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="10" Text="100" Foreground="#717eb2" Margin="3,0,0,0"/>
+                        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="85" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="70" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="55" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="40" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="25" Foreground="#717eb2" Margin="5"></TextBlock>
+                        <TextBlock Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="5" Foreground="#717eb2" Margin="5"></TextBlock>
                         <TextBlock Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="0" Foreground="#717eb2" Margin="5"></TextBlock>
                     </Grid>
                 </Grid>
@@ -188,7 +188,7 @@
 
 
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis MinValue="0" MaxValue="280" Foreground="#717eb2" ShowLabels="False" >
+                        <lvc:Axis MinValue="0" MaxValue="100" Foreground="#717eb2" ShowLabels="False" >
                             <lvc:Axis.Separator>
                                 <lvc:Separator StrokeThickness="0"></lvc:Separator>
                             </lvc:Axis.Separator>
@@ -206,7 +206,7 @@
                         </lvc:LineSeries>
                     </lvc:CartesianChart.Series>
                 </lvc:CartesianChart>
-                
+
             </Grid>
         </Border>
     </Grid>

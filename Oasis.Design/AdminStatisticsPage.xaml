@@ -54,17 +54,17 @@
                     <lvc:PieSeries Name="PCPartOfPieChart" Title="PC" Values="33" DataLabels="True"/>
                     <lvc:PieSeries Name="VIP_PCPartOfPieChart" Title="VIP PC" Values="33" DataLabels="True"/>
                     <lvc:PieSeries Name="PSPartOfPieChart" Title="PS" Values="33" DataLabels="True"/>
-                    
                 </lvc:PieChart.Series>
             </lvc:PieChart>
+
             <lvc:CartesianChart Grid.Column="1" Margin="40 40 40 40">
                 <lvc:CartesianChart.Series>
-                    <lvc:ColumnSeries Title="Среднее количество отыгранных часов"
+                    <lvc:ColumnSeries Name="StatisticsGraph" Title="Среднее количество отыгранных часов"
                                   Values="{Binding Results}"
                                   Configuration="{Binding Mapper}"/>
                 </lvc:CartesianChart.Series>
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Labels="{Binding Labels}" DisableAnimations="True">
+                    <lvc:Axis MinValue="1" MaxValue="4" Labels="{Binding Labels}" DisableAnimations="True">
                         <lvc:Axis.Separator>
                             <lvc:Separator Step="1"></lvc:Separator>
                         </lvc:Axis.Separator>
@@ -74,15 +74,9 @@
                     <lvc:Axis LabelFormatter="{Binding MillionFormatter}"></lvc:Axis>
                 </lvc:CartesianChart.AxisY>
             </lvc:CartesianChart>
-            
-            
+
+
         </Grid>
-
-
-
-
-
-
     </Grid>
 </Page>
  
