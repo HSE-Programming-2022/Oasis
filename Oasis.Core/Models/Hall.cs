@@ -18,18 +18,11 @@ namespace Oasis.Core.Models
 
         public int Price { get; set; }
         
-        public ICollection<Seat> Seats { get; set; } //Спросить у Юры оставить list в hall или использовать фильтр через seats
+        public ICollection<Seat> Seats { get; set; }
 
         public Hall()
         {
             Seats = new List<Seat>();
         }
-        //public Hall(string name, string type, int price, List<Seat> seats)
-        //{
-        //    Name = name;
-        //    Type = type;
-        //    Price = price;
-        //    Seats = seats;
-        //}
     }
 }

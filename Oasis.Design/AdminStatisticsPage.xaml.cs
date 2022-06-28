@@ -109,7 +109,6 @@ namespace Oasis.Design
             int pcProfit = (int)profitPerHall["PC"];
             int vipPcProfit = (int)profitPerHall["VIP PC"];
             int psProfit = (int)profitPerHall["PS"];
-            int qwdfwdsf = pcProfit / totalProfit * 100;
             PCPartOfPieChart.Values = new ChartValues<int> { (int)((float)pcProfit / (float)totalProfit * 100) };
             VIP_PCPartOfPieChart.Values = new ChartValues<int> { (int)((float)vipPcProfit / totalProfit * 100) };
             PSPartOfPieChart.Values = new ChartValues<int> { (int)((float)psProfit / totalProfit * 100) };

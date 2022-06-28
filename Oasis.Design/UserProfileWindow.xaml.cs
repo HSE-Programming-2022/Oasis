@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Oasis.Core;
 using Oasis.Core.Models;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace Oasis.Design
 {
@@ -21,7 +25,22 @@ namespace Oasis.Design
     /// </summary>
     public partial class UserProfileWindow : Window
     {
-        User CurrentUser;
+        private User CurrentUser;
+
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.BottomCenter,
+                offsetX: 100,
+                offsetY: 5);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
 
         public UserProfileWindow(User user)
         {
@@ -49,13 +68,11 @@ namespace Oasis.Design
             NewLoginTextBox.Text = CurrentUser.Login;
             NewNameTextBox.Text = CurrentUser.Name;
             NewSurenameTextBox.Text = CurrentUser.Surname;
-
-
         }
 
         private void ExitFromTopUpBalaneButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -63,8 +80,6 @@ namespace Oasis.Design
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
-
-        
 
         private void ChangeProfileDetailsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -84,24 +99,31 @@ namespace Oasis.Design
 
         private void SaveChangefProfileDetailsButton_Click(object sender, RoutedEventArgs e)
         {
-            using (Context _context = new Context())
+            if(NewPhoneTextBox.Text.Contains("+7") && NewPhoneTextBox.Text.Length == 12)
             {
-                foreach (var item in _context.People)
+                using (Context _context = new Context())
                 {
-                    if (item is User)
+                    foreach (var item in _context.People)
                     {
-                        if ((item as User).Email == CurrentUser.Email)
+                        if (item is User)
                         {
-                            (item as User).Phone = NewPhoneTextBox.Text;
-                            (item as User).Login = NewLoginTextBox.Text;
-                            (item as User).Name = NewNameTextBox.Text;
-                            (item as User).Surname = NewSurenameTextBox.Text;
+                            if ((item as User).Email == CurrentUser.Email)
+                            {
+                                (item as User).Phone = NewPhoneTextBox.Text;
+                                (item as User).Login = NewLoginTextBox.Text;
+                                (item as User).Name = NewNameTextBox.Text;
+                                (item as User).Surname = NewSurenameTextBox.Text;
+                            }
                         }
                     }
+                    _context.SaveChanges();
                 }
-                _context.SaveChanges();
+                Close();
             }
-            Close();
+            else
+            {
+                notifier.ShowWarning("Значение телефон должно начинаться с +7 и содержать 12 символов");
+            }
         }
     }
 }

@@ -29,10 +29,13 @@ namespace Oasis.Design
     /// </summary>
     public partial class RegistrationWindow : Window
     {
-        string NewUserLogin;
-        string NewUserPassword;
-        string NewUserEmail;
-        string VerificationCode;
+        private string NewUserLogin;
+
+        private string NewUserPassword;
+
+        private string NewUserEmail;
+
+        private string VerificationCode;
 
         Notifier notifier = new Notifier(cfg =>
         {
@@ -151,8 +154,6 @@ namespace Oasis.Design
                 notifier.ShowWarning("Регистрация прошла успешно!");
 
                 MainWindow taskWindow = new MainWindow();
-
-                taskWindow.Owner = this.Owner;
                 taskWindow.Show();
                 Close();
             }

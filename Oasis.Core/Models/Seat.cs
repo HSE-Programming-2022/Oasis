@@ -17,9 +17,9 @@ namespace Oasis.Core.Models
 
         public Hall Hall { get; set; }
 
-        //public Seat()
-        //{
-            
-        //}
+        public Seat()
+        {
+
+        }
     }
 }

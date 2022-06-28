@@ -43,6 +43,7 @@ namespace Oasis.Design
         {
             InitializeComponent();
         }
+
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             using (Context _context = new Context())
@@ -103,8 +104,6 @@ namespace Oasis.Design
         private void RigistrationButton_Click(object sender, RoutedEventArgs e)
         {
             UserRegisteringWindow taskWindow = new UserRegisteringWindow();
-
-            taskWindow.Owner = this.Owner;
             taskWindow.Show();
             Close();
         }
@@ -113,37 +112,28 @@ namespace Oasis.Design
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
-
         }
 
         private void ForgetPasswordButton_Click(object sender, RoutedEventArgs e)
         {
             UserForgetPasswordWindow taskWindow = new UserForgetPasswordWindow();
-
-            taskWindow.Owner = this.Owner;
             taskWindow.Show();
             Close();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
-        
-        private void LoginOrEmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
 
         private void GoToWebSiteButton_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://ez-katka.ru/");
-
         }
 
         private void GoToVkButton_Click(object sender, RoutedEventArgs e)

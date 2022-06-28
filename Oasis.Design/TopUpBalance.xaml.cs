@@ -25,8 +25,9 @@ namespace Oasis.Design
     /// </summary>
     public partial class TopUpBalance : Window
     {
-        public User CurrentUser { get; set; }
-        public Button main;
+        private User CurrentUser { get; set; }
+
+        private Button BalanceButtonNew;
 
         Notifier notifier = new Notifier(cfg =>
         {
@@ -43,7 +44,7 @@ namespace Oasis.Design
             cfg.Dispatcher = Application.Current.Dispatcher;
         });
 
-        public TopUpBalance(User user, Button win)
+        public TopUpBalance(User user, Button BalanceButtonOld)
         {
             InitializeComponent();
             using (Context _context = new Context())
@@ -60,12 +61,12 @@ namespace Oasis.Design
                 }
             }
             CurrentUserBalance.Text = $"{CurrentUser.Balance} р.";
-            main = win;
+            BalanceButtonNew = BalanceButtonOld;
         }
 
         private void ExitFromTopUpBalaneButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -78,22 +79,27 @@ namespace Oasis.Design
         {
             try
             {
-                using (Context _context = new Context())
+                if (int.Parse(SumOfUserTopUp.Text) < 100)
+                    notifier.ShowWarning("Нельзя пополнить баланс меньше чем на 100 рублей");
+                else
                 {
-                    foreach (var item in _context.People)
+                    using (Context _context = new Context())
                     {
-                        if (item is User)
+                        foreach (var item in _context.People)
                         {
-                            if ((item as User).Email == CurrentUser.Email)
+                            if (item is User)
                             {
-                                (item as User).Balance += int.Parse(SumOfUserTopUp.Text);
-                                main.Content = $"{(item as User).Balance} р.";
+                                if ((item as User).Email == CurrentUser.Email)
+                                {
+                                    (item as User).Balance += int.Parse(SumOfUserTopUp.Text);
+                                    BalanceButtonNew.Content = $"{(item as User).Balance} р.";
+                                }
                             }
                         }
+                        _context.SaveChanges();
                     }
-                    _context.SaveChanges();
+                    Close();
                 }
-                this.Close();
             }
             catch (Exception ex)
             {

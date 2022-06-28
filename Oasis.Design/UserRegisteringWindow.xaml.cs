@@ -57,12 +57,13 @@ namespace Oasis.Design
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -107,11 +108,6 @@ namespace Oasis.Design
                     }
                 }
             }
-        }
-
-        private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

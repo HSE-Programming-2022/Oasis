@@ -29,8 +29,9 @@ namespace Oasis.Design
     /// </summary>
     public partial class UserForgetPasswordWindow : Window
     {
-        string UserEmail;
-        string VerificationCode;
+        private string UserEmail;
+
+        private string VerificationCode;
 
         Notifier notifier = new Notifier(cfg =>
         {
@@ -114,8 +115,6 @@ namespace Oasis.Design
             if (CodeConfirmationTextBox.Text == VerificationCode)
             {
                 CreatingNewPassword taskWindow = new CreatingNewPassword(UserEmail);
-
-                taskWindow.Owner = this.Owner;
                 taskWindow.Show();
                 Close();
             }
@@ -140,7 +139,7 @@ namespace Oasis.Design
 
         private void RemoveInPasswordrecoveryButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
     }
 }
