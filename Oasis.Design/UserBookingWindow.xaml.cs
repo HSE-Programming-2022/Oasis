@@ -18,6 +18,7 @@ using ToastNotifications;
 using ToastNotifications.Position;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
+using System.Threading;
 
 namespace Oasis.Design
 {
@@ -36,6 +37,7 @@ namespace Oasis.Design
         List<int[]> ListOfPossibleSeatNumbers = new List<int[]> { };
         int price;
         string Type;
+        bool IsAdmin;
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
@@ -60,9 +62,13 @@ namespace Oasis.Design
                 if (type != "All")
                 {
                     ComboBoxHall.ItemsSource = context.Halls.Where(x => x.Type == type).Select(x => x.Name).ToList();
+                    IsAdmin = false;
                 }
                 else
+                {
                     ComboBoxHall.ItemsSource = context.Halls.Select(x => x.Name).ToList();
+                    IsAdmin = true;
+                }
                 foreach (var item in context.People)
                 {
                     if (item is User)
@@ -138,16 +144,7 @@ namespace Oasis.Design
 
         private void OpenPreviousWindow()
         {
-            if (Type == "All")
-            {
-                AdminWindow UsersInAdmin = new AdminWindow();
-                UsersInAdmin.Show();
-                UsersInAdmin.Admin.Content = new AdminUsersPage();
-                UsersInAdmin.DashboardStickButton.Visibility = Visibility.Hidden;
-                UsersInAdmin.UsersStickButton.Visibility = Visibility.Visible;
-                UsersInAdmin.StatisticksStickButton.Visibility = Visibility.Hidden;
-            }
-            else
+            if (!IsAdmin)
             {
                 UserChoosingTypeofActivity UserWindow = new UserChoosingTypeofActivity(CurrentUser);
                 UserWindow.Show();
@@ -165,18 +162,6 @@ namespace Oasis.Design
             this.WindowState = WindowState.Minimized;
         }
 
-        private void OpenBigButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
-            else
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-        }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -186,7 +171,7 @@ namespace Oasis.Design
         private void ChoosingDatePicker_SelectedDateChanged_1(object sender, SelectionChangedEventArgs e)
         {
             _selectedDate = DateTime.Parse(ChoosingDatePicker.SelectedDate.ToString());
-            if (ComboBoxNumberOfPeople.SelectedItem != null && ComboBoxHall.SelectedItem != null)
+            if ((ComboBoxNumberOfPeople.SelectedItem != null && ComboBoxHall.SelectedItem != null) || (ComboBoxHall.SelectedItem != null && Type == "PS"))
             {
                 SortedDictionary = CheckingFreeTimeSlots();
                 SetButtons();
@@ -199,12 +184,21 @@ namespace Oasis.Design
         private void ComboBoxHall_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _selectedHall = ComboBoxHall.SelectedItem.ToString();
+            if (_selectedHall.Contains("PS"))
+            {
+                _numberOfPeople = 1;
+                Type = "PS";
+            }
+            else if (_selectedHall.Contains("VIP"))
+                Type = "VIP PC";
+            else
+                Type = "PC";
             using (Context context = new Context())
             {
                 ComboBoxNumberOfPeople.ItemsSource = Enumerable.Range(1, context.Seats.Include(x => x.Hall).Where(n => n.Hall.Name == _selectedHall).ToList().Count()).ToArray();
                 price = context.Halls.Where(x => _selectedHall == x.Name).ToList()[0].Price;
             }
-            if (ComboBoxNumberOfPeople.SelectedItem != null && ChoosingDatePicker.SelectedDate != null)
+            if ((ComboBoxNumberOfPeople.SelectedItem != null && ChoosingDatePicker.SelectedDate != null) || (ChoosingDatePicker.SelectedDate != null && Type == "PS"))
             {
                 SortedDictionary = CheckingFreeTimeSlots();
                 SetButtons();
@@ -217,15 +211,18 @@ namespace Oasis.Design
 
         private void ComboBoxNumberOfPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _numberOfPeople = Convert.ToInt32(ComboBoxNumberOfPeople.SelectedItem.ToString());
-            if (ComboBoxHall.SelectedItem != null && ChoosingDatePicker.SelectedDate != null)
+            if(ComboBoxNumberOfPeople.SelectedItem != null)
             {
-                SortedDictionary = CheckingFreeTimeSlots();
-                SetButtons();
+                _numberOfPeople = Convert.ToInt32(ComboBoxNumberOfPeople.SelectedItem.ToString());
+                if (ComboBoxHall.SelectedItem != null && ChoosingDatePicker.SelectedDate != null)
+                {
+                    SortedDictionary = CheckingFreeTimeSlots();
+                    SetButtons();
+                }
+                SetNewTotalPrice();
+                IfFirstTimeChosen = false;
+                ListOfPossibleSeatNumbers = new List<int[]> { };
             }
-            SetNewTotalPrice();
-            IfFirstTimeChosen = false;
-            ListOfPossibleSeatNumbers = new List<int[]> { };
         }
 
         private void SetNewTotalPrice()
@@ -242,20 +239,18 @@ namespace Oasis.Design
         private void SetButtons()
         {
             int currhour = 0;
-            if (_selectedDate >= DateTime.Today)
+            if (_selectedDate == DateTime.Today)
+                currhour = DateTime.Now.Hour + 1;
+            EnableAllButtons(false);
+            for (int i = currhour; i < allbuttons.Count(); i++)
             {
-                if (_selectedDate == DateTime.Today)
-                    currhour = DateTime.Now.Hour + 1;
-                EnableAllButtons(false);
-                for (int i = currhour; i < allbuttons.Count(); i++)
+                if (_selectedDate >= DateTime.Today)
                 {
                     if (_numberOfPeople <= SortedDictionary[i].Count && IfAnySeatsTogether(allbuttons[i]))
                         allbuttons[i].IsEnabled = true;
-                    allbuttons[i].Background = (Brush)(new BrushConverter()).ConvertFrom("#FF673AB7");
                 }
+                allbuttons[i].Background = (Brush)(new BrushConverter()).ConvertFrom("#FF673AB7");
             }
-            else
-                EnableAllButtons(false);
         }
 
         private void EnableAllButtons(bool fl)
@@ -561,9 +556,10 @@ namespace Oasis.Design
                 }
             }
             totalPrice = totalPrice * _numberOfPeople;
-            if (CurrentUser.Balance >= totalPrice)
+            if (CurrentUser.Balance >= totalPrice && totalPrice != 0)
             {
-                using(Context _context = new Context())
+                notifier.ShowSuccess("Места успешно забронированы");
+                using (Context _context = new Context())
                 {
                     foreach (var item in _context.People)
                     {
@@ -586,9 +582,13 @@ namespace Oasis.Design
                     _context.SaveChanges();
                 }
                 OpenPreviousWindow();
+                this.Topmost = true;
+                Thread.Sleep(3000);
                 Close();
+
+
             }
-            else
+            else if(CurrentUser.Balance < totalPrice)
             {
                 notifier.ShowWarning("Не достаточно денег на балансе");
             }

@@ -54,7 +54,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Name="OpenBigButton" Grid.Row="0" ToolTip="Развернуть/Уменьшить" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Click="OpenBigButton_Click">
+                <Button Name="OpenBigButton" Grid.Row="0" ToolTip="Развернуть/Уменьшить" Grid.Column="1" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">
                     <Button.Template>
                         <ControlTemplate>
                             <Ellipse Width="13" Height="13" Fill="Gray" />

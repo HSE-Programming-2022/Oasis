@@ -21,6 +21,7 @@ using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
+using System.Threading;
 
 namespace Oasis.Design
 {
@@ -30,6 +31,10 @@ namespace Oasis.Design
     public partial class HistoryOfUserReservations : Window
     {
         public User CurrentUser { get; set; }
+
+        bool IfMaximized = false;
+
+        bool IsAdmin;
 
         Notifier notifier = new Notifier(cfg =>
         {
@@ -46,24 +51,17 @@ namespace Oasis.Design
             cfg.Dispatcher = Application.Current.Dispatcher;
         });
 
-        public HistoryOfUserReservations(User user)
+        public HistoryOfUserReservations(User user, bool isAdmin)
         {
-
+            CurrentUser = user;
             InitializeComponent();
-            using (Context _context = new Context())
+            RefreshBalance();
+            IsAdmin = isAdmin;
+            if (isAdmin)
             {
-                foreach (var item in _context.People)
-                {
-                    if (item is User)
-                    {
-                        if ((item as User).Email == user.Email)
-                        {
-                            CurrentUser = item as User;
-                        }
-                    }
-                }
+                ProfileButton.Visibility = Visibility.Collapsed;
+                BalanceUserHistoryButton.Visibility = Visibility.Collapsed;
             }
-            BalanceUserHistoryButton.Content = $"{CurrentUser.Balance} р.";
             FillGrid();
         }
 
@@ -103,13 +101,13 @@ namespace Oasis.Design
                     {
                         if (item.StartTime > DateTime.Now)
                         {
+                            notifier.ShowSuccess("Успешно отменено, деньги возвращены на ваш баланс");
                             float ReservationPrice = (float)item.Price;
                             CurrentUser.Balance += ReservationPrice;
                             _context.People.Attach(CurrentUser);
                             _context.Entry(CurrentUser).Property(x => x.Balance).IsModified = true;
                             _context.Reservations.Remove(item);
                             ReservationDeleted = true;
-                            notifier.ShowSuccess("Успешно отменено, деньги возвращены на ваш баланс");
                             break;
                         } 
                         else
@@ -122,10 +120,28 @@ namespace Oasis.Design
             }
             if (ReservationDeleted)
             {
-                HistoryOfUserReservations taskWindow = new HistoryOfUserReservations(CurrentUser);
-                taskWindow.Show();
-                Close();
+                Thread.Sleep(3000);
+                FillGrid();
+                RefreshBalance();
             }
+        }
+
+        private void RefreshBalance()
+        {
+            using (Context _context = new Context())
+            {
+                foreach (var item in _context.People)
+                {
+                    if (item is User)
+                    {
+                        if ((item as User).Email == CurrentUser.Email)
+                        {
+                            CurrentUser = item as User;
+                        }
+                    }
+                }
+            }
+            BalanceUserHistoryButton.Content = $"{CurrentUser.Balance} р.";
         }
 
         private void LogOutFromUserHistoryButton_Click(object sender, RoutedEventArgs e)
@@ -152,19 +168,26 @@ namespace Oasis.Design
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            this.Close();
         }
 
         private void OpenBigButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.WindowState == WindowState.Maximized)
+            if (!IfMaximized)
             {
-                this.WindowState = WindowState.Normal;
+                this.Left = SystemParameters.WorkArea.Left;
+                this.Top = SystemParameters.WorkArea.Top;
+                this.Height = SystemParameters.WorkArea.Height;
+                this.Width = SystemParameters.WorkArea.Width;
+                IfMaximized = true;
             }
             else
             {
-                this.WindowState = WindowState.Maximized;
-                
+                IfMaximized = false;
+                this.Height = 550;
+                this.Width = 900;
+                this.Left = (SystemParameters.WorkArea.Width - Width) / 2 + SystemParameters.WorkArea.Left;
+                this.Top = (SystemParameters.WorkArea.Height - Height) / 2 + SystemParameters.WorkArea.Top;
             }
         }
 

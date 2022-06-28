@@ -19,9 +19,13 @@ namespace Oasis.Design
     /// </summary>
     public partial class AdminWindow : Window
     {
+        bool IfMaximized = false;
+
         public AdminWindow()
         {
             InitializeComponent();
+            Admin.Content = new AdminDashboardPage();
+            DashboardStickButton.Visibility = Visibility.Visible;
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -37,11 +41,6 @@ namespace Oasis.Design
             DashboardStickButton.Visibility = Visibility.Visible;
             UsersStickButton.Visibility = Visibility.Hidden;
             StatisticksStickButton.Visibility = Visibility.Hidden;
-
-
-
-
-
         }
 
         private void GoToStatisticsPageButton_Click(object sender, RoutedEventArgs e)
@@ -72,13 +71,21 @@ namespace Oasis.Design
 
         private void OpenBigButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.WindowState == WindowState.Maximized)
+            if (!IfMaximized)
             {
-                this.WindowState = WindowState.Normal;
+                this.Left = SystemParameters.WorkArea.Left;
+                this.Top = SystemParameters.WorkArea.Top;
+                this.Height = SystemParameters.WorkArea.Height;
+                this.Width = SystemParameters.WorkArea.Width;
+                IfMaximized = true;
             }
             else
             {
-                this.WindowState = WindowState.Maximized;
+                IfMaximized = false;
+                this.Height = 550;
+                this.Width = 900;
+                this.Left = (SystemParameters.WorkArea.Width - Width) / 2 + SystemParameters.WorkArea.Left;
+                this.Top = (SystemParameters.WorkArea.Height - Height) / 2 + SystemParameters.WorkArea.Top;
             }
         }
 

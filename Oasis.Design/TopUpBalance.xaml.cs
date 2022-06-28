@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Oasis.Core;
 using Oasis.Core.Models;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace Oasis.Design
 {
@@ -24,7 +28,22 @@ namespace Oasis.Design
         public User CurrentUser { get; set; }
         public Button main;
 
-        public TopUpBalance( User user, Button win)
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.BottomCenter,
+                offsetX: 100,
+                offsetY: 5);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
+
+        public TopUpBalance(User user, Button win)
         {
             InitializeComponent();
             using (Context _context = new Context())
@@ -57,22 +76,30 @@ namespace Oasis.Design
 
         private void TopUpButton_Click(object sender, RoutedEventArgs e)
         {
-            using(Context _context = new Context())
+            try
             {
-                foreach(var item in _context.People)
+                using (Context _context = new Context())
                 {
-                    if(item is User)
+                    foreach (var item in _context.People)
                     {
-                        if((item as User).Email == CurrentUser.Email)
+                        if (item is User)
                         {
-                            (item as User).Balance += int.Parse(SumOfUserTopUp.Text);
-                            main.Content = $"{(item as User).Balance} р.";
+                            if ((item as User).Email == CurrentUser.Email)
+                            {
+                                (item as User).Balance += int.Parse(SumOfUserTopUp.Text);
+                                main.Content = $"{(item as User).Balance} р.";
+                            }
                         }
                     }
+                    _context.SaveChanges();
                 }
-                _context.SaveChanges();
+                this.Close();
             }
-            this.Close();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                notifier.ShowWarning("Неправильный формат ввода");
+            }
         }
     }
 }

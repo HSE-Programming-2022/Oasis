@@ -45,9 +45,9 @@
                         <RowDefinition/>
                         <RowDefinition Height="75"/>
                     </Grid.RowDefinitions>
-                    <Button Name="GoToDashboardPageButton" Grid.Row="2" Grid.ColumnSpan="2" Height="52" Content="Dashboard" Foreground="#c2cfff" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToDashboardPageButton_Click"></Button>
-                    <Button Name="GoToUsersPageButton" Grid.Row="3" Content="Users"  Foreground="#c2cfff" Height="50" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToUsersPageButton_Click" Grid.ColumnSpan="2"></Button>
-                    <Button x:Name="GoToStatisticsPageButton"  Grid.Row="4" Content="Statistics"  Foreground="#c2cfff" Height="50" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToStatisticsPageButton_Click" Grid.ColumnSpan="2"></Button>
+                    <Button Name="GoToDashboardPageButton" Grid.Row="2" Grid.ColumnSpan="2" Height="52" Content="Дашборд" Foreground="#c2cfff" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToDashboardPageButton_Click"></Button>
+                    <Button Name="GoToUsersPageButton" Grid.Row="3" Content="Пользователи"  Foreground="#c2cfff" Height="50" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToUsersPageButton_Click" Grid.ColumnSpan="2"></Button>
+                    <Button x:Name="GoToStatisticsPageButton"  Grid.Row="4" Content="Статистика"  Foreground="#c2cfff" Height="50" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="GoToStatisticsPageButton_Click" Grid.ColumnSpan="2"></Button>
                     <Button Name="DashboardStickButton" BorderBrush="{x:Null}" Background="White" Grid.Column="0" Visibility="Hidden"  Grid.Row="2"  Margin="0,1" Height="Auto" />
                     <Button Name="UsersStickButton"  Background="White" Grid.Column="0" BorderBrush="{x:Null}" Visibility="Hidden" Grid.Row="3" Width="20"  Margin="0,1" Height="Auto" ></Button>
                     <Button Name="StatisticksStickButton" BorderBrush="{x:Null}" Background="White" Grid.Column="0" Visibility="Hidden" Grid.Row="4" Width="20" Margin="0,1" Height="Auto"></Button>
@@ -58,7 +58,7 @@
                             <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
                         <materialDesign:PackIcon Kind="ExitToApp" HorizontalAlignment="Right" Grid.Column="0" VerticalAlignment="Center" Foreground="#c2cfff" ></materialDesign:PackIcon>
-                        <Button Name="LogOutAdminButton" Foreground="#c2cfff" Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" Content="Log out" HorizontalAlignment="Left" VerticalAlignment="Center" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="LogOutAdminButton_Click"></Button>
+                        <Button Name="LogOutAdminButton" Foreground="#c2cfff" Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" Content="Выйти" HorizontalAlignment="Left" VerticalAlignment="Center" materialDesign:ShadowAssist.ShadowDepth="Depth0" Click="LogOutAdminButton_Click"></Button>
                     </Grid>
 
 
