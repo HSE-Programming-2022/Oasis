@@ -29,8 +29,9 @@ namespace Oasis.Design
     /// </summary>
     public partial class AdminStatisticsPage : Page
     {
-        DateTime _startDate;
-        DateTime _finalDate;
+        private DateTime _startDate;
+        private DateTime _finalDate;
+        private Context context = new Context();
 
         Notifier notifier = new Notifier(cfg =>
         {
@@ -60,9 +61,7 @@ namespace Oasis.Design
 
         private List<Reservation> FormingListOfValidReses()
         {
-            using (Context context = new Context())
-            {
-                List<Reservation> reservations = context.Reservations.Include("Seat").Include("User").ToList();
+            List<Reservation> reservations = context.Reservations.Include("Seat").Include("User").ToList();
                 List<Reservation> validReservations = new List<Reservation>();
                 foreach (var res in reservations)
                 {
@@ -72,7 +71,8 @@ namespace Oasis.Design
                     }
                 }
                 return validReservations;
-            }
+               
+            
         }
 
         //Фун-ции для пайчарта
@@ -80,51 +80,37 @@ namespace Oasis.Design
         private Dictionary<string, int> FormingEmptyProfitPerTypeDictionary()
         {
             Dictionary<string, int> profitPerTypeEmptyDictionary = new Dictionary<string, int>();
-            using (Context context = new Context())
+            List<Hall> halls = context.Halls.ToList();
+            foreach (var hall in halls)
             {
-                List<Hall> halls = context.Halls.ToList();
-                foreach (var hall in halls)
+                if (!(profitPerTypeEmptyDictionary.ContainsKey($"{hall.Type}")))
                 {
-                    if (!(profitPerTypeEmptyDictionary.ContainsKey($"{hall.Type}")))
-                    {
-                        profitPerTypeEmptyDictionary.Add(hall.Type, 0);
-                    }
+                    profitPerTypeEmptyDictionary.Add(hall.Type, 0);
                 }
-                return profitPerTypeEmptyDictionary;
             }
+            return profitPerTypeEmptyDictionary;
+
+
         }
 
         private Dictionary<string, int> ProfitPerType()
         {
             var reservations = FormingListOfValidReses();
             Dictionary<string, int> profitPerType = FormingEmptyProfitPerTypeDictionary();
-            using (Context context = new Context())
+            List<Hall> halls = context.Halls.ToList();
+            foreach (var res in reservations)
             {
-                List<Hall> halls = context.Halls.ToList();
-                foreach (var res in reservations)
+                foreach (var hall in halls)
                 {
-                    foreach (var hall in halls)
+                    if (hall.Id == res.Seat.HallId)
                     {
-                        if (hall.Id == res.Seat.HallId)
-                        {
-                            profitPerType[hall.Type] += (int)res.Price;
-                            break;
-                        }
+                        profitPerType[hall.Type] += (int)res.Price;
+                        break;
                     }
-                    
                 }
-                //foreach (var hall in halls)
-                //{
-                //    var sortedReservations = reservations
-                //    .Where(r => r.Seat.HallId == context.Halls.Where(h => h.Type == hall.Type).ToList()[0].Id)
-                //    .ToList();
-                //    foreach (var res in sortedReservations)
-                //    {
-                //        profitPerType[hall.Type] += (int)res.Price;
-                //    }
-                //}
+
             }
-            return profitPerType;    
+            return profitPerType;
         }
 
         private void UpdatingPieChart(Dictionary<string, int> profitPerType)
@@ -136,7 +122,6 @@ namespace Oasis.Design
             VIP_PCPartOfPieChart.Values = new ChartValues<double> { (int)profitPerType["VIP PC"] };
             PSPartOfPieChart.Values = new ChartValues<double> { (int)profitPerType["PS"] };
 
-
         }
        
         // Фун-ции для графика
@@ -144,49 +129,44 @@ namespace Oasis.Design
         private Dictionary<string, float> FormingEmptyAverageTimeOfUsingPerTypeDictionary()
         {
             Dictionary<string, float> emptyAverageTimeOfUsingPerTypeDictionary = new Dictionary<string, float>();
-            using (Context context = new Context())
+            List<Hall> halls = context.Halls.ToList();
+            foreach (var hall in halls)
             {
-                List<Hall> halls = context.Halls.ToList();
-                foreach (var hall in halls)
+                if (!(emptyAverageTimeOfUsingPerTypeDictionary.ContainsKey($"{hall.Type}")))
                 {
-                    if (!(emptyAverageTimeOfUsingPerTypeDictionary.ContainsKey($"{hall.Type}")))
-                    {
-                        emptyAverageTimeOfUsingPerTypeDictionary.Add(hall.Type, 0);
-                    }
+                    emptyAverageTimeOfUsingPerTypeDictionary.Add(hall.Type, 0);
                 }
-                return emptyAverageTimeOfUsingPerTypeDictionary;
             }
+            return emptyAverageTimeOfUsingPerTypeDictionary;
         }
 
         private Dictionary<string, float> AverageTimeOfUsingPerType()
         {
             var reservations = FormingListOfValidReses();
             Dictionary<string, float> averageTimeOfUsingPerType = FormingEmptyAverageTimeOfUsingPerTypeDictionary();
-            using (Context context = new Context())
+            List<Hall> halls = context.Halls.ToList();
+            foreach (var hall in halls)
             {
-                List<Hall> halls = context.Halls.ToList();
-                foreach (var hall in halls)
+                int amountOfReses = 0;
+                var sortedReservations = reservations
+                .Where(r => r.Seat.HallId == context.Halls.Where(h => h.Type == hall.Type).ToList()[0].Id)
+                .ToList();
+                if (sortedReservations.Count != 0)
                 {
-                    int amountOfReses = 0;
-                    var sortedReservations = reservations
-                    .Where(r => r.Seat.HallId == context.Halls.Where(h => h.Type == hall.Type).ToList()[0].Id)
-                    .ToList();
-                    if (sortedReservations.Count != 0)
+                    foreach (var res in sortedReservations)
                     {
-                        foreach (var res in sortedReservations)
-                        {
-                            averageTimeOfUsingPerType[hall.Type] += (int)res.Hours;
-                            amountOfReses += 1;
-                        }
-                        averageTimeOfUsingPerType[hall.Type] = (float)averageTimeOfUsingPerType[hall.Type] / amountOfReses;
+                        averageTimeOfUsingPerType[hall.Type] += (int)res.Hours;
+                        amountOfReses += 1;
                     }
-                    else
-                    {
-                        averageTimeOfUsingPerType[hall.Type] = 0;
-                    }
+                    averageTimeOfUsingPerType[hall.Type] = (float)averageTimeOfUsingPerType[hall.Type] / amountOfReses;
                 }
-                return averageTimeOfUsingPerType;
+                else
+                {
+                    averageTimeOfUsingPerType[hall.Type] = 0;
+                }
             }
+            return averageTimeOfUsingPerType;
+
         }
 
         private void UpdatingCartesianChart(Dictionary<string, float> averageTimeOfUsingPerType)
