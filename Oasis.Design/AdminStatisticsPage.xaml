@@ -39,8 +39,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <DatePicker Name="ChoosingDatePicker" Language="RU" Height="34" Width="200" FontSize="15" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Выберите дату начала" SelectedDateChanged="ChoosingDatePicker_SelectedDateChanged"></DatePicker>
-            <DatePicker Name="ChoosingFinalDatePicker" Language="RU" Height="34" Width="200" FontSize="15" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Выберите конечную дату" Grid.Column="1" SelectedDateChanged="ChoosingFinalDatePicker_SelectedDateChanged"></DatePicker>
+            <DatePicker Name="ChoosingDatePicker" Language="RU" Height="34" Width="200" FontSize="15" Foreground="White" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Выберите дату начала" SelectedDateChanged="ChoosingDatePicker_SelectedDateChanged"></DatePicker>
+            <DatePicker Name="ChoosingFinalDatePicker" Language="RU" Height="34" Width="200" FontSize="15" Foreground="White" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Выберите конечную дату" Grid.Column="1" SelectedDateChanged="ChoosingFinalDatePicker_SelectedDateChanged"></DatePicker>
             
         </Grid>
         <Grid Grid.Row="1">
@@ -66,7 +66,7 @@
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis Labels="VIP PC, PC, PS" MaxValue="3" DisableAnimations="True">
                         <lvc:Axis.Separator>
-                            <lvc:Separator Step="1"></lvc:Separator>
+                            <lvc:Separator StrokeThickness="0" Step="1"></lvc:Separator>
                         </lvc:Axis.Separator>
                     </lvc:Axis>
                 </lvc:CartesianChart.AxisX>
@@ -79,4 +79,3 @@
         </Grid>
     </Grid>
 </Page>
- 
